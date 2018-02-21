@@ -16,5 +16,10 @@ namespace PumaCoinCatalog.Models
         public string ImageUrl { get; set; }
 
         public IList<CoinType> CoinTypes { get; set; }
+
+        public override string ToString()
+        {
+            return $"Category - {Title}";
+        }
     }
 }

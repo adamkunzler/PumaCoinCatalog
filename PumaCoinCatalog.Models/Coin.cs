@@ -17,5 +17,10 @@ namespace PumaCoinCatalog.Models
         public int NumisMediaId { get; set; }
         public int NgcId { get; set; }
         public int PcgsId { get; set; }
+
+        public override string ToString()
+        {
+            return $"Coin - {Year} {Variety}";
+        }
     }
 }
