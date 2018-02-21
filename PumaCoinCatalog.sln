@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumaCoinCatalog.Console", "PumaCoinCatalog.Console\PumaCoinCatalog.Console.csproj", "{1002EEB9-BCEE-460F-8271-4ED8E60B0A1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumaCoinCatalog.Models", "PumaCoinCatalog.Models\PumaCoinCatalog.Models.csproj", "{D4864655-0D81-4DA9-AC16-4859A838C0A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1002EEB9-BCEE-460F-8271-4ED8E60B0A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1002EEB9-BCEE-460F-8271-4ED8E60B0A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1002EEB9-BCEE-460F-8271-4ED8E60B0A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4864655-0D81-4DA9-AC16-4859A838C0A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4864655-0D81-4DA9-AC16-4859A838C0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4864655-0D81-4DA9-AC16-4859A838C0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4864655-0D81-4DA9-AC16-4859A838C0A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
