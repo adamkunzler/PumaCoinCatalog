@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace PumaCoinCatalog.Models
 {
-    public class CoinType
+    public class RawCoinType
     {
-        public CoinType()
+        public RawCoinType()
         {
             Id = Guid.NewGuid();
-            Coins = new List<Coin>();
+            Coins = new List<RawCoin>();
         }
 
         public Guid Id { get; set; }
@@ -16,7 +16,7 @@ namespace PumaCoinCatalog.Models
         public string Details { get; set; }
         public string ImageUri { get; set; }
 
-        public IList<Coin> Coins { get; set; }
+        public IList<RawCoin> Coins { get; set; }
 
         public override string ToString()
         {

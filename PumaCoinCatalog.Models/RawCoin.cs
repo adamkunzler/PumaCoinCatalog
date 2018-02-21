@@ -2,9 +2,9 @@
 
 namespace PumaCoinCatalog.Models
 {
-    public class Coin
+    public class RawCoin
     {
-        public Coin()
+        public RawCoin()
         {
             Id = Guid.NewGuid();
         }

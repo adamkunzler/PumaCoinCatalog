@@ -12,7 +12,7 @@ namespace PumaCoinCatalog.Console
         {
             var baseUri = "https://www.uscoinlist.com";
 
-            var coinCollection = new CoinCollection { Title = "US Coins" };
+            var coinCollection = new RawCoinCollection { Title = "US Coins" };
 
             // get category html
             var categoryDom = GetHtml(baseUri);
@@ -20,7 +20,7 @@ namespace PumaCoinCatalog.Console
             var divCategoryRows = categoryDom["#content .row > div"].ToList();
             foreach (var divCategory in divCategoryRows)
             {
-                var coinCategory = new CoinCategory();
+                var coinCategory = new RawCoinCategory();
                 CQ divCategoryHtml = divCategory.InnerHTML;
 
                 // scrape category data
@@ -33,7 +33,7 @@ namespace PumaCoinCatalog.Console
                 var divTypeRows = typeDom["#content .row > div"].ToList();
                 foreach (var divType in divTypeRows)
                 {
-                    var coinType = new CoinType();
+                    var coinType = new RawCoinType();
                     CQ divTypeHtml = divType.InnerHTML;
 
                     // scrape type data
@@ -47,7 +47,7 @@ namespace PumaCoinCatalog.Console
                     var divCoinRows = coinDom["#content tbody > tr"].ToList();
                     foreach (var divCoin in divCoinRows)
                     {
-                        var coin = new Coin();
+                        var coin = new RawCoin();
                         CQ divCoinHtml = divCoin.InnerHTML;
 
                         // scrape coin data

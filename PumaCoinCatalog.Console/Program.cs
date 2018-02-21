@@ -23,10 +23,10 @@ namespace PumaCoinCatalog.Console
             PressKeyToContinue();
         }               
         
-        private static CoinCollection LoadCoinData()
+        private static RawCoinCollection LoadCoinData()
         {
             var json = GetData();
-            var collection = JsonConvert.DeserializeObject<CoinCollection>(json);
+            var collection = JsonConvert.DeserializeObject<RawCoinCollection>(json);
             return collection;
         }
 
