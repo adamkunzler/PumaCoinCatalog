@@ -72,7 +72,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\UpdateScrapeSortOrders.sql" />
+    <Content Include="Scripts\ListAllCoinsDetailed.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802211945234_initMigration.resx">
