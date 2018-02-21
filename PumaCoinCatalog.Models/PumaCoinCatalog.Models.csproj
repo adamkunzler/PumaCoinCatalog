@@ -41,10 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
-    <Compile Include="RawCoin.cs" />
-    <Compile Include="RawCoinCategory.cs" />
-    <Compile Include="RawCoinCollection.cs" />
-    <Compile Include="RawCoinType.cs" />
+    <Compile Include="ScrapeCoin.cs" />
+    <Compile Include="ScrapeCoinCategory.cs" />
+    <Compile Include="ScrapeCoinCollection.cs" />
+    <Compile Include="ScrapeCoinType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

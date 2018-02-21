@@ -8,6 +8,7 @@ using CsQuery;
 using PumaCoinCatalog.Models;
 using Newtonsoft.Json;
 using System.IO;
+using PumaCoinCatalog.Data;
 
 namespace PumaCoinCatalog.Console
 {
@@ -18,16 +19,19 @@ namespace PumaCoinCatalog.Console
             //var scraper = new CoinDataScraper();
             //var coinData = scraper.ScrapeData();
 
-            var collection = LoadCoinData();
+            LoadCoinData();
 
             PressKeyToContinue();
         }               
         
-        private static RawCoinCollection LoadCoinData()
+        private static void LoadCoinData()
         {
             var json = GetData();
-            var collection = JsonConvert.DeserializeObject<RawCoinCollection>(json);
-            return collection;
+            var collection = JsonConvert.DeserializeObject<ScrapeCoinCollection>(json);
+
+            var context = new DataContext();
+            context.ScrapeCoinCollections.Add(collection);
+            context.SaveChanges();
         }
 
         private static void Log(string msg)

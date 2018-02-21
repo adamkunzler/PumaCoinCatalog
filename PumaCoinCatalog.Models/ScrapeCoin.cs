@@ -2,9 +2,9 @@
 
 namespace PumaCoinCatalog.Models
 {
-    public class RawCoin
+    public class ScrapeCoin
     {
-        public RawCoin()
+        public ScrapeCoin()
         {
             Id = Guid.NewGuid();
         }
@@ -17,6 +17,8 @@ namespace PumaCoinCatalog.Models
         public int NumisMediaId { get; set; }
         public int NgcId { get; set; }
         public int PcgsId { get; set; }
+
+        public virtual ScrapeCoinType CoinType { get; set; }
 
         public override string ToString()
         {

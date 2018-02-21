@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PumaCoinCatalog.Data.Configuration;
+using PumaCoinCatalog.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -27,8 +29,11 @@ namespace PumaCoinCatalog.Data
         #endregion Initialization
 
         #region Models and Configuration
-
-        //public DbSet<Dummy> Dummies { get; set; }
+        
+        public DbSet<ScrapeCoinCollection> ScrapeCoinCollections { get; set; }
+        public DbSet<ScrapeCoinCategory> ScrapeCoinCategories { get; set; }
+        public DbSet<ScrapeCoinType> ScrapeCoinTypes { get; set; }
+        public DbSet<ScrapeCoin> ScrapeCoins { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,8 +42,11 @@ namespace PumaCoinCatalog.Data
             // conventions
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            // configurations
-            //modelBuilder.Configurations.Add(new DummyConfiguration());           
+            // configurations            
+            modelBuilder.Configurations.Add(new ScrapeCoinCollectionConfig());
+            modelBuilder.Configurations.Add(new ScrapeCoinCategoryConfig());
+            modelBuilder.Configurations.Add(new ScrapeCoinTypeConfig());
+            modelBuilder.Configurations.Add(new ScrapeCoinConfig());
         }
 
         #endregion Models and Configuration

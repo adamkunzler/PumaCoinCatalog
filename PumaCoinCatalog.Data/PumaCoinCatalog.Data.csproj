@@ -47,11 +47,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ScrapeCoinCategoryConfig.cs" />
+    <Compile Include="Configuration\ScrapeCoinCollectionConfig.cs" />
+    <Compile Include="Configuration\ScrapeCoinConfig.cs" />
+    <Compile Include="Configuration\ScrapeCoinTypeConfig.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="DbConfiguration.cs" />
     <Compile Include="Migrations\201802211945234_initMigration.cs" />
     <Compile Include="Migrations\201802211945234_initMigration.Designer.cs">
       <DependentUpon>201802211945234_initMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802212006418_addScrapeModels.cs" />
+    <Compile Include="Migrations\201802212006418_addScrapeModels.Designer.cs">
+      <DependentUpon>201802212006418_addScrapeModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,13 +67,20 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802211945234_initMigration.resx">
       <DependentUpon>201802211945234_initMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802212006418_addScrapeModels.resx">
+      <DependentUpon>201802212006418_addScrapeModels.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PumaCoinCatalog.Models\PumaCoinCatalog.Models.csproj">
+      <Project>{D4864655-0D81-4DA9-AC16-4859A838C0A1}</Project>
+      <Name>PumaCoinCatalog.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
