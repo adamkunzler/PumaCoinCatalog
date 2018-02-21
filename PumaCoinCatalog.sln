@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumaCoinCatalog.Models", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumaCoinCatalog.Data", "PumaCoinCatalog.Data\PumaCoinCatalog.Data.csproj", "{FAD06C5D-6054-4883-BBDC-59A324C257A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumaCoinCatalog.Web", "PumaCoinCatalog.Web\PumaCoinCatalog.Web.csproj", "{F1508363-6CC1-4F77-81C6-A3898A53EE97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumaCoinCatalog.Services", "PumaCoinCatalog.Services\PumaCoinCatalog.Services.csproj", "{A4EC105A-898E-46F0-A82C-B555463265F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{FAD06C5D-6054-4883-BBDC-59A324C257A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAD06C5D-6054-4883-BBDC-59A324C257A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAD06C5D-6054-4883-BBDC-59A324C257A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1508363-6CC1-4F77-81C6-A3898A53EE97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1508363-6CC1-4F77-81C6-A3898A53EE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1508363-6CC1-4F77-81C6-A3898A53EE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1508363-6CC1-4F77-81C6-A3898A53EE97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4EC105A-898E-46F0-A82C-B555463265F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4EC105A-898E-46F0-A82C-B555463265F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4EC105A-898E-46F0-A82C-B555463265F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4EC105A-898E-46F0-A82C-B555463265F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

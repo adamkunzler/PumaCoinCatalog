@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FAD06C5D-6054-4883-BBDC-59A324C257A2}</ProjectGuid>
+    <ProjectGuid>{A4EC105A-898E-46F0-A82C-B555463265F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PumaCoinCatalog.Data</RootNamespace>
-    <AssemblyName>PumaCoinCatalog.Data</AssemblyName>
+    <RootNamespace>PumaCoinCatalog.Services</RootNamespace>
+    <AssemblyName>PumaCoinCatalog.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,25 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContext.cs" />
-    <Compile Include="DbConfiguration.cs" />
-    <Compile Include="Migrations\201802211945234_initMigration.cs" />
-    <Compile Include="Migrations\201802211945234_initMigration.Designer.cs">
-      <DependentUpon>201802211945234_initMigration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802211945234_initMigration.resx">
-      <DependentUpon>201802211945234_initMigration.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\PumaCoinCatalog.Data\PumaCoinCatalog.Data.csproj">
+      <Project>{fad06c5d-6054-4883-bbdc-59a324c257a2}</Project>
+      <Name>PumaCoinCatalog.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PumaCoinCatalog.Models\PumaCoinCatalog.Models.csproj">
+      <Project>{d4864655-0d81-4da9-ac16-4859a838c0a1}</Project>
+      <Name>PumaCoinCatalog.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
