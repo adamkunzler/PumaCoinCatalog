@@ -61,19 +61,28 @@
     <Compile Include="Migrations\201802212006418_addScrapeModels.Designer.cs">
       <DependentUpon>201802212006418_addScrapeModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802212019081_addSortOrderToScrapeModels.cs" />
+    <Compile Include="Migrations\201802212019081_addSortOrderToScrapeModels.Designer.cs">
+      <DependentUpon>201802212019081_addSortOrderToScrapeModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Scripts\UpdateScrapeSortOrders.sql" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802211945234_initMigration.resx">
       <DependentUpon>201802211945234_initMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212006418_addScrapeModels.resx">
       <DependentUpon>201802212006418_addScrapeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802212019081_addSortOrderToScrapeModels.resx">
+      <DependentUpon>201802212019081_addSortOrderToScrapeModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

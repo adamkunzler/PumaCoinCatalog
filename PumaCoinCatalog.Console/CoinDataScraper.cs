@@ -10,6 +10,10 @@ namespace PumaCoinCatalog.Console
     {
         public string ScrapeData()
         {
+            var coinSort = 0;
+            var typeSort = 0;
+            var categorySort = 0;
+
             var baseUri = "https://www.uscoinlist.com";
 
             var coinCollection = new ScrapeCoinCollection { Title = "US Coins" };
@@ -17,7 +21,7 @@ namespace PumaCoinCatalog.Console
             // get category html
             var categoryDom = GetHtml(baseUri);
 
-            var divCategoryRows = categoryDom["#content .row > div"].ToList();
+            var divCategoryRows = categoryDom["#content .row > div"].ToList();            
             foreach (var divCategory in divCategoryRows)
             {
                 var coinCategory = new ScrapeCoinCategory();
@@ -26,11 +30,12 @@ namespace PumaCoinCatalog.Console
                 // scrape category data
                 coinCategory.Title = divCategoryHtml["a > b"].Text();
                 coinCategory.ImageUrl = $"{baseUri}{divCategoryHtml["a > img"].Attr("src")}";
+                coinCategory.SortOrder = categorySort++;
                 var categoryUri = $"{baseUri}{divCategoryHtml["a"].Attr("href")}";
 
                 // get type html
                 var typeDom = GetHtml(categoryUri);
-                var divTypeRows = typeDom["#content .row > div"].ToList();
+                var divTypeRows = typeDom["#content .row > div"].ToList();                
                 foreach (var divType in divTypeRows)
                 {
                     var coinType = new ScrapeCoinType();
@@ -40,11 +45,12 @@ namespace PumaCoinCatalog.Console
                     coinType.Title = divTypeHtml["a > b"].Text();
                     coinType.Details = CleanTypeDetails(divTypeHtml.Text(), coinType.Title);
                     coinType.ImageUri = $"{baseUri}{divTypeHtml["a > img"].Attr("src")}";
+                    coinType.SortOrder = typeSort++;
                     var typeUri = $"{baseUri}{divTypeHtml["a"].Attr("href")}";
 
                     // get coin html
                     var coinDom = GetHtml(typeUri);
-                    var divCoinRows = coinDom["#content tbody > tr"].ToList();
+                    var divCoinRows = coinDom["#content tbody > tr"].ToList();                    
                     foreach (var divCoin in divCoinRows)
                     {
                         var coin = new ScrapeCoin();
@@ -59,6 +65,7 @@ namespace PumaCoinCatalog.Console
                         coin.NumisMediaId = GetCoinIntId(tdCoinData[4].InnerHTML);
                         coin.NgcId = GetCoinIntId(tdCoinData[5].InnerHTML);
                         coin.PcgsId = GetCoinIntId(tdCoinData[6].InnerHTML);
+                        coin.SortOrder = coinSort++;
 
                         coinType.Coins.Add(coin);
                     }
