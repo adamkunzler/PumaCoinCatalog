@@ -50,7 +50,8 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   left: 0;
-  background-color: #f0f3f6;
+  /*background-color: #f0f3f6;*/
+  background-color: #ffffff;
   -webkit-box-shadow: 0 0 3px #ccc;
           box-shadow: 0 0 3px #ccc;
   -webkit-transition: left 0.3s ease, padding-left 0.3s ease;

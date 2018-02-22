@@ -1,0 +1,30 @@
+﻿@model PumaCoinCatalog.Web.Models.CoinData.CoinCategoryModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        <a href="@Url.Action("Index", "CoinData")">@Model.CollectionTitle</a>
+        <span>&#x25BA;</span>
+        @Model.Title
+    </div>
+}
+
+<div class="coin-types">
+    <div class="row">
+        @foreach (var type in Model.Types)
+        {
+            <div class="col-md-3 coin-box">
+                <a href="@Url.Action("CoinType", "CoinData", new { id = type.Id })">
+                    <img src="data:image/jpg;base64,@type.Base64Image" alt="@type.Title" class="coin-image" />
+                    <br />
+                    <div class="title">@type.Title</div>
+                    <div class="title">@type.Details</div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+

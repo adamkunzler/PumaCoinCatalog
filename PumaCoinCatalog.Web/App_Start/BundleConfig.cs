@@ -23,6 +23,9 @@ namespace PumaCoinCatalog.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Theme/css").Include(                      
+                      "~/Theme/css/app.css"));
         }
     }
 }

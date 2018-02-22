@@ -1,4 +1,5 @@
 ﻿using PumaCoinCatalog.Services;
+using PumaCoinCatalog.Web.Infrastructure.Mappers;
 using PumaCoinCatalog.Web.Models.CoinData;
 using System;
 using System.Collections.Generic;
@@ -19,64 +20,27 @@ namespace PumaCoinCatalog.Web.Controllers
 
         // GET: ScrapeCoins
         public ActionResult Index()
-        {            
-            var collection = _coinDataService.GetUsCoinCollection();
+        {
+            var coinCollection = _coinDataService.GetUsCoinCollection();
+            var model = coinCollection.Map();
+            return View(model);
+        }        
 
-            // map to model
-            #region Map to Model
-            var model = new IndexModel();
-            model.Collection = new CoinCollectionModel();
-            model.Collection.Id = collection.Id;
-            model.Collection.Title = collection.Title;
-            model.Collection.Categories = new List<CoinCategoryModel>();
-            foreach(var category in collection.CoinCategories)
-            {
-                var catModel = new CoinCategoryModel
-                {
-                    Id = category.Id,
-                    Title = category.Title,
-                    SortOrder = category.SortOrder,
-                    Base64Image = category.Base64Image,
-                    Types = new List<CoinTypeModel>()
-                };
+        public ActionResult CoinCategory(Guid id)
+        {
+            if (id == Guid.Empty) throw new ArgumentException("CoinCategory Id is empty");
 
-                foreach(var type in category.CoinTypes)
-                {
-                    var typeModel = new CoinTypeModel
-                    {
-                        Id = type.Id,
-                        Title = type.Title,
-                        Details = type.Details,
-                        SortOrder = type.SortOrder,                        
-                        Base64Image = type.Base64Image,
-                        Coins = new List<CoinModel>()
-                    };
+            var category = _coinDataService.GetCoinCategory(id);
+            var model = category.Map();
+            return View(model);
+        }
 
-                    foreach(var coin in type.Coins)
-                    {
-                        var coinModel = new CoinModel
-                        {
-                            Id = coin.Id,
-                            Year = coin.Year,
-                            Variety = coin.Variety,
-                            Mintage = coin.Mintage,
-                            SortOrder = coin.SortOrder
-                        };
+        public ActionResult CoinType(Guid id)
+        {
+            if (id == Guid.Empty) throw new ArgumentException("CoinType Id is empty");
 
-                        typeModel.Coins.Add(coinModel);
-                    }
-
-                    typeModel.Coins = typeModel.Coins.OrderBy(x => x.SortOrder).ToList();
-                    catModel.Types.Add(typeModel);
-                }
-
-                catModel.Types = catModel.Types.OrderBy(x => x.SortOrder).ToList();
-                model.Collection.Categories.Add(catModel);
-            }
-
-            model.Collection.Categories = model.Collection.Categories.OrderBy(x => x.SortOrder).ToList();
-            #endregion Map to Model
-
+            var type = _coinDataService.GetCoinType(id);
+            var model = type.Map();
             return View(model);
         }
     }

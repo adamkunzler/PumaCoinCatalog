@@ -159,7 +159,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CoinData\IndexModel.cs" />
+    <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
+    <Compile Include="Models\CoinData\CoinCategoryModel.cs" />
+    <Compile Include="Models\CoinData\CoinCollectionModel.cs" />
+    <Compile Include="Models\CoinData\CoinModel.cs" />
+    <Compile Include="Models\CoinData\CoinTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +239,8 @@
     <Content Include="Theme\fonts\fontawesome-webfont.woff" />
     <Content Include="Theme\fonts\fontawesome-webfont.woff2" />
     <Content Include="Theme\fonts\FontAwesome.otf" />
+    <Content Include="Views\CoinData\CoinCategory.cshtml" />
+    <Content Include="Views\CoinData\CoinType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

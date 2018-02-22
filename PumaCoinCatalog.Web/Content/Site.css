@@ -16,6 +16,34 @@ textarea {
     max-width: 280px;
 }
 
-.app .content {
-    padding: 0;
+/* CoinData */
+
+.coin-box {
+    /*border: 1px solid black;*/
+    margin-bottom: 30px;
+}
+
+.coin-image {
+    width: 100%;
+}
+
+.coin-box .title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.header-block .coin-breadcrumb {
+    margin-left: 55px;
+    font-size: 24px;
+}
+
+    .header-block .coin-breadcrumb a {
+        color: #4f5f6f;
+        text-decoration: none;
+    }
+
+.header-block .coin-breadcrumb span {
+    margin-left: 20px;
+    margin-right: 20px;
 }
