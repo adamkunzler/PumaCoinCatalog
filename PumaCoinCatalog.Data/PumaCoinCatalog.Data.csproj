@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201802220144005_addBase64ImageProperties.Designer.cs">
       <DependentUpon>201802220144005_addBase64ImageProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802220154464_removeImageUris.cs" />
+    <Compile Include="Migrations\201802220154464_removeImageUris.Designer.cs">
+      <DependentUpon>201802220154464_removeImageUris.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802220144005_addBase64ImageProperties.resx">
       <DependentUpon>201802220144005_addBase64ImageProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802220154464_removeImageUris.resx">
+      <DependentUpon>201802220154464_removeImageUris.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
