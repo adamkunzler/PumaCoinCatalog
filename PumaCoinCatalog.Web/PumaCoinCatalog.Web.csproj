@@ -242,6 +242,7 @@
     <Content Include="Theme\fonts\FontAwesome.otf" />
     <Content Include="Views\CoinData\CoinCategory.cshtml" />
     <Content Include="Views\CoinData\CoinType.cshtml" />
+    <Content Include="Views\CoinData\_coinListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

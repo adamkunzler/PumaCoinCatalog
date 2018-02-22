@@ -47,3 +47,15 @@ textarea {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+.coins .coin-list {
+    width: 100%;
+}
+
+    .coins .coin-list thead {
+        font-size: 18px;
+    }
+
+    .coins .coin-list tbody {
+        font-size: 16px;
+    }

@@ -1,7 +1,5 @@
 ﻿@model PumaCoinCatalog.Web.Models.CoinData.CoinTypeModel
 
-@using PumaCoinCatalog.Web.Infrastructure
-
 @{
     ViewBag.Title = Model.Title;
 }
@@ -15,20 +13,6 @@
         @Model.Title - @Model.Details
     </div>
 }
-
-<style type="text/css">
-    .coins .coin-list {
-        width: 100%;
-    }
-
-        .coins .coin-list thead {            
-            font-size: 18px;
-        }
-
-        .coins .coin-list tbody {
-            font-size: 16px;
-        }
-</style>
 
 <div class="coins">
     <div class="row">
@@ -44,35 +28,7 @@
     <div class="row">
         <!-- Master Coin List -->
         <div class="col-md-6">
-            <div class="table-responsive">
-                <table class="coin-list table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Year</th>
-                            <th>Variety</th>
-                            <th>Mintage</th>
-                            <th>KM #</th>
-                            <th>NumisMedia</th>
-                            <th>NGC</th>
-                            <th>PCGS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var coin in Model.Coins)
-                        {
-                            <tr>
-                                <td>@coin.Year</td>
-                                <td>@coin.Variety</td>
-                                <td>@coin.Mintage</td>
-                                <td>@coin.KmNumber</td>
-                                <td><a href="@LinkHelper.NumisMediaLink(coin.NumisMediaId)" target="_blank">@coin.NumisMediaId</a></td>
-                                <td><a href="@LinkHelper.NgcLink(coin.NgcId)" target="_blank">@coin.NgcId</a></td>
-                                <td><a href="@LinkHelper.PcgsLink(coin.PcgsId)" target="_blank">@coin.PcgsId</a></td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+            @Html.Partial("_coinListing", Model.Coins)
         </div>
         <!-- My Coin List -->
         <div class="col-md-6"></div>
