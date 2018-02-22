@@ -179,6 +179,43 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Theme\assets\demo.png" />
+    <Content Include="Theme\assets\faces\3.jpg" />
+    <Content Include="Theme\assets\faces\4.jpg" />
+    <Content Include="Theme\assets\faces\5.jpg" />
+    <Content Include="Theme\assets\faces\7.jpg" />
+    <Content Include="Theme\assets\faces\8.jpg" />
+    <Content Include="Theme\assets\features.png" />
+    <Content Include="Theme\assets\screenful\integration-asana.png" />
+    <Content Include="Theme\assets\screenful\integration-github.png" />
+    <Content Include="Theme\assets\screenful\integration-jira.png" />
+    <Content Include="Theme\assets\screenful\integration-pivotal.png" />
+    <Content Include="Theme\assets\screenful\integration-trello.png" />
+    <Content Include="Theme\assets\screenful\logo.png" />
+    <Content Include="Theme\assets\screenful\screen-completed-tasks.png" />
+    <Content Include="Theme\assets\screenful\screen-custom-chart.png" />
+    <Content Include="Theme\assets\screenful\screen-milestone.png" />
+    <Content Include="Theme\assets\screenful\screen-open-tasks.png" />
+    <Content Include="Theme\assets\screenful\screen-sprint.png" />
+    <Content Include="Theme\assets\screenful\screen-task-status.png" />
+    <Content Include="Theme\assets\screenful\screen-team-status.png" />
+    <Content Include="Theme\assets\screenful\screen-timing.png" />
+    <Content Include="Theme\css\app-blue.css" />
+    <Content Include="Theme\css\app-custom.css" />
+    <Content Include="Theme\css\app-green.css" />
+    <Content Include="Theme\css\app-orange.css" />
+    <Content Include="Theme\css\app-purple.css" />
+    <Content Include="Theme\css\app-red.css" />
+    <Content Include="Theme\css\app-seagreen.css" />
+    <Content Include="Theme\css\app.css" />
+    <Content Include="Theme\css\vendor.css" />
+    <Content Include="error-404-alt.html" />
+    <Content Include="error-404.html" />
+    <Content Include="error-500-alt.html" />
+    <Content Include="error-500.html" />
+    <Content Include="Theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Theme\js\app.js" />
+    <Content Include="Theme\js\vendor.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -193,6 +230,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\CoinData\Index.cshtml" />
+    <Content Include="Theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Theme\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Theme\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

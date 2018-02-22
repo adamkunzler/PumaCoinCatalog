@@ -19,7 +19,7 @@ namespace PumaCoinCatalog.Web.Controllers
 
         // GET: ScrapeCoins
         public ActionResult Index()
-        {
+        {            
             var collection = _coinDataService.GetUsCoinCollection();
 
             // map to model
