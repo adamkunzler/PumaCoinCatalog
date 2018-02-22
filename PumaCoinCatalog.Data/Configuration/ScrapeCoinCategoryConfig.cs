@@ -12,8 +12,7 @@ namespace PumaCoinCatalog.Data.Configuration
             Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             Property(x => x.Title).HasMaxLength(64).IsRequired();            
-            Property(x => x.ImageUrl).HasMaxLength(1024);
-
+            
             HasRequired(x => x.CoinCollection);
         }
     }

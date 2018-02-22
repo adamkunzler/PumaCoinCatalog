@@ -19,11 +19,11 @@ namespace PumaCoinCatalog.Console
             //var scraper = new CoinDataScraper();
             //var coinData = scraper.ScrapeData();
 
-            LoadCoinData();
-
+            //LoadCoinData();
+            
             PressKeyToContinue();
         }               
-        
+                
         private static void LoadCoinData()
         {
             var json = GetData();

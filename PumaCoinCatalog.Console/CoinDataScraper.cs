@@ -29,7 +29,7 @@ namespace PumaCoinCatalog.Console
 
                 // scrape category data
                 coinCategory.Title = divCategoryHtml["a > b"].Text();
-                coinCategory.ImageUrl = $"{baseUri}{divCategoryHtml["a > img"].Attr("src")}";
+                coinCategory.Base64Image = ImageUtil.ConvertImageURLToBase64($"{baseUri}{divCategoryHtml["a > img"].Attr("src")}");
                 coinCategory.SortOrder = categorySort++;
                 var categoryUri = $"{baseUri}{divCategoryHtml["a"].Attr("href")}";
 
@@ -44,7 +44,7 @@ namespace PumaCoinCatalog.Console
                     // scrape type data
                     coinType.Title = divTypeHtml["a > b"].Text();
                     coinType.Details = CleanTypeDetails(divTypeHtml.Text(), coinType.Title);
-                    coinType.ImageUri = $"{baseUri}{divTypeHtml["a > img"].Attr("src")}";
+                    coinType.Base64Image = ImageUtil.ConvertImageURLToBase64($"{baseUri}{divTypeHtml["a > img"].Attr("src")}");
                     coinType.SortOrder = typeSort++;
                     var typeUri = $"{baseUri}{divTypeHtml["a"].Attr("href")}";
 

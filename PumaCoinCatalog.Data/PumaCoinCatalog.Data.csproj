@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201802212019081_addSortOrderToScrapeModels.Designer.cs">
       <DependentUpon>201802212019081_addSortOrderToScrapeModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802220144005_addBase64ImageProperties.cs" />
+    <Compile Include="Migrations\201802220144005_addBase64ImageProperties.Designer.cs">
+      <DependentUpon>201802220144005_addBase64ImageProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802212019081_addSortOrderToScrapeModels.resx">
       <DependentUpon>201802212019081_addSortOrderToScrapeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802220144005_addBase64ImageProperties.resx">
+      <DependentUpon>201802220144005_addBase64ImageProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

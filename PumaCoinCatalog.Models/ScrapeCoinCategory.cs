@@ -12,9 +12,9 @@ namespace PumaCoinCatalog.Models
         }
 
         public Guid Id { get; set; }
-        public string Title { get; set; }        
-        public string ImageUrl { get; set; }
+        public string Title { get; set; }                
         public int SortOrder { get; set; }
+        public string Base64Image { get; set; }
 
         public virtual IList<ScrapeCoinType> CoinTypes { get; set; }
         public virtual ScrapeCoinCollection CoinCollection { get; set; }

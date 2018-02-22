@@ -1,0 +1,39 @@
+﻿@model PumaCoinCatalog.Web.Models.CoinData.IndexModel
+
+@{
+    ViewBag.Title = "Coin Data";
+}
+
+<style type="text/css">
+    .coin-category {
+        /*border: 1px solid black;*/
+        margin-bottom: 30px;
+    }
+
+    .coin-category img {        
+        width: 100%;
+    }
+
+    .coin-category .title {        
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+    }
+</style>
+
+<h2>@Model.Collection.Title</h2>
+
+<div class="coin-categories">
+    <div class="row">
+        @foreach (var category in Model.Collection.Categories)
+        {
+            <div class="col-md-3 coin-category">
+                <a href="/something?type=@category.Id">
+                    <img src="data:image/jpg;base64,@category.Base64Image" alt="@category.Title" />
+                    <br />
+                    <div class="title">@category.Title</div>
+                </a>
+        </div>
+        }
+    </div>
+</div>
