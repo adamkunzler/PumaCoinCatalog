@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ChecklistCoinConfig.cs" />
+    <Compile Include="Configuration\ChecklistConfig.cs" />
     <Compile Include="Configuration\ScrapeCoinCategoryConfig.cs" />
     <Compile Include="Configuration\ScrapeCoinCollectionConfig.cs" />
     <Compile Include="Configuration\ScrapeCoinConfig.cs" />
@@ -73,6 +75,10 @@
     <Compile Include="Migrations\201802220154464_removeImageUris.Designer.cs">
       <DependentUpon>201802220154464_removeImageUris.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802222222591_addedChecklistAndChecklistCoin.cs" />
+    <Compile Include="Migrations\201802222222591_addedChecklistAndChecklistCoin.Designer.cs">
+      <DependentUpon>201802222222591_addedChecklistAndChecklistCoin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802220154464_removeImageUris.resx">
       <DependentUpon>201802220154464_removeImageUris.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802222222591_addedChecklistAndChecklistCoin.resx">
+      <DependentUpon>201802222222591_addedChecklistAndChecklistCoin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

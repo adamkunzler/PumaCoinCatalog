@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Checklist.cs" />
+    <Compile Include="ChecklistCoin.cs" />
     <Compile Include="ScrapeCoin.cs" />
     <Compile Include="ScrapeCoinCategory.cs" />
     <Compile Include="ScrapeCoinCollection.cs" />

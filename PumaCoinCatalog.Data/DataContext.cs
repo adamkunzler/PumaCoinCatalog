@@ -34,6 +34,8 @@ namespace PumaCoinCatalog.Data
         public DbSet<ScrapeCoinCategory> ScrapeCoinCategories { get; set; }
         public DbSet<ScrapeCoinType> ScrapeCoinTypes { get; set; }
         public DbSet<ScrapeCoin> ScrapeCoins { get; set; }
+        public DbSet<Checklist> Checklists { get; set; }
+        public DbSet<ChecklistCoin> ChecklistCoins { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +49,8 @@ namespace PumaCoinCatalog.Data
             modelBuilder.Configurations.Add(new ScrapeCoinCategoryConfig());
             modelBuilder.Configurations.Add(new ScrapeCoinTypeConfig());
             modelBuilder.Configurations.Add(new ScrapeCoinConfig());
+            modelBuilder.Configurations.Add(new ChecklistConfig());
+            modelBuilder.Configurations.Add(new ChecklistCoinConfig());
         }
 
         #endregion Models and Configuration
