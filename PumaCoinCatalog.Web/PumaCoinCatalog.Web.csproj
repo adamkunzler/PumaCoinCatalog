@@ -159,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\LinkHelper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
     <Compile Include="Models\CoinData\CoinCategoryModel.cs" />
     <Compile Include="Models\CoinData\CoinCollectionModel.cs" />

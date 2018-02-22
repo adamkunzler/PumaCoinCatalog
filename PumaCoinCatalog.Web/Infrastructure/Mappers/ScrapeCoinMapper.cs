@@ -93,6 +93,10 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                     Year = coin.Year,
                     Variety = coin.Variety,
                     Mintage = coin.Mintage,
+                    KmNumber = coin.KmNumber,
+                    NumisMediaId = coin.NumisMediaId,
+                    NgcId = coin.NgcId,
+                    PcgsId = coin.PcgsId,
                     SortOrder = coin.SortOrder
                 };
 
