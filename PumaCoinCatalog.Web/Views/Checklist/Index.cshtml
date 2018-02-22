@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Checklist";
+}
+
+<h3>It's a Checklist</h3>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/Checklist/AllChecklists');
+        });
+    </script>
+
+}

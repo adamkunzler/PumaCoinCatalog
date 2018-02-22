@@ -247,7 +247,7 @@ $(function() {
 	
 	$('.item-actions-toggle-btn').on('click',function(e){
 		e.preventDefault();
-
+        
 		var $thisActionList = $(this).closest('.item-actions-dropdown');
 
 		$itemActions.not($thisActionList).removeClass('active');

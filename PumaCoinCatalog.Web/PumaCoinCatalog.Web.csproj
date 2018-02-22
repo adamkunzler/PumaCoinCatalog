@@ -154,6 +154,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ChecklistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CoinDataController.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +244,9 @@
     <Content Include="Views\CoinData\CoinCategory.cshtml" />
     <Content Include="Views\CoinData\CoinType.cshtml" />
     <Content Include="Views\CoinData\_coinListing.cshtml" />
+    <Content Include="Views\Checklist\Index.cshtml" />
+    <Content Include="Views\Checklist\NewChecklist.cshtml" />
+    <Content Include="Views\Checklist\AllChecklists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

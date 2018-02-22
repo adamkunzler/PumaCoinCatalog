@@ -78,7 +78,7 @@
                     </div>
                     <nav class="menu">
                         <ul class="sidebar-menu metismenu" id="sidebar-menu">
-                            <li class="active">
+                            <li>
                                 <a href="/">
                                     <i class="fa fa-home"></i> Dashboard
                                 </a>
@@ -87,7 +87,21 @@
                                 <a href="/CoinData">
                                     <i class="fa fa-money"></i> U.S. Coins
                                 </a>
-                            </li>                                                     
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-check-square-o"></i> Checklists
+                                    <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav">
+                                    <li>
+                                        <a href="/Checklist/NewChecklist"> New Checklist</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Checklist/AllChecklists"> All Checklists</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -256,5 +270,22 @@
     <script src="~/Theme/js/vendor.js"></script>
     <script src="~/Theme/js/app.js"></script>
     @RenderSection("scripts", required: false)
+    
+    <script type="text/javascript">
+
+        function setActiveMenu(menuTitle) {
+            var a = $('nav.menu a[href="' + menuTitle +'"]');
+            a.parent().addClass('active');
+            a.parent().parent().addClass('in');
+            a.parent().parent().parent().addClass('active open');
+        };
+
+        function resetMenu() {            
+            $('nav.menu li').removeClass('active');
+            $('nav.menu li').removeClass('open');
+            $('nav.menu ul').removeClass('in');
+        };
+
+    </script>
 </body>
 </html>
