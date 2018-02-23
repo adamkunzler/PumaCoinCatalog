@@ -25,6 +25,17 @@ namespace PumaCoinCatalog.Services
             _coinDataService = new CoinDataService(_context);
         }
 
+        public IList<Checklist> GetAllChecklists()
+        {
+            var checklists = _context.Checklists
+                                     .Include("CoinCollection")
+                                     .Include("CoinCategory")
+                                     .Include("CoinType")
+                                     .OrderBy(x => x.Title)
+                                     .ToList();
+            return checklists;
+        }
+
         public Guid CreateNewChecklist(string title, Guid collectionId, Guid categoryId, Guid typeId)
         {
             var checklist = new Checklist();

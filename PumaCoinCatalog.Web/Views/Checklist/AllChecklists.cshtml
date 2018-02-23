@@ -1,9 +1,32 @@
-﻿
+﻿@model System.Collections.Generic.List<PumaCoinCatalog.Web.Models.Checklist.AllChecklistsModel>
+
 @{
     ViewBag.Title = "All Checklists";
 }
 
-<h2>All Checklists</h2>
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        Checklists
+        <span>&#x25BA;</span>
+        All Checklists
+    </div>
+}
+
+<div class="all-checklists">
+    <div class="row">
+        @foreach (var checklist in Model)
+        {
+            <div class="col-md-4 coin-box">
+                <a href="@Url.Action("Index", "Checklist", new { id = checklist.Id })">
+                    <img src="data:image/jpg;base64,@checklist.Base64Image" alt="@checklist.CoinType" class="coin-image" />
+                    <br />
+                    <div class="title">@checklist.Title</div>
+                    <div class="sub-title">@checklist.CoinType</div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
 
 @section scripts {
 

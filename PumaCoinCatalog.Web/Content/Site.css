@@ -23,6 +23,18 @@ textarea {
     margin-bottom: 30px;
 }
 
+.all-checklists .coin-box .title {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.all-checklists .coin-box .sub-title {
+    font-size: 16px;
+    font-style: italic;    
+    text-align: center;
+    font-weight: 600;
+}
+
 .coin-image {
     width: 100%;
 }

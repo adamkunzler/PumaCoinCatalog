@@ -1,5 +1,6 @@
 ﻿using PumaCoinCatalog.Services;
 using PumaCoinCatalog.Web.Infrastructure;
+using PumaCoinCatalog.Web.Infrastructure.Mappers;
 using PumaCoinCatalog.Web.Models.Checklist;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,9 @@ namespace PumaCoinCatalog.Web.Controllers
 
         public ActionResult AllChecklists()
         {
-            return View();
+            var checklists = _checklistService.GetAllChecklists();
+            var model = ChecklistMapper.MapToAllChecklistsModel(checklists);
+            return View(model);
         }
 
         #endregion Actions

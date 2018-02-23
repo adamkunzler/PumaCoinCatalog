@@ -162,7 +162,9 @@
     </Compile>
     <Compile Include="Infrastructure\DropDownListHelper.cs" />
     <Compile Include="Infrastructure\LinkHelper.cs" />
+    <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
+    <Compile Include="Models\Checklist\AllChecklistsModel.cs" />
     <Compile Include="Models\Checklist\NewChecklistModel.cs" />
     <Compile Include="Models\CoinData\CoinCategoryModel.cs" />
     <Compile Include="Models\CoinData\CoinCollectionModel.cs" />
