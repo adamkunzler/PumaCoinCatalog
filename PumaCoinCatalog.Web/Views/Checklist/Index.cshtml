@@ -1,9 +1,99 @@
-﻿
+﻿@model PumaCoinCatalog.Web.Models.Checklist.ChecklistModel
+
+@using PumaCoinCatalog.Web.Infrastructure
+
 @{
-    ViewBag.Title = "Checklist";
+    ViewBag.Title = Model.Title;
 }
 
-<h3>It's a Checklist</h3>
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        Checklists
+        <span>&#x25BA;</span>
+        @Model.Title        
+        <span style="font-size: 18px;">@Model.CoinTypeDisplay</span>
+    </div>
+}
+
+<div class="checklist-details">
+    @*<div class="row">
+        <div class="col-md-12">@Model.CoinTypeDisplay</div>
+    </div>*@
+    <div class="row">
+        <div class="col-md-6">
+            <img src="data:image/jpg;base64,@Model.Base64Image" alt="@Model.Title" class="coin-image" />
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+    <hr />
+    <div class="row">                
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="coin-list table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="display:none;">Id</th>
+                            <th style="display:none;">CoinId</th>                            
+                            <th>Year</th>
+                            <th>Variety</th>
+                            <th style="text-align: center;">Collected</th>
+                            <th style="text-align: center;">Grade</th>
+                            <th style="text-align: right;">Est. Value</th>
+                            <th style="text-align: right;">Mintage</th>
+                            <th style="text-align: center;">KM #</th>
+                            <th style="text-align: center;">NumisMedia</th>
+                            <th style="text-align: center;">NGC</th>
+                            <th style="text-align: center;">PCGS</th>                                                                                    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var coin in Model.ChecklistCoins)
+                        {
+                            <tr>
+                                <td style="display:none;">@coin.Id</td>
+                                <td style="display:none;">@coin.CoinModel.Id</td>
+                                <td>@coin.CoinModel.Year</td>
+                                <td>@coin.CoinModel.Variety</td>
+                                <td style="text-align: center;">
+                                    <label>
+                                        <input class="checkbox in-collection-checkbox" type="checkbox" @(Convert.ToBoolean(coin.InCollection) == true ?   "checked='checked'" : string.Empty)/>
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td style="text-align: center; width: 75px;">
+                                    <select class="form-control ddl-grade">
+                                        <option @(coin.AdamGrade == 0 ? "selected='selected'" : string.Empty) value="0">0</option>
+                                        <option @(coin.AdamGrade == 1 ? "selected='selected'" : string.Empty) value="1">1</option>
+                                        <option @(coin.AdamGrade == 2 ? "selected='selected'" : string.Empty) value="2">2</option>
+                                        <option @(coin.AdamGrade == 3 ? "selected='selected'" : string.Empty) value="3">3</option>
+                                        <option @(coin.AdamGrade == 4 ? "selected='selected'" : string.Empty) value="4">4</option>
+                                        <option @(coin.AdamGrade == 5 ? "selected='selected'" : string.Empty) value="5">5</option>
+                                    </select>
+                                </td>
+                                <td style="text-align: right; width: 100px;">                                    
+                                    <input type="text" class="form-control estimated-value-textbox" value="@coin.ValueEstimate"/>                                    
+                                </td>
+                                <td style="text-align: center;">
+                                    @if (coin.CoinModel.Mintage == 0)
+                                    { <span>-</span> }
+                                    else
+                                    { <span>@string.Format("{0:0,0}", coin.CoinModel.Mintage)</span> }
+                                </td>
+                                <td style="text-align: center;">@coin.CoinModel.KmNumber</td>
+                                <td style="text-align: center;"><a href="@LinkHelper.NumisMediaLink(coin.CoinModel.NumisMediaId)" target="_blank">@coin.CoinModel.NumisMediaId</a></td>
+                                <td style="text-align: center;"><a href="@LinkHelper.NgcLink(coin.CoinModel.NgcId)" target="_blank">@coin.CoinModel.NgcId</a></td>
+                                <td style="text-align: center;"><a href="@LinkHelper.PcgsLink(coin.CoinModel.PcgsId)" target="_blank">@coin.CoinModel.PcgsId</a></td>                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts {
 
@@ -11,6 +101,28 @@
         $(document).ready(function () {
             resetMenu();
             setActiveMenu('/Checklist/AllChecklists');
+
+            $(".in-collection-checkbox").change(function () {
+                if (this.checked) {
+                    console.log('check');
+                } else {
+                    var result = confirm("You sure you want to remove it from your collection?");
+                    if (result == true) {
+                        console.log('uncheck');
+                    }
+                    else {
+                        $(this).prop("checked", true);
+                    }
+                }
+            });
+
+            $(".ddl-grade").change(function () {
+                console.log($(this).val());
+            });
+
+            $(".estimated-value-textbox").blur(function () {
+                console.log($(this).val());
+            });
         });
     </script>
 

@@ -165,6 +165,7 @@
     <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
     <Compile Include="Models\Checklist\AllChecklistsModel.cs" />
+    <Compile Include="Models\Checklist\ChecklistModel.cs" />
     <Compile Include="Models\Checklist\NewChecklistModel.cs" />
     <Compile Include="Models\CoinData\CoinCategoryModel.cs" />
     <Compile Include="Models\CoinData\CoinCollectionModel.cs" />

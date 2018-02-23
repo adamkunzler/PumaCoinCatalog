@@ -107,5 +107,23 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 
             return model;
         }
+
+        public static CoinModel Map(this ScrapeCoin value)
+        {            
+            var coinModel = new CoinModel
+            {
+                Id = value.Id,
+                Year = value.Year,
+                Variety = value.Variety,
+                Mintage = value.Mintage,
+                KmNumber = value.KmNumber,
+                NumisMediaId = value.NumisMediaId,
+                NgcId = value.NgcId,
+                PcgsId = value.PcgsId,
+                SortOrder = value.SortOrder
+            };
+
+            return coinModel;
+        }
     }
 }

@@ -31,5 +31,34 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 
             return models;
         }
+
+        public static ChecklistModel MapToChecklistModel(Checklist checklist)
+        {
+            var model = new ChecklistModel
+            {
+                Id = checklist.Id,
+                Title = checklist.Title,
+                CoinTypeDisplay = $"{checklist.CoinCollection.Title} | {checklist.CoinCategory.Title} | {checklist.CoinType.Title} - {checklist.CoinType.Details}",
+                Base64Image = checklist.CoinType.Base64Image,
+                FaceValue = checklist.CoinCategory.FaceValue / 1000,
+                ChecklistCoins = new List<ChecklistCoinModel>()
+            };
+            
+            foreach(var coin in checklist.ChecklistCoins)
+            {
+                var coinModel = new ChecklistCoinModel
+                {
+                    Id = coin.Id,                    
+                    AdamGrade = coin.AdamGrade,
+                    InCollection = coin.InCollection,
+                    ValueEstimate = coin.ValueEstimate,
+                    CoinModel = coin.Coin.Map()
+                };
+
+                model.ChecklistCoins.Add(coinModel);
+            }
+
+            return model;
+        }
     }
 }

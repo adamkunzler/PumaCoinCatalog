@@ -9,10 +9,11 @@
                 <th>Year</th>
                 <th>Variety</th>
                 <th style="text-align: right;">Mintage</th>
-                <th style="text-align: center;">KM #</th>
+                @*<th style="text-align: center;">KM #</th>*@
                 <th style="text-align: center;">NumisMedia</th>
                 <th style="text-align: center;">NGC</th>
                 <th style="text-align: center;">PCGS</th>
+                <th style="display:none;">Id</th>
             </tr>
         </thead>
         <tbody>
@@ -31,10 +32,11 @@
                             <span>@string.Format("{0:0,0}", coin.Mintage)</span>
                         }
                     </td>
-                    <td style="text-align: center;">@coin.KmNumber</td>
+                    @*<td style="text-align: center;">@coin.KmNumber</td>*@
                     <td style="text-align: center;"><a href="@LinkHelper.NumisMediaLink(coin.NumisMediaId)" target="_blank">@coin.NumisMediaId</a></td>
                     <td style="text-align: center;"><a href="@LinkHelper.NgcLink(coin.NgcId)" target="_blank">@coin.NgcId</a></td>
                     <td style="text-align: center;"><a href="@LinkHelper.PcgsLink(coin.PcgsId)" target="_blank">@coin.PcgsId</a></td>
+                    <td style="display:none;">@coin.Id</td>
                 </tr>
             }
         </tbody>

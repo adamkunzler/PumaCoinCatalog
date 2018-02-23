@@ -36,6 +36,19 @@ namespace PumaCoinCatalog.Services
             return checklists;
         }
 
+        public Checklist GetChecklist(Guid checklistId)
+        {
+            var checklist = _context.Checklists
+                                    .Include("CoinCollection")
+                                    .Include("CoinCategory")
+                                    .Include("CoinType")
+                                    .Include("ChecklistCoins")
+                                    .Include("ChecklistCoins.Coin")
+                                    .FirstOrDefault(x => x.Id == checklistId);
+            return checklist;
+                                    
+        }
+
         public Guid CreateNewChecklist(string title, Guid collectionId, Guid categoryId, Guid typeId)
         {
             var checklist = new Checklist();

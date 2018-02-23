@@ -17,7 +17,7 @@
         @foreach (var checklist in Model)
         {
             <div class="col-md-4 coin-box">
-                <a href="@Url.Action("Index", "Checklist", new { id = checklist.Id })">
+                <a href="/Checklist?id=@checklist.Id">
                     <img src="data:image/jpg;base64,@checklist.Base64Image" alt="@checklist.CoinType" class="coin-image" />
                     <br />
                     <div class="title">@checklist.Title</div>

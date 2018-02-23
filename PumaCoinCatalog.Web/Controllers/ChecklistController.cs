@@ -27,7 +27,12 @@ namespace PumaCoinCatalog.Web.Controllers
         {
             if (id == Guid.Empty) throw new ArgumentException("Checklist Id is empty");
 
-            return View();
+            var checklist = _checklistService.GetChecklist(id);
+            if (checklist == null) throw new Exception("checklist not found");
+            
+            var model = ChecklistMapper.MapToChecklistModel(checklist);
+            
+            return View(model);
         }
 
         public ActionResult NewChecklist()
