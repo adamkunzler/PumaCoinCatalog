@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201802222222591_addedChecklistAndChecklistCoin.Designer.cs">
       <DependentUpon>201802222222591_addedChecklistAndChecklistCoin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802230213067_addFaceValueToCategory.cs" />
+    <Compile Include="Migrations\201802230213067_addFaceValueToCategory.Designer.cs">
+      <DependentUpon>201802230213067_addFaceValueToCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802222222591_addedChecklistAndChecklistCoin.resx">
       <DependentUpon>201802222222591_addedChecklistAndChecklistCoin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802230213067_addFaceValueToCategory.resx">
+      <DependentUpon>201802230213067_addFaceValueToCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

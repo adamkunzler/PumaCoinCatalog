@@ -31,7 +31,7 @@ namespace PumaCoinCatalog.Services
                                      .Include("CoinCollection")
                                      .Include("CoinCategory")
                                      .Include("CoinType")
-                                     .OrderBy(x => x.Title)
+                                     .OrderBy(x => x.CoinCategory.FaceValue)
                                      .ToList();
             return checklists;
         }
