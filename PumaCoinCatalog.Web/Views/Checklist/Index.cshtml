@@ -41,7 +41,7 @@
                             <th>Variety</th>
                             <th style="text-align: center;">Collected</th>
                             <th style="text-align: center;">Grade</th>
-                            <th style="text-align: right;">Est. Value</th>
+                            <th style="text-align: center;">Est. Value</th>
                             <th style="text-align: right;">Mintage</th>
                             <th style="text-align: center;">KM #</th>
                             <th style="text-align: center;">NumisMedia</th>
@@ -52,8 +52,8 @@
                     <tbody>
                         @foreach (var coin in Model.ChecklistCoins)
                         {
-                            <tr>
-                                <td style="display:none;">@coin.Id</td>
+                            <tr class="checklist-coin-row">
+                                <td class="checklist-coin-id" style="display:none;">@coin.Id</td>
                                 <td style="display:none;">@coin.CoinModel.Id</td>
                                 <td>@coin.CoinModel.Year</td>
                                 <td>@coin.CoinModel.Variety</td>
@@ -74,7 +74,7 @@
                                     </select>
                                 </td>
                                 <td style="text-align: right; width: 100px;">                                    
-                                    <input type="text" class="form-control estimated-value-textbox" value="@coin.ValueEstimate"/>                                    
+                                    <input type="text" class="form-control estimated-value-textbox" value="@coin.ValueEstimate" style="text-align: right;"/>                                    
                                 </td>
                                 <td style="text-align: center;">
                                     @if (coin.CoinModel.Mintage == 0)
@@ -102,13 +102,48 @@
             resetMenu();
             setActiveMenu('/Checklist/AllChecklists');
 
+            //
+            // get the checklist coin id for a cell in a row
+            //
+            function getChecklistCoinId(elem) {                
+                var row = $(elem).closest(".checklist-coin-row");
+                var trCoinId = $(row).children(".checklist-coin-id");
+                var checklistCoinId = $(trCoinId).text();
+                return checklistCoinId;
+            }
+
+            function addCoinToChecklist(elem) {
+                var row = $(elem).closest(".checklist-coin-row");
+                var checkbox = $(row).find(".in-collection-checkbox");
+                $(checkbox).prop("checked", true);
+            }
+
+            //
+            // add or remove coin from checklist
+            //
             $(".in-collection-checkbox").change(function () {
+                var checklistCoinId = getChecklistCoinId(this);
+                
                 if (this.checked) {
-                    console.log('check');
+                    // set flag to true                    
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Checklist/UpdateChecklistCoinAddToChecklist?checklistCoinId=' + checklistCoinId,
+                        success: function (result) {
+                            //console.log('coin add successfully');
+                        }
+                    });
                 } else {
                     var result = confirm("You sure you want to remove it from your collection?");
                     if (result == true) {
-                        console.log('uncheck');
+                        // set flag to false
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Checklist/UpdateChecklistCoinRemoveFromChecklist?checklistCoinId=' + checklistCoinId,
+                            success: function (result) {
+                                //console.log('coin removed successfully');
+                            }
+                        });
                     }
                     else {
                         $(this).prop("checked", true);
@@ -116,12 +151,47 @@
                 }
             });
 
+            //
+            // updated grade
+            //
             $(".ddl-grade").change(function () {
-                console.log($(this).val());
+                var thisthis = this;
+                var value = $(this).val();                
+                var checklistCoinId = getChecklistCoinId(this);
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/Checklist/UpdateChecklistCoinGrade?checklistCoinId=' + checklistCoinId + '&value=' + value,
+                    success: function (result) {
+                        //console.log('grade updated successfully');
+                        addCoinToChecklist(thisthis);
+                    }
+                });
             });
 
+            //
+            // update estimated value
+            //
             $(".estimated-value-textbox").blur(function () {
-                console.log($(this).val());
+                var thisthis = this;
+                var value = $(this).val();
+
+                if (!isNumeric(value)) {
+                    console.log('bad number');
+                    $(this).val('');
+                    return;
+                }
+
+                var checklistCoinId = getChecklistCoinId(this);
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/Checklist/UpdateChecklistCoinEstimatedValue?checklistCoinId=' + checklistCoinId + '&value=' + value,
+                    success: function (result) {
+                        //console.log('estimated value updated successfully');
+                        addCoinToChecklist(thisthis);
+                    }
+                });
             });
         });
     </script>

@@ -65,6 +65,42 @@ namespace PumaCoinCatalog.Services
             return checklist.Id;
         }
 
+        public void UpdateChecklistCoinGrade(Guid checklistCoinId, short value)
+        {
+            var checklistCoin = _context.ChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("checklist coin not found");
+
+            checklistCoin.InCollection = true;
+            checklistCoin.AdamGrade = value;
+            _context.SaveChanges();
+        }
+
+        public void UpdateChecklistCoinInCollection(Guid checklistCoinId, bool value)
+        {
+            var checklistCoin = _context.ChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("checklist coin not found");
+
+            checklistCoin.InCollection = value;
+
+            if(!value)
+            {
+                checklistCoin.AdamGrade = null;
+                checklistCoin.ValueEstimate = null;
+            }
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateChecklistCoinEstimatedValue(Guid checklistCoinId, decimal value)
+        {
+            var checklistCoin = _context.ChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("checklist coin not found");
+
+            checklistCoin.InCollection = true;
+            checklistCoin.ValueEstimate = value;
+            _context.SaveChanges();
+        }
+
         private IList<ChecklistCoin> CreateChecklistCoinsForNewChecklist(Checklist checklist)
         {
             var checklistCoins = new List<ChecklistCoin>();
