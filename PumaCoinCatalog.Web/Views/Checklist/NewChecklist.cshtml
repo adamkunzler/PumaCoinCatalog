@@ -1,9 +1,51 @@
-﻿
+﻿@model PumaCoinCatalog.Web.Models.Checklist.NewChecklistModel
+
 @{
     ViewBag.Title = "New Checklist";
 }
 
-<h3>New Checklist</h3>
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        New Checklist
+    </div>
+}
+
+<div class="new-checklist">
+    <form role="form" id="formNewChecklist" method="post">
+        <div class="row form-group">
+            <div class="col-md-3">
+                <label for="checklistTitle">Checklist Title</label>
+                <input type="text" id="checklistTitle" name="title" class="form-control" />
+                <span id="errTitle" class="has-error" style="display: none;">Give your checklist a title por favor</span>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-3">
+                <div id="divCollections">
+                    @Html.Partial("_ddlCoinCollections", Model.CoinCollectionDropDownModel)
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div id="divCategories">
+                    @Html.Partial("_ddlCoinCategories", Model.CoinCategoryDropDownModel)
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div id="divTypes">
+                    @Html.Partial("_ddlCoinTypes", Model.CoinTypeDropDownModel)
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br />
+        <br />
+        <div class="row form-group">
+            <div class="col-md-9">
+                <button id="btnSubmit" type="button" class="btn btn-primary btn-lg btn-block">Create the Checklist</button>
+            </div>
+        </div>
+    </form>
+</div>
 
 @section scripts {
 
@@ -11,6 +53,53 @@
         $(document).ready(function () {
             resetMenu();
             setActiveMenu('/Checklist/NewChecklist');
+
+            //
+            // handle submit button
+            //
+            $("#btnSubmit").click(function () {
+                // validate title
+                var title = $("#checklistTitle").val();
+                if (!title) {
+                    var span = $("#errTitle");
+                    span.toggle();
+                    span.parent().parent().addClass("has-error");
+                    return;
+                }
+                
+                // submit form
+                $("#formNewChecklist").submit();
+            });
+
+            //
+            // when a collection is changed, update the categories drop down
+            //
+            $("#ddlCollections").change(function (e) {
+                var collectionId = $("#ddlCollections").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Checklist/GetCoinCategoriesDropDown?collectionId=' + collectionId,
+                    success: function (result) {
+                        $("#divCategories").html(result);
+                    }
+                });
+            });
+
+            //
+            // when a category is changed, update the types drop down
+            //
+            $("#ddlCategories").change(function (e) {
+                var categoryId = $("#ddlCategories").val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/Checklist/GetCoinTypesDropDown?categoryId=' + categoryId,                    
+                    success: function (result) {
+                        $("#divTypes").html(result);
+                    }
+                });
+            });
         });
     </script>
 

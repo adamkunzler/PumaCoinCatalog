@@ -59,3 +59,7 @@ textarea {
     .coins .coin-list tbody {
         font-size: 16px;
     }
+
+select.form-control {
+    height: auto !important;
+}

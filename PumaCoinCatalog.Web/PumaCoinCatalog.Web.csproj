@@ -160,8 +160,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DropDownListHelper.cs" />
     <Compile Include="Infrastructure\LinkHelper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
+    <Compile Include="Models\Checklist\NewChecklistModel.cs" />
     <Compile Include="Models\CoinData\CoinCategoryModel.cs" />
     <Compile Include="Models\CoinData\CoinCollectionModel.cs" />
     <Compile Include="Models\CoinData\CoinModel.cs" />
@@ -247,6 +249,9 @@
     <Content Include="Views\Checklist\Index.cshtml" />
     <Content Include="Views\Checklist\NewChecklist.cshtml" />
     <Content Include="Views\Checklist\AllChecklists.cshtml" />
+    <Content Include="Views\Checklist\_ddlCoinTypes.cshtml" />
+    <Content Include="Views\Checklist\_ddlCoinCategories.cshtml" />
+    <Content Include="Views\Checklist\_ddlCoinCollections.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

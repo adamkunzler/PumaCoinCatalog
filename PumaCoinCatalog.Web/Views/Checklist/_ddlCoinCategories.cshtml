@@ -1,0 +1,7 @@
+﻿@model PumaCoinCatalog.Web.Models.Checklist.CoinCategoryDropDownModel
+
+<label for="ddlCategories">Choose a category:</label>
+@Html.DropDownListFor(
+    x => x.SelectedCategoryId,
+    new SelectList(Model.Categories, "Value", "Text"),
+    new { @class = "form-control", @id = "ddlCategories" })
