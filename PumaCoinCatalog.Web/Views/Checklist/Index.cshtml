@@ -16,35 +16,7 @@
 }
 
 <style type="text/css">
-    .progress {        
-        height: 50px;
-        margin: 0;
-    }
-
-        .progress-label {            
-            font-weight: 600;
-            font-size: 18px;
-            margin-top: 5px;            
-        }
-
-    .coins-in-collection .progress-bar-success {
-        background-color: #72B23C;
-    } 
-
-    .value-totals {
-        font-size: 18px;
-        font-weight: 600;
-        margin-top: 10px;
-    }
-
-        .value-totals .col-md-3 {
-            text-align: right;
-        }
-        
-        .value-totals span {
-            font-size: 20px;
-            font-weight: 800;            
-        }
+    
 </style>
 
 <div class="checklist-details">    
@@ -53,33 +25,15 @@
             <img src="data:image/jpg;base64,@Model.Base64Image" alt="@Model.Title" class="coin-image" />
         </div>
         <div class="col-md-4">
-            <div class="coins-in-collection">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar"
-                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                         style="width: 60%;"></div>
-                </div>
-                <span class="progress-label">Total Coins in Collection: 17 / 35 </span>
-            </div>
-            <div class="value-totals">
-                <div class="row face-value-total">
-                    <div class="col-md-5">Face Value Total:</div>
-                    <div class="col-md-3"><span>$50.34</span></div>
-                </div>
-                <div class="row bullion-value-total">
-                    <div class="col-md-5">Bullion Value Total:</div>
-                    <div class="col-md-3"><span>$75.42</span></div>
-                </div>
-                <div class="row estimated-value-total">
-                    <div class="col-md-5">Estimated Value Total:</div>
-                    <div class="col-md-3"><span>$107.19</span></div>
-                </div>
+            <div class="checklist-info">
+                @Html.Partial("_checklistInfo", Model.ChecklistInfoModel)
             </div>
         </div>      
         <div class="col-md-2">
             <div class="checklist-actions">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Refresh Totals</button>
                 <button type="button" class="btn btn-primary btn-lg btn-block">Export</button>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Delete</button>                
+                <button type="button" class="btn btn-primary btn-lg btn-block">Delete</button>
             </div>
         </div>
     </div>

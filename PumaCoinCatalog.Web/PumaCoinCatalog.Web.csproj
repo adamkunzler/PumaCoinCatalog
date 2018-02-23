@@ -259,6 +259,7 @@
     <Content Include="Views\Checklist\_ddlCoinCategories.cshtml" />
     <Content Include="Views\Checklist\_ddlCoinCollections.cshtml" />
     <Content Include="Views\CoinGrade\Index.cshtml" />
+    <Content Include="Views\Checklist\_checklistInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

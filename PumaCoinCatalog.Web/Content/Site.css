@@ -100,3 +100,33 @@ select.form-control {
     .coin-grades .coin-grade-img {
         width: 100%;
     }
+
+.progress {
+    height: 50px;
+    margin: 0;
+}
+
+.progress-label {
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.coins-in-collection .progress-bar-success {
+    background-color: #72B23C;
+}
+
+.value-totals {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+    .value-totals .col-md-3 {
+        text-align: right;
+    }
+
+    .value-totals span {
+        font-size: 20px;
+        font-weight: 800;
+    }

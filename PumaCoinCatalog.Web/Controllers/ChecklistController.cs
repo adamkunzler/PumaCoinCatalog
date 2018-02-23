@@ -31,6 +31,7 @@ namespace PumaCoinCatalog.Web.Controllers
             if (checklist == null) throw new Exception("checklist not found");
             
             var model = ChecklistMapper.MapToChecklistModel(checklist);
+            model.ChecklistInfoModel = GetChecklistInfoModel();
             
             return View(model);
         }
@@ -104,6 +105,20 @@ namespace PumaCoinCatalog.Web.Controllers
         #endregion Ajax
 
         #region Private Methods - Models
+
+        private ChecklistInfoModel GetChecklistInfoModel(ChecklistModel checklist)
+        {
+            var model = new ChecklistInfoModel();
+            model.TotalCoinsCollected = 0;
+            model.TotalCoinsInChecklist = 0;
+            model.TotalCoinsPercentage = model.TotalCoinsCollected / model.TotalCoinsInChecklist;
+            model.FaceValueTotal = 0;
+            model.BullionValueTotal = 0;
+            model.EstimatedValueTotal = 0;
+            model.CollectionValueTotal = 0;
+
+            return model;
+        }
 
         private NewChecklistModel GetNewChecklistModel()
         {
