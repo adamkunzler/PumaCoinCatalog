@@ -75,3 +75,28 @@ textarea {
 select.form-control {
     height: auto !important;
 }
+
+.coin-grades {
+    font-size: 18px;
+    margin: 0;
+}
+
+    .coin-grades .grade-row {
+        margin: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #D6DCE3;
+        margin-top: -1px;
+    }
+
+    .coin-grades .grade-numeric {
+        font-weight: 600;
+    }
+
+    .coin-grades .grade-sheldon {
+        font-style: italic;
+    }
+
+    .coin-grades .coin-grade-img {
+        width: 100%;
+    }

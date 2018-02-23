@@ -15,17 +15,72 @@
     </div>
 }
 
-<div class="checklist-details">
-    @*<div class="row">
-        <div class="col-md-12">@Model.CoinTypeDisplay</div>
-    </div>*@
+<style type="text/css">
+    .progress {        
+        height: 50px;
+        margin: 0;
+    }
+
+        .progress-label {            
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 5px;            
+        }
+
+    .coins-in-collection .progress-bar-success {
+        background-color: #72B23C;
+    } 
+
+    .value-totals {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+        .value-totals .col-md-3 {
+            text-align: right;
+        }
+        
+        .value-totals span {
+            font-size: 20px;
+            font-weight: 800;            
+        }
+</style>
+
+<div class="checklist-details">    
     <div class="row">
         <div class="col-md-6">
             <img src="data:image/jpg;base64,@Model.Base64Image" alt="@Model.Title" class="coin-image" />
         </div>
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
+            <div class="coins-in-collection">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                         style="width: 60%;"></div>
+                </div>
+                <span class="progress-label">Total Coins in Collection: 17 / 35 </span>
+            </div>
+            <div class="value-totals">
+                <div class="row face-value-total">
+                    <div class="col-md-5">Face Value Total:</div>
+                    <div class="col-md-3"><span>$50.34</span></div>
+                </div>
+                <div class="row bullion-value-total">
+                    <div class="col-md-5">Bullion Value Total:</div>
+                    <div class="col-md-3"><span>$75.42</span></div>
+                </div>
+                <div class="row estimated-value-total">
+                    <div class="col-md-5">Estimated Value Total:</div>
+                    <div class="col-md-3"><span>$107.19</span></div>
+                </div>
+            </div>
+        </div>      
+        <div class="col-md-2">
+            <div class="checklist-actions">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Export</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block">Delete</button>                
+            </div>
         </div>
     </div>
     <hr />
@@ -63,14 +118,18 @@
                                         <span></span>
                                     </label>
                                 </td>
-                                <td style="text-align: center; width: 75px;">
+                                <td style="text-align: center; width: 150px;">
                                     <select class="form-control ddl-grade">
-                                        <option @(coin.AdamGrade == 0 ? "selected='selected'" : string.Empty) value="0">0</option>
-                                        <option @(coin.AdamGrade == 1 ? "selected='selected'" : string.Empty) value="1">1</option>
-                                        <option @(coin.AdamGrade == 2 ? "selected='selected'" : string.Empty) value="2">2</option>
-                                        <option @(coin.AdamGrade == 3 ? "selected='selected'" : string.Empty) value="3">3</option>
-                                        <option @(coin.AdamGrade == 4 ? "selected='selected'" : string.Empty) value="4">4</option>
-                                        <option @(coin.AdamGrade == 5 ? "selected='selected'" : string.Empty) value="5">5</option>
+                                        <option @(coin.AdamGrade == 1 ? "selected='selected'" : string.Empty) value="1">Poor</option>
+                                        <option @(coin.AdamGrade == 2 ? "selected='selected'" : string.Empty) value="2">Fair</option>
+                                        <option @(coin.AdamGrade == 4 ? "selected='selected'" : string.Empty) value="4">Good</option>
+                                        <option @(coin.AdamGrade == 8 ? "selected='selected'" : string.Empty) value="8">Very Good</option>
+                                        <option @(coin.AdamGrade == 12 ? "selected='selected'" : string.Empty) value="12">Fine</option>
+                                        <option @(coin.AdamGrade == 20 ? "selected='selected'" : string.Empty) value="20">Very Fine</option>
+                                        <option @(coin.AdamGrade == 40 ? "selected='selected'" : string.Empty) value="40">Ex. Fine</option>
+                                        <option @(coin.AdamGrade == 50 ? "selected='selected'" : string.Empty) value="50">AU</option>
+                                        <option @(coin.AdamGrade == 58 ? "selected='selected'" : string.Empty) value="58">Uncirculated</option>
+                                        <option @(coin.AdamGrade == 60 ? "selected='selected'" : string.Empty) value="60">MS+</option>                                        
                                     </select>
                                 </td>
                                 <td style="text-align: right; width: 100px;">                                    
