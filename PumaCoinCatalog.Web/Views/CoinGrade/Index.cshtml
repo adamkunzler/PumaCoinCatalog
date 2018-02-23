@@ -1,0 +1,69 @@
+﻿@model System.Collections.Generic.List<PumaCoinCatalog.Web.Models.CoinGrade.CoinGradeModel>
+
+@{
+    ViewBag.Title = "Coin Grades";
+}
+
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        Coin Grades
+    </div>
+}
+
+<style type="text/css">
+    .coin-grades{
+        font-size: 18px;
+        margin: 0;
+    }
+        .coin-grades .grade-row {            
+            margin: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: 1px solid #D6DCE3;
+            margin-top: -1px;
+        }
+
+        .coin-grades .grade-numeric {
+            font-weight: 600;
+        }
+
+        .coin-grades .grade-sheldon {
+            font-style: italic;
+        }
+        .coin-grades .coin-grade-img {
+            width: 100%;
+        }
+</style>
+
+<div class="row coin-grades">
+    <div class="col-md-8">
+        @foreach (var grade in Model)
+        {
+            <div class="row grade-row">
+                <div class="col-xs-1">
+                    <span class="grade-numeric">@grade.NumericGrade</span>
+                </div>
+                <div class="col-xs-2">
+                    <span class="grade-sheldon">@grade.SheldonGrade</span>
+                </div>
+                <div class="col-xs-9">
+                    <span class="grade-description">@grade.GradeDescription</span>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <img class="coin-grade-img" src="~/Content/Images/lincoln_cent_grades.jpg" alt="Coin Grades" />
+    </div>
+</div>    
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/CoinGrade');
+        });
+    </script>
+
+}
