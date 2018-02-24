@@ -83,6 +83,10 @@
     <Compile Include="Migrations\201802230213067_addFaceValueToCategory.Designer.cs">
       <DependentUpon>201802230213067_addFaceValueToCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802240014199_addBullionValueToCoinType.cs" />
+    <Compile Include="Migrations\201802240014199_addBullionValueToCoinType.Designer.cs">
+      <DependentUpon>201802240014199_addBullionValueToCoinType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802230213067_addFaceValueToCategory.resx">
       <DependentUpon>201802230213067_addFaceValueToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802240014199_addBullionValueToCoinType.resx">
+      <DependentUpon>201802240014199_addBullionValueToCoinType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

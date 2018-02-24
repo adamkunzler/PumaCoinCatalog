@@ -9,24 +9,51 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 {
     public static class ScrapeCoinMapper
     {
+        public static CoinCategoryModel MapCoinCategory(ScrapeCoinCategory category)
+        {
+            var model = new CoinCategoryModel
+            {
+                Id = category.Id,
+                Title = category.Title,
+                SortOrder = category.SortOrder,
+                Base64Image = category.Base64Image,
+                FaceValue = category.FaceValue / 1000m,
+                Types = new List<CoinTypeModel>(),
+                CollectionTitle = category.CoinCollection.Title,
+                CollectionId = category.CoinCollection.Id
+            };
+            return model;
+        }
+
+        public static CoinTypeModel MapCoinType(ScrapeCoinType type)
+        {
+            var model = new CoinTypeModel
+            {
+                Id = type.Id,
+                Title = type.Title,
+                Details = type.Details,
+                SortOrder = type.SortOrder,
+                Base64Image = type.Base64Image,
+                BullionValue = type.BullionValue,
+                Coins = new List<CoinModel>(),
+                CollectionTitle = type.CoinCategory.CoinCollection.Title,
+                CollectionId = type.CoinCategory.CoinCollection.Id,
+                CategoryTitle = type.CoinCategory.Title,
+                CategoryId = type.CoinCategory.Id
+            };
+            return model;
+        }
+
         public static CoinCollectionModel Map(this ScrapeCoinCollection value)
         {
             var model = new CoinCollectionModel();
-
             model.Id = value.Id;
             model.Title = value.Title;
             model.Categories = new List<CoinCategoryModel>();
 
             foreach (var category in value.CoinCategories)
             {
-                var catModel = new CoinCategoryModel
-                {
-                    Id = category.Id,
-                    Title = category.Title,
-                    SortOrder = category.SortOrder,
-                    Base64Image = category.Base64Image,
-                    Types = new List<CoinTypeModel>()
-                };
+                var catModel = MapCoinCategory(category);
 
                 model.Categories.Add(catModel);
             }
@@ -38,29 +65,11 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 
         public static CoinCategoryModel Map(this ScrapeCoinCategory value)
         {
-            var model = new CoinCategoryModel
-            {
-                Id = value.Id,
-                Title = value.Title,
-                SortOrder = value.SortOrder,
-                Base64Image = value.Base64Image,
-                Types = new List<CoinTypeModel>(),
-                CollectionTitle = value.CoinCollection.Title,
-                CollectionId = value.CoinCollection.Id
-            };
+            var model = MapCoinCategory(value);
 
             foreach (var type in value.CoinTypes)
             {
-                var typeModel = new CoinTypeModel
-                {
-                    Id = type.Id,
-                    Title = type.Title,
-                    Details = type.Details,
-                    SortOrder = type.SortOrder,
-                    Base64Image = type.Base64Image,
-                    Coins = new List<CoinModel>()
-                };
-                
+                var typeModel = MapCoinType(type);                
                 model.Types.Add(typeModel);
             }
 
@@ -71,35 +80,11 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 
         public static CoinTypeModel Map(this ScrapeCoinType value)
         {
-            var model = new CoinTypeModel
-            {
-                Id = value.Id,
-                Title = value.Title,
-                Details = value.Details,
-                SortOrder = value.SortOrder,
-                Base64Image = value.Base64Image,
-                Coins = new List<CoinModel>(),
-                CollectionTitle = value.CoinCategory.CoinCollection.Title,
-                CollectionId = value.CoinCategory.CoinCollection.Id,
-                CategoryTitle = value.CoinCategory.Title,
-                CategoryId = value.CoinCategory.Id
-            };
+            var model = MapCoinType(value);
 
             foreach (var coin in value.Coins)
             {
-                var coinModel = new CoinModel
-                {
-                    Id = coin.Id,
-                    Year = coin.Year,
-                    Variety = coin.Variety,
-                    Mintage = coin.Mintage,
-                    KmNumber = coin.KmNumber,
-                    NumisMediaId = coin.NumisMediaId,
-                    NgcId = coin.NgcId,
-                    PcgsId = coin.PcgsId,
-                    SortOrder = coin.SortOrder
-                };
-
+                var coinModel = coin.Map();
                 model.Coins.Add(coinModel);
             }
 

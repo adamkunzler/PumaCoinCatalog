@@ -16,6 +16,7 @@ namespace PumaCoinCatalog.Models
         public string Details { get; set; }        
         public string Base64Image { get; set; }
         public int SortOrder { get; set; }
+        public decimal BullionValue { get; set; }
 
         public virtual IList<ScrapeCoin> Coins { get; set; }
         public virtual ScrapeCoinCategory CoinCategory { get; set; }

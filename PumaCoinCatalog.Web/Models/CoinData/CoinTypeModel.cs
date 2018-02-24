@@ -10,6 +10,7 @@ namespace PumaCoinCatalog.Web.Models.CoinData
         public string Details { get; set; }
         public string Base64Image { get; set; }
         public int SortOrder { get; set; }
+        public decimal BullionValue { get; set; }
 
         public IList<CoinModel> Coins { get; set; }
 

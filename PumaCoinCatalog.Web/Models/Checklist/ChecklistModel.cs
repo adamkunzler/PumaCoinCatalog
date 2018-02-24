@@ -13,6 +13,7 @@ namespace PumaCoinCatalog.Web.Models.Checklist
         public string CoinTypeDisplay { get; set; }
         public string Base64Image { get; set; }
         public decimal FaceValue { get; set; }
+        public decimal BullionValue { get; set; }
                
         public ChecklistInfoModel ChecklistInfoModel { get; set; }
         public IList<ChecklistCoinModel> ChecklistCoins { get; set; }
