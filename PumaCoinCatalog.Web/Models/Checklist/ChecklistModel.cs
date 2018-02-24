@@ -30,6 +30,9 @@ namespace PumaCoinCatalog.Web.Models.Checklist
 
     public class ChecklistInfoModel
     {
+        public decimal CoinBullionValue { get; set; }
+        public decimal CoinFaceValue { get; set; }
+
         public decimal FaceValueTotal { get; set; }
         public decimal BullionValueTotal { get; set; }
         public decimal EstimatedValueTotal { get; set; }

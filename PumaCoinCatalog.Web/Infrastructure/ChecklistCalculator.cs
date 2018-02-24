@@ -29,7 +29,7 @@ namespace PumaCoinCatalog.Web.Infrastructure
 
         public decimal CalculateBullionValueTotal()
         {
-            return 0;
+            return _checklist.BullionValue * _checklist.ChecklistCoins.Count(x => x.InCollection);
         }
 
         public decimal CalculateEstimatedValueTotal()
@@ -46,8 +46,18 @@ namespace PumaCoinCatalog.Web.Infrastructure
             {
                 if (!coin.InCollection) continue;
 
-                if (coin.ValueEstimate.HasValue && coin.ValueEstimate.Value > 0) total += coin.ValueEstimate.Value;
-                else total += _checklist.FaceValue;
+                if (coin.ValueEstimate.HasValue && coin.ValueEstimate.Value > 0)
+                {
+                    total += coin.ValueEstimate.Value;
+                }
+                else if (_checklist.BullionValue > 0)
+                {
+                    total += _checklist.BullionValue;
+                }
+                else
+                {
+                    total += _checklist.FaceValue;
+                }
             }
 
             return total;

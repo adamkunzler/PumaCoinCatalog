@@ -116,6 +116,15 @@ namespace PumaCoinCatalog.Web.Controllers
             return PartialView("_ddlCoinTypes", model);
         }
 
+        [HttpPost]
+        public ActionResult UpdateCoinTypeBullionValue(Guid checklistId, decimal value)
+        {
+            var checklist = _checklistService.GetChecklist(checklistId);
+            _coinDataService.UpdateCoinTypeBullionValue(checklist.CoinType.Id, value);
+
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
         #endregion Ajax
 
         #region Private Methods - Models
@@ -125,6 +134,8 @@ namespace PumaCoinCatalog.Web.Controllers
             var calculator = new ChecklistCalculator(checklist);
 
             var model = new ChecklistInfoModel();
+            model.CoinBullionValue = checklist.BullionValue;
+            model.CoinFaceValue = checklist.FaceValue;
             model.TotalCoinsCollected = calculator.GetNumberOfCoinsCollectedInChecklist();
             model.TotalCoinsInChecklist = calculator.GetNumberOfCoinsInChecklist();
             model.TotalCoinsPercentage = (int)((model.TotalCoinsCollected / (decimal)model.TotalCoinsInChecklist) * 100);

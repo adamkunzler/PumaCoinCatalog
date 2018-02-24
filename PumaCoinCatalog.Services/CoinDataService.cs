@@ -87,5 +87,14 @@ namespace PumaCoinCatalog.Services
                                 .ToList();
             return coins;
         }
+
+        public void UpdateCoinTypeBullionValue(Guid coinTypeId, decimal bullionValue)
+        {
+            var coinType = _context.ScrapeCoinTypes.SingleOrDefault(x => x.Id == coinTypeId);
+            if (coinType == null) throw new Exception("coinType is not found");
+
+            coinType.BullionValue = bullionValue;
+            _context.SaveChanges();
+        }
     }
 }
