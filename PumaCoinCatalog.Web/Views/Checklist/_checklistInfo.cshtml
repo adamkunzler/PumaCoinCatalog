@@ -11,18 +11,18 @@
 <div class="value-totals">
     <div class="row face-value-total">
         <div class="col-md-5">Face Value Total:</div>
-        <div class="col-md-3"><span>$@Model.FaceValueTotal</span></div>
+        <div class="col-md-3"><span>@string.Format("{0:c}", Model.FaceValueTotal)</span></div>
     </div>
     <div class="row bullion-value-total">
         <div class="col-md-5">Bullion Value Total:</div>
-        <div class="col-md-3"><span>$@Model.BullionValueTotal</span></div>
+        <div class="col-md-3"><span>@string.Format("{0:c}", Model.BullionValueTotal)</span></div>
     </div>
     <div class="row estimated-value-total">
         <div class="col-md-5">Estimated Value Total:</div>
-        <div class="col-md-3"><span>$@Model.EstimatedValueTotal</span></div>
+        <div class="col-md-3"><span>@string.Format("{0:c}", Model.EstimatedValueTotal)</span></div>
     </div>
     <div class="row collection-value-total">
         <div class="col-md-5">Collection Value Total:</div>
-        <div class="col-md-3"><span>$@Model.CollectionValueTotal</span></div>
+        <div class="col-md-3"><span>@string.Format("{0:c}", Model.CollectionValueTotal)</span></div>
     </div>
 </div>

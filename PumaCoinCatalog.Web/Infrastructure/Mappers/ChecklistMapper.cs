@@ -40,7 +40,7 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                 Title = checklist.Title,
                 CoinTypeDisplay = $"{checklist.CoinCollection.Title} | {checklist.CoinCategory.Title} | {checklist.CoinType.Title} - {checklist.CoinType.Details}",
                 Base64Image = checklist.CoinType.Base64Image,
-                FaceValue = checklist.CoinCategory.FaceValue / 1000,
+                FaceValue = checklist.CoinCategory.FaceValue / 1000m,
                 ChecklistCoins = new List<ChecklistCoinModel>()
             };
             

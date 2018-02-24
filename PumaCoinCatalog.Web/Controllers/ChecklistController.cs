@@ -31,7 +31,7 @@ namespace PumaCoinCatalog.Web.Controllers
             if (checklist == null) throw new Exception("checklist not found");
             
             var model = ChecklistMapper.MapToChecklistModel(checklist);
-            model.ChecklistInfoModel = GetChecklistInfoModel();
+            model.ChecklistInfoModel = GetChecklistInfoModel(model);
             
             return View(model);
         }
@@ -59,6 +59,20 @@ namespace PumaCoinCatalog.Web.Controllers
         #endregion Actions
 
         #region Ajax
+
+        [HttpPost]
+        public ActionResult GetChecklistTotals(Guid checklistId)
+        {
+            if (checklistId == Guid.Empty) throw new ArgumentException("Checklist Id is empty");
+
+            var checklist = _checklistService.GetChecklist(checklistId);
+            if (checklist == null) throw new Exception("checklist not found");
+
+            var checklistModel = ChecklistMapper.MapToChecklistModel(checklist);
+            var model = GetChecklistInfoModel(checklistModel);
+
+            return PartialView("_checklistInfo", model);
+        }
 
         [HttpPost]
         public ActionResult UpdateChecklistCoinEstimatedValue(Guid checklistCoinId, decimal value)
@@ -108,14 +122,16 @@ namespace PumaCoinCatalog.Web.Controllers
 
         private ChecklistInfoModel GetChecklistInfoModel(ChecklistModel checklist)
         {
+            var calculator = new ChecklistCalculator(checklist);
+
             var model = new ChecklistInfoModel();
-            model.TotalCoinsCollected = 0;
-            model.TotalCoinsInChecklist = 0;
-            model.TotalCoinsPercentage = model.TotalCoinsCollected / model.TotalCoinsInChecklist;
-            model.FaceValueTotal = 0;
-            model.BullionValueTotal = 0;
-            model.EstimatedValueTotal = 0;
-            model.CollectionValueTotal = 0;
+            model.TotalCoinsCollected = calculator.GetNumberOfCoinsCollectedInChecklist();
+            model.TotalCoinsInChecklist = calculator.GetNumberOfCoinsInChecklist();
+            model.TotalCoinsPercentage = (int)((model.TotalCoinsCollected / (decimal)model.TotalCoinsInChecklist) * 100);
+            model.FaceValueTotal = calculator.CalculateFaceValueTotal();
+            model.BullionValueTotal = calculator.CalculateBullionValueTotal();
+            model.EstimatedValueTotal = calculator.CalculateEstimatedValueTotal();
+            model.CollectionValueTotal = calculator.CalculateCollectionValueTotal();
 
             return model;
         }

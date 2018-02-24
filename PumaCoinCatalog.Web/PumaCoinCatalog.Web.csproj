@@ -161,6 +161,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\ChecklistCalculator.cs" />
     <Compile Include="Infrastructure\DropDownListHelper.cs" />
     <Compile Include="Infrastructure\LinkHelper.cs" />
     <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\Checklist\_ddlCoinCollections.cshtml" />
     <Content Include="Views\CoinGrade\Index.cshtml" />
     <Content Include="Views\Checklist\_checklistInfo.cshtml" />
+    <Content Include="Views\Checklist\_gradeSelectList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

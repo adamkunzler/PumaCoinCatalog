@@ -19,19 +19,20 @@
     
 </style>
 
-<div class="checklist-details">    
+<div class="checklist-details"> 
+    <input type="hidden" id="hidChecklistId" value="@Model.Id" />
     <div class="row">
         <div class="col-md-6">
             <img src="data:image/jpg;base64,@Model.Base64Image" alt="@Model.Title" class="coin-image" />
         </div>
         <div class="col-md-4">
-            <div class="checklist-info">
+            <div id="checklist-info">
                 @Html.Partial("_checklistInfo", Model.ChecklistInfoModel)
             </div>
         </div>      
         <div class="col-md-2">
             <div class="checklist-actions">
-                <button type="button" class="btn btn-primary btn-lg btn-block">Refresh Totals</button>
+                <button id="btnRefreshTotals" type="button" class="btn btn-primary btn-lg btn-block">Refresh Totals</button>
                 <button type="button" class="btn btn-primary btn-lg btn-block">Export</button>
                 <button type="button" class="btn btn-primary btn-lg btn-block">Delete</button>
             </div>
@@ -73,18 +74,7 @@
                                     </label>
                                 </td>
                                 <td style="text-align: center; width: 150px;">
-                                    <select class="form-control ddl-grade">
-                                        <option @(coin.AdamGrade == 1 ? "selected='selected'" : string.Empty) value="1">Poor</option>
-                                        <option @(coin.AdamGrade == 2 ? "selected='selected'" : string.Empty) value="2">Fair</option>
-                                        <option @(coin.AdamGrade == 4 ? "selected='selected'" : string.Empty) value="4">Good</option>
-                                        <option @(coin.AdamGrade == 8 ? "selected='selected'" : string.Empty) value="8">Very Good</option>
-                                        <option @(coin.AdamGrade == 12 ? "selected='selected'" : string.Empty) value="12">Fine</option>
-                                        <option @(coin.AdamGrade == 20 ? "selected='selected'" : string.Empty) value="20">Very Fine</option>
-                                        <option @(coin.AdamGrade == 40 ? "selected='selected'" : string.Empty) value="40">Ex. Fine</option>
-                                        <option @(coin.AdamGrade == 50 ? "selected='selected'" : string.Empty) value="50">AU</option>
-                                        <option @(coin.AdamGrade == 58 ? "selected='selected'" : string.Empty) value="58">Uncirculated</option>
-                                        <option @(coin.AdamGrade == 60 ? "selected='selected'" : string.Empty) value="60">MS+</option>                                        
-                                    </select>
+                                    @Html.Partial("_gradeSelectList", coin)
                                 </td>
                                 <td style="text-align: right; width: 100px;">                                    
                                     <input type="text" class="form-control estimated-value-textbox" value="@coin.ValueEstimate" style="text-align: right;"/>                                    
@@ -114,6 +104,21 @@
         $(document).ready(function () {
             resetMenu();
             setActiveMenu('/Checklist/AllChecklists');
+
+            //
+            // refresh the totals section
+            //
+            $("#btnRefreshTotals").on("click", function () {
+                var checklistId = $("#hidChecklistId").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Checklist/GetChecklistTotals?checklistId=' + checklistId,
+                    success: function (result) {
+                        $("#checklist-info").html(result);
+                    }
+                });
+            });
 
             //
             // get the checklist coin id for a cell in a row
@@ -182,6 +187,10 @@
                 });
             });
 
+            $("input[type='text']").on("click", function () {
+                $(this).select();
+            });
+
             //
             // update estimated value
             //
@@ -189,10 +198,14 @@
                 var thisthis = this;
                 var value = $(this).val();
 
-                if (!isNumeric(value)) {
+                if (value == '' || value == ' ') {
+                    value = 0;
+                }
+
+                if (!isNumeric(value)) {                    
                     console.log('bad number');
                     $(this).val('');
-                    return;
+                    return;                    
                 }
 
                 var checklistCoinId = getChecklistCoinId(this);
