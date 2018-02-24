@@ -109,11 +109,13 @@ select.form-control {
 .progress-label {
     font-weight: 600;
     font-size: 18px;
-    margin-top: 5px;
+    position: absolute;
+    margin-top: -37px;
+    margin-left: 15px;
 }
 
 .coins-in-collection .progress-bar-success {
-    background-color: #72B23C;
+    background-color: #85CE36;
 }
 
 .value-totals {
@@ -129,4 +131,19 @@ select.form-control {
     .value-totals span {
         font-size: 20px;
         font-weight: 700;
+    }
+
+.checklist-totals .checklist-info {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #D6DCE3;
+}
+
+    .checklist-totals .checklist-info h3 {
+        text-align: center;
+        margin-top: 0 !important;
+    }
+
+    .checklist-totals .checklist-info button {
+        margin-top: 15px;
     }

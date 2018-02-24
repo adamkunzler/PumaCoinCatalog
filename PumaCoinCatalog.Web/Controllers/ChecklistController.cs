@@ -56,6 +56,21 @@ namespace PumaCoinCatalog.Web.Controllers
             return View(model);
         }
 
+        public ActionResult ChecklistTotals()
+        {
+            var checklists = _checklistService.GetAllChecklists();
+
+            var model = new List<ChecklistModel>();
+            foreach(var checklist in checklists)
+            {
+                var checklistModel = ChecklistMapper.MapToChecklistModel(checklist);                
+                checklistModel.ChecklistInfoModel = GetChecklistInfoModel(checklistModel);
+                model.Add(checklistModel);
+            }
+
+            return View(model);
+        }
+
         #endregion Actions
 
         #region Ajax

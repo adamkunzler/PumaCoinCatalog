@@ -1,0 +1,43 @@
+﻿@model System.Collections.Generic.List<PumaCoinCatalog.Web.Models.Checklist.ChecklistModel>
+
+@{
+    ViewBag.Title = "Checklist Values";
+}
+
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        Checklists
+        <span>&#x25BA;</span>
+        Checklist Values
+    </div>
+}
+
+<style type="text/css">
+    
+</style>
+
+<div class="row checklist-totals">
+    @foreach(var checklist in Model)
+    {
+        <div class="col-md-3 checklist-info">
+            <h3>@checklist.Title</h3>
+            @Html.Partial("_checklistInfo", checklist.ChecklistInfoModel)
+            <div style="text-align: center;">
+                <a href="~/Checklist?id=@checklist.Id">
+                    <button type="button" class="btn btn-primary btn-lg">View Checklist</button>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/Checklist/ChecklistTotals');
+        });
+    </script>
+
+}

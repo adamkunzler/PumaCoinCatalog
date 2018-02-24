@@ -8,34 +8,35 @@
     </div>
     <span class="progress-label">Total Coins in Collection: @Model.TotalCoinsCollected / @Model.TotalCoinsInChecklist </span>
 </div>
-<br />
-<div class="value-totals">
-    <div class="row face-value-coin">
-        <div class="col-md-5">Coin Face Value:</div>
-        <div class="col-md-3"><span>@string.Format("{0:c}", Model.CoinFaceValue)</span></div>
-    </div>
-    <div class="row face-value-total">
-        <div class="col-md-5">Face Value Total:</div>
-        <div class="col-md-3"><span>@string.Format("{0:c}", Model.FaceValueTotal)</span></div>
-    </div>
-    <br />
-    <div class="row bullion-value-coin">
-        <div class="col-md-5">Coin Bullion Value:</div>
-        <div class="col-md-3"><span>@string.Format("{0:c}", Model.CoinBullionValue)</span></div>
-    </div>
-    <div class="row bullion-value-total">
-        <div class="col-md-5">Bullion Value Total:</div>
-        <div class="col-md-3"><span>@string.Format("{0:c}", Model.BullionValueTotal)</span></div>
-    </div>
-    <br />
-    <div class="row estimated-value-total">
-        <div class="col-md-5">Estimated Value Total:</div>
-        <div class="col-md-3"><span>@string.Format("{0:c}", Model.EstimatedValueTotal)</span></div>
-    </div>
-    <br />
-    <div class="row collection-value-total">
-        <div class="col-md-5">Collection Value Total:</div>
-        <div class="col-md-3"><span>@string.Format("{0:c}", Model.CollectionValueTotal)</span></div>
+<div class="row value-totals">
+    <div class="col-md-12">
+        <div class="row face-value-coin">
+            <div class="col-md-6">Coin Face Value:</div>
+            <div class="col-md-6"><span>@string.Format("{0:c}", Model.CoinFaceValue)</span></div>
+        </div>
+        <div class="row face-value-total">
+            <div class="col-md-6">Face Value Total:</div>
+            <div class="col-md-6"><span>@string.Format("{0:c}", Model.FaceValueTotal)</span></div>
+        </div>
+        <br />
+        <div class="row bullion-value-coin">
+            <div class="col-md-6">Coin Bullion Value:</div>
+            <div class="col-md-6"><span>@string.Format("{0:c}", Model.CoinBullionValue)</span></div>
+        </div>
+        <div class="row bullion-value-total">
+            <div class="col-md-6">Bullion Value Total:</div>
+            <div class="col-md-6"><span>@string.Format("{0:c}", Model.BullionValueTotal)</span></div>
+        </div>
+        <br />
+        <div class="row estimated-value-total">
+            <div class="col-md-6">Estimated Value Total:</div>
+            <div class="col-md-6"><span>@string.Format("{0:c}", Model.EstimatedValueTotal)</span></div>
+        </div>
+        <br />
+        <div class="row collection-value-total">
+            <div class="col-md-6">Collection Value Total:</div>
+            <div class="col-md-6"><span>@string.Format("{0:c}", Model.CollectionValueTotal)</span></div>
+        </div>
     </div>
 </div>
 
