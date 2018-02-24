@@ -44,13 +44,14 @@ namespace PumaCoinCatalog.Services
         {
             var key = $"CoinCategory_{id}";
 
-            var category = _cache.GetOrAdd(key, () =>
-            {
-                return _context.ScrapeCoinCategories
+            //var category = _cache.GetOrAdd(key, () =>
+            //{
+            //return 
+            var category = _context.ScrapeCoinCategories
                                    .Include("CoinTypes")
                                    .Include("CoinCollection")
                                    .FirstOrDefault(x => x.Id == id);
-            });
+            //});
 
             if (category == null) throw new Exception("Category (" + id + ") not found.");
 

@@ -1,6 +1,7 @@
 ﻿using PumaCoinCatalog.Models;
 using PumaCoinCatalog.Web.Models.Checklist;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 {
@@ -43,9 +44,9 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                 FaceValue = checklist.CoinCategory.FaceValue / 1000m,
                 BullionValue = checklist.CoinType.BullionValue,
                 ChecklistCoins = new List<ChecklistCoinModel>()
-            };
-            
-            foreach(var coin in checklist.ChecklistCoins)
+            };            
+
+            foreach(var coin in checklist.ChecklistCoins.OrderBy(x => x.Coin.SortOrder))
             {
                 var coinModel = new ChecklistCoinModel
                 {

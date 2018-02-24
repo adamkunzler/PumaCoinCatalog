@@ -225,7 +225,49 @@
                         window.location = "@Url.Action("AllChecklists", "Checklist")";
                     }
                 });
-            });            
+            });  
+
+            //
+            // filter table - show all
+            //
+            $("#btnShowAll").on("click", function () {
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    $(this).show();
+                });
+            });
+
+            //
+            // filter table - show collected coins
+            //
+            $("#btnShowCollected").on("click", function () {
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    var checkbox = $(this).find("input.in-collection-checkbox");
+                    var isInCollection = $(checkbox).prop("checked");
+                    if (isInCollection) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            //
+            // filter table - show missing coins
+            //
+            $("#btnShowMissing").on("click", function () {                
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    var checkbox = $(this).find("input.in-collection-checkbox");
+                    var isInCollection = $(checkbox).prop("checked");
+                    if (isInCollection) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+            });
         });
     </script>
 
