@@ -21,6 +21,7 @@ namespace PumaCoinCatalog.Services
         public CoinDataService(DataContext context)
         {
             _context = context;
+            _cache = new CachingService();
         }
         
         public ScrapeCoinCollection GetUsCoinCollection()
