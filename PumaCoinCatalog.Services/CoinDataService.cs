@@ -1,4 +1,5 @@
-﻿using PumaCoinCatalog.Data;
+﻿using LazyCache;
+using PumaCoinCatalog.Data;
 using PumaCoinCatalog.Models;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ namespace PumaCoinCatalog.Services
     public class CoinDataService
     {
         private readonly DataContext _context;
+        private readonly IAppCache _cache;
 
         public CoinDataService()
         {
             _context = new DataContext();
+            _cache = new CachingService();
         }
 
         public CoinDataService(DataContext context)
@@ -22,11 +25,15 @@ namespace PumaCoinCatalog.Services
         
         public ScrapeCoinCollection GetUsCoinCollection()
         {
-            var collection = _context.ScrapeCoinCollections
-                                     .Include("CoinCategories")
-                                     //.Include("CoinCategories.CoinTypes")
-                                     //.Include("CoinCategories.CoinTypes.Coins")
-                                     .FirstOrDefault(x => x.Title == "U.S. Coins");
+            var key = "Collection_UsCoins";
+
+            var collection = _cache.GetOrAdd(key, () =>
+            {
+                return _context.ScrapeCoinCollections
+                        .Include("CoinCategories")
+                        .FirstOrDefault(x => x.Title == "U.S. Coins");
+            });
+
             if (collection == null) throw new Exception("US Coin collection not found");
 
             return collection;
@@ -34,10 +41,16 @@ namespace PumaCoinCatalog.Services
 
         public ScrapeCoinCategory GetCoinCategory(Guid id)
         {
-            var category = _context.ScrapeCoinCategories
+            var key = $"CoinCategory_{id}";
+
+            var category = _cache.GetOrAdd(key, () =>
+            {
+                return _context.ScrapeCoinCategories
                                    .Include("CoinTypes")
                                    .Include("CoinCollection")
                                    .FirstOrDefault(x => x.Id == id);
+            });
+
             if (category == null) throw new Exception("Category (" + id + ") not found.");
 
             return category;
@@ -45,11 +58,16 @@ namespace PumaCoinCatalog.Services
 
         public ScrapeCoinType GetCoinType(Guid id)
         {
-            var type = _context.ScrapeCoinTypes
+            var key = $"CoinType_{id}";
+
+            var type = _cache.GetOrAdd(key, () =>
+            {
+                return _context.ScrapeCoinTypes
                                .Include("Coins")
                                .Include("CoinCategory")
                                .Include("CoinCategory.CoinCollection")
                                .FirstOrDefault(x => x.Id == id);
+            });
             if (type == null) throw new Exception("Type (" + id + ") not found");
 
             return type;
@@ -57,34 +75,53 @@ namespace PumaCoinCatalog.Services
 
         public IList<ScrapeCoinCollection> GetAllCollections()
         {
+            var key = "Collection_All";
             var collections = _context.ScrapeCoinCollections.ToList();
             return collections;
         }
 
         public IList<ScrapeCoinCategory> GetAllCategoriesByCollection(Guid collectionId)
         {
-            var categories = _context.ScrapeCoinCategories
+            var key = $"Categories_All_{collectionId}";
+
+            var categories = _cache.GetOrAdd(key, () =>
+            {
+                return _context.ScrapeCoinCategories
                                      .Where(x => x.CoinCollection.Id == collectionId)
                                      .OrderBy(x => x.SortOrder)
                                      .ToList();
+            });
+
             return categories;
         }
 
         public IList<ScrapeCoinType> GetAllTypesByCategory(Guid categoryId)
         {
-            var types = _context.ScrapeCoinTypes
+            var key = $"Types_All_{categoryId}";
+
+            var types = _cache.GetOrAdd(key, () =>
+            {
+                return _context.ScrapeCoinTypes
                                 .Where(x => x.CoinCategory.Id == categoryId)
                                 .OrderBy(x => x.SortOrder)
                                 .ToList();
+            });
+
             return types;
         }
 
         public IList<ScrapeCoin> GetAllCoinsByType(Guid typeId)
         {
-            var coins = _context.ScrapeCoins
+            var key = $"Coins_All_{typeId}";
+
+            var coins = _cache.GetOrAdd(key, () =>
+            {
+                return _context.ScrapeCoins
                                 .Where(x => x.CoinType.Id == typeId)
                                 .OrderBy(x => x.SortOrder)
                                 .ToList();
+            });
+
             return coins;
         }
 
@@ -95,6 +132,8 @@ namespace PumaCoinCatalog.Services
 
             coinType.BullionValue = bullionValue;
             _context.SaveChanges();
+
+            _cache.Remove($"CoinType_{coinTypeId}");            
         }
     }
 }
