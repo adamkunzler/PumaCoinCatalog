@@ -32,7 +32,8 @@
             <div class="checklist-actions">
                 <button id="btnRefreshTotals" type="button" class="btn btn-primary btn-lg btn-block">Refresh Totals</button>
                 <button id="btnUpdateBullionValue" type="button" class="btn btn-primary btn-lg btn-block">Update Bullion Value</button>
-                <button type="button" class="btn btn-primary btn-lg btn-block">Export</button>
+                @*<button id="btnExportChecklist" type="button" class="btn btn-primary btn-lg btn-block">Export</button>*@
+                @Html.ActionLink("Export", "ExportChecklist", "Checklist", new { checklistId = Model.Id }, new { @class="btn btn-primary btn-lg btn-block" })
                 <button id="btnDeleteChecklist" type="button" class="btn btn-primary btn-lg btn-block">Delete</button>                
             </div>
         </div>
@@ -79,7 +80,7 @@
             //
             // get the checklist coin id for a cell in a row
             //
-            function getChecklistCoinId(elem) {                
+            function getChecklistCoinId(elem) {
                 var row = $(elem).closest(".checklist-coin-row");
                 var trCoinId = $(row).children(".checklist-coin-id");
                 var checklistCoinId = $(trCoinId).text();
@@ -98,9 +99,9 @@
             $(".in-collection-checkbox").change(function () {
                 var thisthis = this;
                 var checklistCoinId = getChecklistCoinId(this);
-                
+
                 if (this.checked) {
-                    // set flag to true                    
+                    // set flag to true
                     $.ajax({
                         type: 'POST',
                         url: '/Checklist/UpdateChecklistCoinAddToChecklist?checklistCoinId=' + checklistCoinId,
@@ -138,9 +139,9 @@
             //
             $(".ddl-grade").change(function () {
                 var thisthis = this;
-                var value = $(this).val();                
+                var value = $(this).val();
                 var checklistCoinId = getChecklistCoinId(this);
-                
+
                 $.ajax({
                     type: 'POST',
                     url: '/Checklist/UpdateChecklistCoinGrade?checklistCoinId=' + checklistCoinId + '&value=' + value,
@@ -166,14 +167,14 @@
                     value = 0;
                 }
 
-                if (!isNumeric(value)) {                    
+                if (!isNumeric(value)) {
                     console.log('bad number');
                     $(this).val('');
-                    return;                    
+                    return;
                 }
 
                 var checklistCoinId = getChecklistCoinId(this);
-                
+
                 $.ajax({
                     type: 'POST',
                     url: '/Checklist/UpdateChecklistCoinEstimatedValue?checklistCoinId=' + checklistCoinId + '&value=' + value,
@@ -187,12 +188,12 @@
             //
             // update bullion value
             //
-            $("#btnUpdateBullionValue").on("click", function () {                                                
+            $("#btnUpdateBullionValue").on("click", function () {
                 var checklistId = $("#hidChecklistId").val();
 
                 var value = prompt("Enter the Bullion Value:", "0");
                 if (value == '' || value == ' ') value = 0;
-                if (!isNumeric(value)) {                    
+                if (!isNumeric(value)) {
                     return;
                 }
 
@@ -224,7 +225,7 @@
                         window.location = "@Url.Action("AllChecklists", "Checklist")";
                     }
                 });
-            });
+            });            
         });
     </script>
 

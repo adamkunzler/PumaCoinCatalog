@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.7.0.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -163,10 +166,12 @@
     </Compile>
     <Compile Include="Infrastructure\ChecklistCalculator.cs" />
     <Compile Include="Infrastructure\DropDownListHelper.cs" />
+    <Compile Include="Infrastructure\GradeHelper.cs" />
     <Compile Include="Infrastructure\LinkHelper.cs" />
     <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
     <Compile Include="Models\Checklist\AllChecklistsModel.cs" />
+    <Compile Include="Models\Checklist\ChecklistExportModel.cs" />
     <Compile Include="Models\Checklist\ChecklistModel.cs" />
     <Compile Include="Models\Checklist\NewChecklistModel.cs" />
     <Compile Include="Models\CoinData\CoinCategoryModel.cs" />

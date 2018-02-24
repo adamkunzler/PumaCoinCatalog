@@ -73,7 +73,7 @@ namespace PumaCoinCatalog.Services
             checklistCoin.InCollection = true;
             checklistCoin.AdamGrade = value;
             _context.SaveChanges();
-        }
+        }        
 
         public void DeleteChecklist(Guid checklistId)
         {

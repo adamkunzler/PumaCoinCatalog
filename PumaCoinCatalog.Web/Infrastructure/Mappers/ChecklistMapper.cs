@@ -61,5 +61,33 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 
             return model;
         }
+
+        public static IList<ChecklistExportModel> MapToChecklistExportModel(Checklist checklist)
+        {
+            var model = new List<ChecklistExportModel>();
+
+            var coinType = $"{ checklist.CoinCollection.Title } | { checklist.CoinCategory.Title } | { checklist.CoinType.Title } - { checklist.CoinType.Details }";
+
+            foreach (var coin in checklist.ChecklistCoins)
+            {
+                var exportModel = new ChecklistExportModel
+                {
+                    CoinType = coinType,
+                    Year = coin.Coin.Year,
+                    Variety = coin.Coin.Variety,
+                    InCollection = coin.InCollection ? "X" : "",
+                    Grade = coin.AdamGrade.HasValue ? GradeHelper.GetGradeFromNumber(coin.AdamGrade.Value) : "",
+                    ValueEstimate = coin.ValueEstimate.ToString(),
+                    Mintage = coin.Coin.Mintage.ToString(),
+                    KmNumber = coin.Coin.KmNumber.ToString(),
+                    NumisMediaId = coin.Coin.NumisMediaId.ToString(),
+                    NgcId = coin.Coin.NgcId.ToString(),
+                    PcgsId = coin.Coin.PcgsId.ToString()
+                };
+                model.Add(exportModel);
+            }
+
+            return model;
+        }
     }
 }

@@ -1,9 +1,11 @@
-﻿using PumaCoinCatalog.Services;
+﻿using CsvHelper;
+using PumaCoinCatalog.Services;
 using PumaCoinCatalog.Web.Infrastructure;
 using PumaCoinCatalog.Web.Infrastructure.Mappers;
 using PumaCoinCatalog.Web.Models.Checklist;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -71,9 +73,39 @@ namespace PumaCoinCatalog.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult ExportChecklist(Guid checklistId)
+        {
+            var checklist = _checklistService.GetChecklist(checklistId);
+            var exportModel = ChecklistMapper.MapToChecklistExportModel(checklist);
+
+            byte[] data = null;
+            var csvConfig = new CsvHelper.Configuration.Configuration();
+            csvConfig.BufferSize = 20480;
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(stream))
+                {
+                    using (var csvWriter = new CsvWriter(writer, csvConfig))
+                    {                        
+                        csvWriter.WriteRecords(exportModel);
+                        writer.Flush();
+                        stream.Position = 0;                        
+                    }
+                }
+
+                data = stream.ToArray();
+            }
+
+            if (data == null) throw new Exception("export failed");
+
+            return File(data, "text/csv", $"{checklist.Title}_{DateTime.Today.ToString("yyyyMMdd")}.csv");
+        }
+
         #endregion Actions
 
-        #region Ajax
+        #region Ajax        
 
         [HttpPost]
         public ActionResult DeleteChecklist(Guid checklistId)
