@@ -75,6 +75,18 @@ namespace PumaCoinCatalog.Services
             _context.SaveChanges();
         }
 
+        public void DeleteChecklist(Guid checklistId)
+        {
+            var checklist = _context.Checklists.SingleOrDefault(x => x.Id == checklistId);
+            if (checklist == null) throw new Exception("checklist not found");
+
+            var checklistCoins = _context.ChecklistCoins.Where(x => x.Checklist.Id == checklistId);
+
+            _context.ChecklistCoins.RemoveRange(checklistCoins);
+            _context.Checklists.Remove(checklist);
+            _context.SaveChanges();
+        }
+
         public void UpdateChecklistCoinInCollection(Guid checklistCoinId, bool value)
         {
             var checklistCoin = _context.ChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);

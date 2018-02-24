@@ -76,6 +76,13 @@ namespace PumaCoinCatalog.Web.Controllers
         #region Ajax
 
         [HttpPost]
+        public ActionResult DeleteChecklist(Guid checklistId)
+        {
+            _checklistService.DeleteChecklist(checklistId);
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult GetChecklistTotals(Guid checklistId)
         {
             if (checklistId == Guid.Empty) throw new ArgumentException("Checklist Id is empty");
