@@ -262,6 +262,7 @@
     <Content Include="Views\CoinGrade\Index.cshtml" />
     <Content Include="Views\Checklist\_checklistInfo.cshtml" />
     <Content Include="Views\Checklist\_gradeSelectList.cshtml" />
+    <Content Include="Views\Checklist\_checklistCoinTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

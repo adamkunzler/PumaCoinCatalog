@@ -1,0 +1,58 @@
+﻿@model System.Collections.Generic.List<PumaCoinCatalog.Web.Models.Checklist.ChecklistCoinModel>
+
+@using PumaCoinCatalog.Web.Infrastructure
+
+<table class="coin-list table table-striped">
+    <thead>
+        <tr>
+            <th style="display:none;">Id</th>
+            <th style="display:none;">CoinId</th>
+            <th>Year</th>
+            <th>Variety</th>
+            <th style="text-align: center;">Collected</th>
+            <th style="text-align: center;">Grade</th>
+            <th style="text-align: center;">Est. Value</th>
+            <th style="text-align: right;">Mintage</th>
+            <th style="text-align: center;">KM #</th>
+            <th style="text-align: center;">NumisMedia</th>
+            <th style="text-align: center;">NGC</th>
+            <th style="text-align: center;">PCGS</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var coin in Model)
+        {
+            <tr class="checklist-coin-row">
+                <td class="checklist-coin-id" style="display:none;">@coin.Id</td>
+                <td style="display:none;">@coin.CoinModel.Id</td>
+                <td>@coin.CoinModel.Year</td>
+                <td>@coin.CoinModel.Variety</td>
+                <td style="text-align: center;">
+                    <label>
+                        <input class="checkbox in-collection-checkbox" type="checkbox" @(Convert.ToBoolean(coin.InCollection) == true ? "checked='checked'" : string.Empty) />
+                        <span></span>
+                    </label>
+                </td>
+                <td style="text-align: center; width: 150px;">
+                    @Html.Partial("_gradeSelectList", coin)
+                </td>
+                <td style="text-align: right; width: 100px;">
+                    <input type="text" class="form-control estimated-value-textbox" value="@coin.ValueEstimate" style="text-align: right;" />
+                </td>
+                <td style="text-align: center;">
+                    @if (coin.CoinModel.Mintage == 0)
+                    { <span>-</span> }
+                    else
+                    { <span>@string.Format("{0:0,0}", coin.CoinModel.Mintage)</span> }
+                </td>
+                <td style="text-align: center;">@coin.CoinModel.KmNumber</td>
+                <td style="text-align: center;"><a href="@LinkHelper.NumisMediaLink(coin.CoinModel.NumisMediaId)" target="_blank">@coin.CoinModel.NumisMediaId</a></td>
+                <td style="text-align: center;"><a href="@LinkHelper.NgcLink(coin.CoinModel.NgcId)" target="_blank">@coin.CoinModel.NgcId</a></td>
+                <td style="text-align: center;"><a href="@LinkHelper.PcgsLink(coin.CoinModel.PcgsId)" target="_blank">@coin.CoinModel.PcgsId</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
