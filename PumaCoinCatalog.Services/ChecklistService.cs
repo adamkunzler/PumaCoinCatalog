@@ -1,11 +1,8 @@
-﻿using LazyCache;
-using PumaCoinCatalog.Data;
+﻿using PumaCoinCatalog.Data;
 using PumaCoinCatalog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PumaCoinCatalog.Services
 {
@@ -117,6 +114,16 @@ namespace PumaCoinCatalog.Services
             _context.SaveChanges();
         }
 
+        public void UpdateChecklistCoinShouldExclude(Guid checklistCoinId, bool value)
+        {
+            var checklistCoin = _context.ChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("checklist coin not found");
+
+            checklistCoin.ShouldExclude = value;
+
+            _context.SaveChanges();
+        }
+
         public void UpdateChecklistCoinEstimatedValue(Guid checklistCoinId, decimal value)
         {
             var checklistCoin = _context.ChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
@@ -125,7 +132,7 @@ namespace PumaCoinCatalog.Services
             checklistCoin.InCollection = true;
             checklistCoin.ValueEstimate = value;
             _context.SaveChanges();
-        }
+        }        
 
         private IList<ChecklistCoin> CreateChecklistCoinsForNewChecklist(Checklist checklist)
         {
@@ -139,7 +146,8 @@ namespace PumaCoinCatalog.Services
                     Coin = scrapeCoin,
                     InCollection = false,
                     AdamGrade = null,
-                    ValueEstimate = null
+                    ValueEstimate = null,
+                    ShouldExclude = false
                 };
                 checklistCoins.Add(coin);
             }

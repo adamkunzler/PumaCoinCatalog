@@ -54,6 +54,7 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                     AdamGrade = coin.AdamGrade,
                     InCollection = coin.InCollection,
                     ValueEstimate = coin.ValueEstimate,
+                    ShouldExclude = coin.ShouldExclude,
                     CoinModel = coin.Coin.Map()
                 };
 
@@ -71,6 +72,8 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 
             foreach (var coin in checklist.ChecklistCoins)
             {
+                if (coin.ShouldExclude) continue;
+
                 var exportModel = new ChecklistExportModel
                 {
                     CoinType = coinType,

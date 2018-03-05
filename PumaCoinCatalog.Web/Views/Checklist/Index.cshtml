@@ -56,6 +56,8 @@
             resetMenu();
             setActiveMenu('/Checklist/AllChecklists');
 
+            hideExcludedCoins();
+
             //
             // refresh the totals section
             //
@@ -132,6 +134,34 @@
                     else {
                         $(this).prop("checked", true);
                     }
+                }
+            });
+
+            //
+            // toggle exclude of coin in checklist
+            //
+            $(".should-exclude-checkbox").change(function () {
+                var thisthis = this;
+                var checklistCoinId = getChecklistCoinId(this);
+
+                if (this.checked) {
+                    // set flag to true
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Checklist/UpdateChecklistCoinExcludeFromChecklist?checklistCoinId=' + checklistCoinId,
+                        success: function (result) {
+                            // coin excluded
+                        }                        
+                    });
+                } else {                    
+                    // set flag to false
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Checklist/UpdateChecklistCoinIncludeInChecklist?checklistCoinId=' + checklistCoinId,
+                        success: function (result) {
+                            // coin included
+                        }
+                    });                    
                 }
             });
 
@@ -287,6 +317,38 @@
                     }
                 });
             });
+
+            //
+            // filter table - toggle excluded coins
+            //
+            $("#btnToggleExcluded").on("click", function () {
+                if (_excludedShowing)
+                    hideExcludedCoins();
+                else
+                    showExcludedCoins();                    
+            });
+
+            var _excludedShowing = false;
+
+            function showExcludedCoins() {
+                _excludedShowing = true;
+
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {                    
+                    $(this).show();
+                });
+            }
+
+            function hideExcludedCoins() {
+                _excludedShowing = false;
+
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    var checkbox = $(this).find("input.should-exclude-checkbox");
+                    var shouldExclude = $(checkbox).prop("checked");
+                    if(shouldExclude) $(this).hide();
+                });
+            }
         });
 </script>
 

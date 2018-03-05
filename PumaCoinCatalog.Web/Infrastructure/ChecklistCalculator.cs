@@ -14,27 +14,29 @@ namespace PumaCoinCatalog.Web.Infrastructure
 
         public int GetNumberOfCoinsInChecklist()
         {
-            return _checklist.ChecklistCoins.Count();
+            return _checklist.ChecklistCoins.Count(x => !x.ShouldExclude);
         }
 
         public int GetNumberOfCoinsCollectedInChecklist()
         {
-            return _checklist.ChecklistCoins.Count(x => x.InCollection);
+            return _checklist.ChecklistCoins.Count(x => x.InCollection && !x.ShouldExclude);
         }
 
         public decimal CalculateFaceValueTotal()
         {
-            return _checklist.FaceValue * _checklist.ChecklistCoins.Count(x => x.InCollection);
+            return _checklist.FaceValue * _checklist.ChecklistCoins.Count(x => x.InCollection && !x.ShouldExclude);
         }
 
         public decimal CalculateBullionValueTotal()
         {
-            return _checklist.BullionValue * _checklist.ChecklistCoins.Count(x => x.InCollection);
+            return _checklist.BullionValue * _checklist.ChecklistCoins.Count(x => x.InCollection && !x.ShouldExclude);
         }
 
         public decimal CalculateEstimatedValueTotal()
         {
-            var total = _checklist.ChecklistCoins.Sum(x => x.ValueEstimate);
+            var total = _checklist.ChecklistCoins
+                                  .Where(x => !x.ShouldExclude)
+                                  .Sum(x => x.ValueEstimate);
             return total.Value;
         }
 
@@ -45,6 +47,7 @@ namespace PumaCoinCatalog.Web.Infrastructure
             foreach(var coin in _checklist.ChecklistCoins)
             {
                 if (!coin.InCollection) continue;
+                if (coin.ShouldExclude) continue;
 
                 if (coin.ValueEstimate.HasValue && coin.ValueEstimate.Value > 0)
                 {

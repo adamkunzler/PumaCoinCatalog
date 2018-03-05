@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201802240014199_addBullionValueToCoinType.Designer.cs">
       <DependentUpon>201802240014199_addBullionValueToCoinType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803050305433_addExcludeAttributeToChecklistCoin.cs" />
+    <Compile Include="Migrations\201803050305433_addExcludeAttributeToChecklistCoin.Designer.cs">
+      <DependentUpon>201803050305433_addExcludeAttributeToChecklistCoin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802240014199_addBullionValueToCoinType.resx">
       <DependentUpon>201802240014199_addBullionValueToCoinType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803050305433_addExcludeAttributeToChecklistCoin.resx">
+      <DependentUpon>201803050305433_addExcludeAttributeToChecklistCoin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

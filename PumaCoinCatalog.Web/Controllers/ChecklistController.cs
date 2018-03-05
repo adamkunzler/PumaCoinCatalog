@@ -164,6 +164,20 @@ namespace PumaCoinCatalog.Web.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateChecklistCoinExcludeFromChecklist(Guid checklistCoinId)
+        {
+            _checklistService.UpdateChecklistCoinShouldExclude(checklistCoinId, true);
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateChecklistCoinIncludeInChecklist(Guid checklistCoinId)
+        {
+            _checklistService.UpdateChecklistCoinShouldExclude(checklistCoinId, false);
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult GetCoinCategoriesDropDown(Guid collectionId)
         {
             var model = GetCoinCategoriesDropDown(collectionId);
