@@ -13,22 +13,59 @@
 }
 
 <style type="text/css">
-    
+    .checklist-totals table > tbody > tr > td {
+        vertical-align: middle;
+    }
 </style>
 
 <div class="row checklist-totals">
-    @foreach(var checklist in Model)
-    {
-        <div class="col-md-3 checklist-info">
-            <h3>@checklist.Title</h3>
-            @Html.Partial("_checklistInfo", checklist.ChecklistInfoModel)
-            <div style="text-align: center;">
-                <a href="~/Checklist?id=@checklist.Id">
-                    <button type="button" class="btn btn-primary btn-lg">View Checklist</button>
-                </a>
-            </div>
-        </div>
-    }
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Checklist</th>
+                <th>Progress</th>
+                <th style="text-align: right;">Collection Value</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var checklist in Model)
+            {
+                @*<div class="col-md-3 checklist-info">
+                <h3>@checklist.Title</h3>
+                @Html.Partial("_checklistInfo", checklist.ChecklistInfoModel)
+                <div style="text-align: center;">
+                    <a href="~/Checklist?id=@checklist.Id">
+                        <button type="button" class="btn btn-primary btn-lg">View Checklist</button>
+                    </a>
+                </div>
+                </div>*@
+            <tr>
+                <td style="width: 300px;">@checklist.Title</td>
+                <td style="width: 400px;">
+                    <div class="coins-in-collection">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar"
+                                 aria-valuenow="@checklist.ChecklistInfoModel.TotalCoinsCollected" aria-valuemin="0" aria-valuemax="@checklist.ChecklistInfoModel.TotalCoinsInChecklist"
+                                 style="width: @checklist.ChecklistInfoModel.TotalCoinsPercentage%;"></div>
+                        </div>
+                        <span class="progress-label">Total Coins in Collection: @checklist.ChecklistInfoModel.TotalCoinsCollected / @checklist.ChecklistInfoModel.TotalCoinsInChecklist </span>
+                    </div>
+                </td>
+                <td style="width: 150px; text-align: right;">
+                    @string.Format("{0:c}", checklist.ChecklistInfoModel.CollectionValueTotal)
+                </td>
+                <td>
+                    <div style="text-align: center;">
+                        <a href="~/Checklist?id=@checklist.Id">
+                            <button type="button" class="btn btn-primary">View Checklist</button>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 @section scripts {
