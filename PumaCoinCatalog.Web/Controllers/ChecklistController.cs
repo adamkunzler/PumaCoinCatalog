@@ -108,6 +108,13 @@ namespace PumaCoinCatalog.Web.Controllers
         #region Ajax        
 
         [HttpPost]
+        public ActionResult RenameChecklist(Guid checklistId, string checklistTitle)
+        {
+            _checklistService.RenameChecklist(checklistId, checklistTitle);
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult DeleteChecklist(Guid checklistId)
         {
             _checklistService.DeleteChecklist(checklistId);

@@ -13,53 +13,41 @@ namespace PumaCoinCatalog.Services
     {
         private readonly DataContext _context;
         private readonly CoinDataService _coinDataService;
-        private readonly IAppCache _cache;
-
+        
         public ChecklistService()
         {
             _context = new DataContext();
-            _coinDataService = new CoinDataService(_context);
-            _cache = new CachingService();
+            _coinDataService = new CoinDataService(_context);            
         }
 
         public ChecklistService(DataContext context)
         {
             _context = context;
-            _coinDataService = new CoinDataService(_context);
-            _cache = new CachingService();
+            _coinDataService = new CoinDataService(_context);            
         }
 
         public IList<Checklist> GetAllChecklists()
         {
-            var key = "Checklists_All";
-
-            var checklists = _cache.GetOrAdd(key, () =>
-            {
-                return _context.Checklists
+           
+            var checklists = _context.Checklists
                                      .Include("CoinCollection")
                                      .Include("CoinCategory")
                                      .Include("CoinType")
                                      .OrderBy(x => x.CoinCategory.FaceValue)
-                                     .ToList();
-            });
+                                     .ToList();           
 
             return checklists;
         }
 
         public Checklist GetChecklist(Guid checklistId)
-        {
-            var key = $"Checklist_{checklistId}";
-
-            var checklist = _cache.GetOrAdd(key, () =>
-            {
-                return _context.Checklists
+        {            
+            var checklist = _context.Checklists
                                     .Include("CoinCollection")
                                     .Include("CoinCategory")
                                     .Include("CoinType")
                                     .Include("ChecklistCoins")
                                     .Include("ChecklistCoins.Coin")
-                                    .FirstOrDefault(x => x.Id == checklistId);
-            });
+                                    .FirstOrDefault(x => x.Id == checklistId);         
 
             return checklist;
                                     
@@ -77,10 +65,7 @@ namespace PumaCoinCatalog.Services
 
             _context.Checklists.Add(checklist);
             _context.SaveChanges();
-
-            _cache.Remove("Checklists_All");
-            _cache.Remove($"Checklist_{checklist.Id}");
-
+            
             return checklist.Id;
         }
 
@@ -92,10 +77,17 @@ namespace PumaCoinCatalog.Services
             checklistCoin.InCollection = true;
             checklistCoin.AdamGrade = value;
             _context.SaveChanges();
-
-            _cache.Remove("Checklists_All");
-            _cache.Remove($"Checklist_{checklistCoin.Checklist.Id}");
         }        
+
+        public void RenameChecklist(Guid checklistId, string checklistTitle)
+        {
+            var checklist = _context.Checklists.SingleOrDefault(x => x.Id == checklistId);
+            if (checklist == null) throw new Exception("checklist not found");
+
+            checklist.Title = checklistTitle;
+            _context.SaveChanges();
+
+        }
 
         public void DeleteChecklist(Guid checklistId)
         {
@@ -107,9 +99,6 @@ namespace PumaCoinCatalog.Services
             _context.ChecklistCoins.RemoveRange(checklistCoins);
             _context.Checklists.Remove(checklist);
             _context.SaveChanges();
-
-            _cache.Remove("Checklists_All");
-            _cache.Remove($"Checklist_{checklist.Id}");
         }
 
         public void UpdateChecklistCoinInCollection(Guid checklistCoinId, bool value)
@@ -126,9 +115,6 @@ namespace PumaCoinCatalog.Services
             }
 
             _context.SaveChanges();
-
-            _cache.Remove("Checklists_All");
-            _cache.Remove($"Checklist_{checklistCoin.Checklist.Id}");
         }
 
         public void UpdateChecklistCoinEstimatedValue(Guid checklistCoinId, decimal value)
@@ -139,9 +125,6 @@ namespace PumaCoinCatalog.Services
             checklistCoin.InCollection = true;
             checklistCoin.ValueEstimate = value;
             _context.SaveChanges();
-
-            _cache.Remove("Checklists_All");
-            _cache.Remove($"Checklist_{checklistCoin.Checklist.Id}");
         }
 
         private IList<ChecklistCoin> CreateChecklistCoinsForNewChecklist(Checklist checklist)

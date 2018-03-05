@@ -8,7 +8,7 @@
     <div class="coin-breadcrumb">
         Checklists
         <span>&#x25BA;</span>
-        @Model.Title        
+        <span id="checklist-title">@Model.Title</span>
         <span style="font-size: 18px;">@Model.CoinTypeDisplay</span>
     </div>
 }
@@ -33,8 +33,9 @@
                 <button id="btnRefreshTotals" type="button" class="btn btn-primary btn-lg btn-block">Refresh Totals</button>
                 <button id="btnUpdateBullionValue" type="button" class="btn btn-primary btn-lg btn-block">Update Bullion Value</button>
                 @*<button id="btnExportChecklist" type="button" class="btn btn-primary btn-lg btn-block">Export</button>*@
-                @Html.ActionLink("Export", "ExportChecklist", "Checklist", new { checklistId = Model.Id }, new { @class="btn btn-primary btn-lg btn-block" })
-                <button id="btnDeleteChecklist" type="button" class="btn btn-primary btn-lg btn-block">Delete</button>                
+                @Html.ActionLink("Export", "ExportChecklist", "Checklist", new { checklistId = Model.Id }, new { @class = "btn btn-primary btn-lg btn-block" })
+                <button id="btnDeleteChecklist" type="button" class="btn btn-primary btn-lg btn-block">Delete</button>
+                <button id="btnRenameChecklist" type="button" class="btn btn-primary btn-lg btn-block">Rename</button>
             </div>
         </div>
     </div>
@@ -50,7 +51,7 @@
 
 @section scripts {
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
             resetMenu();
             setActiveMenu('/Checklist/AllChecklists');
@@ -225,7 +226,25 @@
                         window.location = "@Url.Action("AllChecklists", "Checklist")";
                     }
                 });
-            });  
+            });
+
+            //
+            // rename a checklist
+            //
+            $("#btnRenameChecklist").on("click", function () {
+                var checklistId = $("#hidChecklistId").val();
+
+                var newTitle = prompt("Enter a new Checklist Title:");
+                if (!newTitle) return;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Checklist/RenameChecklist?checklistId=' + checklistId + "&checklistTitle=" + newTitle,
+                    success: function (result) {
+                        $("#checklist-title").text(newTitle);
+                    }
+                });
+            });
 
             //
             // filter table - show all
@@ -256,7 +275,7 @@
             //
             // filter table - show missing coins
             //
-            $("#btnShowMissing").on("click", function () {                
+            $("#btnShowMissing").on("click", function () {
                 var rows = $("tr.checklist-coin-row");
                 rows.each(function (index) {
                     var checkbox = $(this).find("input.in-collection-checkbox");
@@ -269,6 +288,6 @@
                 });
             });
         });
-    </script>
+</script>
 
 }
