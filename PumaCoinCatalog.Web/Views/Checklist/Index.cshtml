@@ -282,7 +282,8 @@
             $("#btnShowAll").on("click", function () {
                 var rows = $("tr.checklist-coin-row");
                 rows.each(function (index) {
-                    $(this).show();
+                    var shouldExclude = $(this).find("input.should-exclude-checkbox").prop("checked");
+                    if(!shouldExclude) $(this).show();
                 });
             });
 
@@ -309,12 +310,15 @@
                 var rows = $("tr.checklist-coin-row");
                 rows.each(function (index) {
                     var checkbox = $(this).find("input.in-collection-checkbox");
-                    var isInCollection = $(checkbox).prop("checked");
+                    var isInCollection = $(checkbox).prop("checked");                    
                     if (isInCollection) {
                         $(this).hide();
                     } else {
                         $(this).show();
                     }
+
+                    var shouldExclude = $(this).find("input.should-exclude-checkbox").prop("checked");
+                    if (shouldExclude) $(this).hide();
                 });
             });
 
