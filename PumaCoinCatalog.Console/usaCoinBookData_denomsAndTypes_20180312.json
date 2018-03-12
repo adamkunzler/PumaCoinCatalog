@@ -1,0 +1,504 @@
+﻿[
+  {
+    "Title": "Half Cents",
+    "Uri": "https://www.usacoinbook.com/coins/half-cents/",
+    "Items": [
+      {
+        "Title": "Liberty Cap",
+        "Uri": "https://www.usacoinbook.com/coins/half-cents/liberty-cap/",
+        "Items": []
+      },
+      {
+        "Title": "Draped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/half-cents/draped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Classic Head",
+        "Uri": "https://www.usacoinbook.com/coins/half-cents/classic-head/",
+        "Items": []
+      },
+      {
+        "Title": "Braided Hair",
+        "Uri": "https://www.usacoinbook.com/coins/half-cents/braided-hair/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Large Cents",
+    "Uri": "https://www.usacoinbook.com/coins/large-cents/",
+    "Items": [
+      {
+        "Title": "Flowing Hair",
+        "Uri": "https://www.usacoinbook.com/coins/large-cents/flowing-hair/",
+        "Items": []
+      },
+      {
+        "Title": "Liberty Cap",
+        "Uri": "https://www.usacoinbook.com/coins/large-cents/liberty-cap/",
+        "Items": []
+      },
+      {
+        "Title": "Draped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/large-cents/draped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Classic Head",
+        "Uri": "https://www.usacoinbook.com/coins/large-cents/classic-head/",
+        "Items": []
+      },
+      {
+        "Title": "Coronet Liberty Head",
+        "Uri": "https://www.usacoinbook.com/coins/large-cents/coronet-liberty-head/",
+        "Items": []
+      },
+      {
+        "Title": "Braided Hair Liberty Head",
+        "Uri": "https://www.usacoinbook.com/coins/large-cents/braided-hair-liberty-head/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Small Cents",
+    "Uri": "https://www.usacoinbook.com/coins/small-cents/",
+    "Items": [
+      {
+        "Title": "Flying Eagle Cent",
+        "Uri": "https://www.usacoinbook.com/coins/small-cents/flying-eagle-cent/",
+        "Items": []
+      },
+      {
+        "Title": "Indian Head Cent",
+        "Uri": "https://www.usacoinbook.com/coins/small-cents/indian-head-cent/",
+        "Items": []
+      },
+      {
+        "Title": "Lincoln Wheat Cent",
+        "Uri": "https://www.usacoinbook.com/coins/small-cents/lincoln-wheat-cent/",
+        "Items": []
+      },
+      {
+        "Title": "Lincoln Memorial Cent",
+        "Uri": "https://www.usacoinbook.com/coins/small-cents/lincoln-memorial-cent/",
+        "Items": []
+      },
+      {
+        "Title": "Lincoln Shield Cent",
+        "Uri": "https://www.usacoinbook.com/coins/small-cents/lincoln-shield-cent/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Two Cents",
+    "Uri": "https://www.usacoinbook.com/coins/two-cents/",
+    "Items": []
+  },
+  {
+    "Title": "Three Cents",
+    "Uri": "https://www.usacoinbook.com/coins/three-cents/",
+    "Items": [
+      {
+        "Title": "Silver Three Cent",
+        "Uri": "https://www.usacoinbook.com/coins/three-cents/silver-three-cent/",
+        "Items": []
+      },
+      {
+        "Title": "Nickel Three Cent",
+        "Uri": "https://www.usacoinbook.com/coins/three-cents/nickel-three-cent/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Half Dimes",
+    "Uri": "https://www.usacoinbook.com/coins/half-dimes/",
+    "Items": [
+      {
+        "Title": "Flowing Hair",
+        "Uri": "https://www.usacoinbook.com/coins/half-dimes/flowing-hair/",
+        "Items": []
+      },
+      {
+        "Title": "Draped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/half-dimes/draped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Capped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/half-dimes/capped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Seated Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/half-dimes/seated-liberty/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Nickels",
+    "Uri": "https://www.usacoinbook.com/coins/nickels/",
+    "Items": [
+      {
+        "Title": "Shield",
+        "Uri": "https://www.usacoinbook.com/coins/nickels/shield/",
+        "Items": []
+      },
+      {
+        "Title": "Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/nickels/liberty/",
+        "Items": []
+      },
+      {
+        "Title": "Buffalo",
+        "Uri": "https://www.usacoinbook.com/coins/nickels/buffalo/",
+        "Items": []
+      },
+      {
+        "Title": "Jefferson",
+        "Uri": "https://www.usacoinbook.com/coins/nickels/jefferson/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Dimes",
+    "Uri": "https://www.usacoinbook.com/coins/dimes/",
+    "Items": [
+      {
+        "Title": "Draped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/dimes/draped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Capped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/dimes/capped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Seated Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/dimes/seated-liberty/",
+        "Items": []
+      },
+      {
+        "Title": "Barber",
+        "Uri": "https://www.usacoinbook.com/coins/dimes/barber/",
+        "Items": []
+      },
+      {
+        "Title": "Mercury",
+        "Uri": "https://www.usacoinbook.com/coins/dimes/mercury/",
+        "Items": []
+      },
+      {
+        "Title": "Roosevelt",
+        "Uri": "https://www.usacoinbook.com/coins/dimes/roosevelt/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Twenty Cents",
+    "Uri": "https://www.usacoinbook.com/coins/twenty-cents/",
+    "Items": []
+  },
+  {
+    "Title": "Quarters",
+    "Uri": "https://www.usacoinbook.com/coins/quarters/",
+    "Items": [
+      {
+        "Title": "Draped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/draped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Capped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/capped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Seated Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/seated-liberty/",
+        "Items": []
+      },
+      {
+        "Title": "Barber",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/barber/",
+        "Items": []
+      },
+      {
+        "Title": "Standing Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/standing-liberty/",
+        "Items": []
+      },
+      {
+        "Title": "Washington",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/washington/",
+        "Items": []
+      },
+      {
+        "Title": "50 States and Territories",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/50-states-and-territories/",
+        "Items": []
+      },
+      {
+        "Title": "America The Beautiful",
+        "Uri": "https://www.usacoinbook.com/coins/quarters/america-the-beautiful/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Half Dollars",
+    "Uri": "https://www.usacoinbook.com/coins/half-dollars/",
+    "Items": [
+      {
+        "Title": "Flowing Hair",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/flowing-hair/",
+        "Items": []
+      },
+      {
+        "Title": "Draped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/draped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Capped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/capped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Seated Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/seated-liberty/",
+        "Items": []
+      },
+      {
+        "Title": "Barber",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/barber/",
+        "Items": []
+      },
+      {
+        "Title": "Walking Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/walking-liberty/",
+        "Items": []
+      },
+      {
+        "Title": "Franklin",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/franklin/",
+        "Items": []
+      },
+      {
+        "Title": "Kennedy",
+        "Uri": "https://www.usacoinbook.com/coins/half-dollars/kennedy/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Dollars",
+    "Uri": "https://www.usacoinbook.com/coins/dollars/",
+    "Items": [
+      {
+        "Title": "Flowing Hair",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/flowing-hair/",
+        "Items": []
+      },
+      {
+        "Title": "Draped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/draped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Gobrecht",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/gobrecht/",
+        "Items": []
+      },
+      {
+        "Title": "Seated Liberty",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/seated-liberty/",
+        "Items": []
+      },
+      {
+        "Title": "Trade",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/trade/",
+        "Items": []
+      },
+      {
+        "Title": "Morgan",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/morgan/",
+        "Items": []
+      },
+      {
+        "Title": "Peace",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/peace/",
+        "Items": []
+      },
+      {
+        "Title": "Eisenhower",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/eisenhower/",
+        "Items": []
+      },
+      {
+        "Title": "Susan B Anthony",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/susan-b-anthony/",
+        "Items": []
+      },
+      {
+        "Title": "Sacagawea",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/sacagawea/",
+        "Items": []
+      },
+      {
+        "Title": "Presidential",
+        "Uri": "https://www.usacoinbook.com/coins/dollars/presidential/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Gold Dollars",
+    "Uri": "https://www.usacoinbook.com/coins/gold-dollars/",
+    "Items": [
+      {
+        "Title": "Liberty Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-dollars/liberty-head/",
+        "Items": []
+      },
+      {
+        "Title": "Small Indian Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-dollars/small-indian-head/",
+        "Items": []
+      },
+      {
+        "Title": "Large Indian Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-dollars/large-indian-head/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Gold $2.50 Quarter Eagle",
+    "Uri": "https://www.usacoinbook.com/coins/gold-2-50-quarter-eagle/",
+    "Items": [
+      {
+        "Title": "Turban Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-2-50-quarter-eagle/turban-head/",
+        "Items": []
+      },
+      {
+        "Title": "Capped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/gold-2-50-quarter-eagle/capped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Classic Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-2-50-quarter-eagle/classic-head/",
+        "Items": []
+      },
+      {
+        "Title": "Coronet Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-2-50-quarter-eagle/coronet-head/",
+        "Items": []
+      },
+      {
+        "Title": "Indian Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-2-50-quarter-eagle/indian-head/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Gold $3",
+    "Uri": "https://www.usacoinbook.com/coins/gold-3/",
+    "Items": [
+      {
+        "Title": "Indian Princess Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-3/indian-princess-head/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Gold $4",
+    "Uri": "https://www.usacoinbook.com/coins/gold-4/",
+    "Items": [
+      {
+        "Title": "Stella",
+        "Uri": "https://www.usacoinbook.com/coins/gold-4/stella/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Gold $5 Half Eagle",
+    "Uri": "https://www.usacoinbook.com/coins/gold-5-half-eagle/",
+    "Items": [
+      {
+        "Title": "Turban Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-5-half-eagle/turban-head/",
+        "Items": []
+      },
+      {
+        "Title": "Capped Bust",
+        "Uri": "https://www.usacoinbook.com/coins/gold-5-half-eagle/capped-bust/",
+        "Items": []
+      },
+      {
+        "Title": "Classic Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-5-half-eagle/classic-head/",
+        "Items": []
+      },
+      {
+        "Title": "Coronet Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-5-half-eagle/coronet-head/",
+        "Items": []
+      },
+      {
+        "Title": "Indian Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-5-half-eagle/indian-head/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Gold $10 Eagle",
+    "Uri": "https://www.usacoinbook.com/coins/gold-10-eagle/",
+    "Items": [
+      {
+        "Title": "Turban Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-10-eagle/turban-head/",
+        "Items": []
+      },
+      {
+        "Title": "Coronet Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-10-eagle/coronet-head/",
+        "Items": []
+      },
+      {
+        "Title": "Indian Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-10-eagle/indian-head/",
+        "Items": []
+      }
+    ]
+  },
+  {
+    "Title": "Gold $20 Double Eagle",
+    "Uri": "https://www.usacoinbook.com/coins/gold-20-double-eagle/",
+    "Items": [
+      {
+        "Title": "Coronet Head",
+        "Uri": "https://www.usacoinbook.com/coins/gold-20-double-eagle/coronet-head/",
+        "Items": []
+      },
+      {
+        "Title": "Saint Gaudens",
+        "Uri": "https://www.usacoinbook.com/coins/gold-20-double-eagle/saint-gaudens/",
+        "Items": []
+      }
+    ]
+  }
+]

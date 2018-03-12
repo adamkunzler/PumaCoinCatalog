@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using System.Net;
-using CsQuery;
-using PumaCoinCatalog.Models;
+﻿using CsQuery;
 using Newtonsoft.Json;
+using PumaCoinCatalog.Models;
+using System.Linq;
 
 namespace PumaCoinCatalog.Console
 {
-    public class CoinDataScraper
+    public class CoinDataScraper : BaseDataScraper
     {
         public string ScrapeData()
         {
@@ -104,17 +103,7 @@ namespace PumaCoinCatalog.Console
             return clean;
         }
 
-        private CQ GetHtml(string uri)
-        {
-            CQ dom;
-
-            using (var client = new WebClient())
-            {
-                dom = client.DownloadString(uri);
-            }
-
-            return dom;
-        }
+        
 
         #endregion Private Methods
     }

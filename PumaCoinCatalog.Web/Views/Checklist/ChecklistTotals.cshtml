@@ -18,6 +18,18 @@
     }
 </style>
 
+@{ 
+    decimal allTotal = 0m;
+    foreach(var c in Model)
+    {
+        allTotal += c.ChecklistInfoModel.CollectionValueTotal;
+    }
+}
+
+<h3>Total Value of Collections:</h3>
+<h3>@string.Format("{0:c}", allTotal)</h3>
+
+
 <div class="row checklist-totals">
     <table class="table table-striped">
         <thead>
