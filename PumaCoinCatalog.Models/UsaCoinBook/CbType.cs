@@ -9,8 +9,8 @@ namespace PumaCoinCatalog.Models.UsaCoinBook
         public short BeginDate { get; set; }
         public short EndDate { get; set; }        
         public string MetalComposition { get; set; }
-        public string Diameter { get; set; }
-        public string Mass { get; set; }
+        public float Diameter { get; set; }
+        public float Mass { get; set; }
         public decimal MeltValue { get; set; }
 
         public virtual CbVariety Variety { get; set; }

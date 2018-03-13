@@ -13,8 +13,7 @@ namespace PumaCoinCatalog.Models.UsaCoinBook
         public string MintMark { get; set; }
         public string Details { get; set; }
         public long Mintage { get; set; }
-        public string SourceUri { get; set; }
-
+        
         public virtual CbVariety Variety { get; set; }
         public virtual IList<CbGradeValue> GradeValues { get; set; }
     }
