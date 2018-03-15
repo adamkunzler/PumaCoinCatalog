@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -157,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CbCoinDataController.cs" />
     <Compile Include="Controllers\ChecklistController.cs" />
     <Compile Include="Controllers\CoinGradeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -168,8 +170,14 @@
     <Compile Include="Infrastructure\DropDownListHelper.cs" />
     <Compile Include="Infrastructure\GradeHelper.cs" />
     <Compile Include="Infrastructure\LinkHelper.cs" />
+    <Compile Include="Infrastructure\Mappers\CbCoinDataMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
+    <Compile Include="Models\CbCoinData\CbCoinViewModel.cs" />
+    <Compile Include="Models\CbCoinData\CbCountryViewModel.cs" />
+    <Compile Include="Models\CbCoinData\CbDenominationViewModel.cs" />
+    <Compile Include="Models\CbCoinData\CbTypeViewModel.cs" />
+    <Compile Include="Models\CbCoinData\CbVarietyViewModel.cs" />
     <Compile Include="Models\Checklist\AllChecklistsModel.cs" />
     <Compile Include="Models\Checklist\ChecklistExportModel.cs" />
     <Compile Include="Models\Checklist\ChecklistModel.cs" />
@@ -270,6 +278,11 @@
     <Content Include="Views\Checklist\_gradeSelectList.cshtml" />
     <Content Include="Views\Checklist\_checklistCoinTable.cshtml" />
     <Content Include="Views\Checklist\ChecklistTotals.cshtml" />
+    <Content Include="Views\CbCoinData\Index.cshtml" />
+    <Content Include="Views\CbCoinData\_denominations.cshtml" />
+    <Content Include="Views\CbCoinData\Denomination.cshtml" />
+    <Content Include="Views\CbCoinData\Variety.cshtml" />
+    <Content Include="Views\CbCoinData\Type.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

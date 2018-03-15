@@ -4,6 +4,11 @@ namespace PumaCoinCatalog.Models.UsaCoinBook
 {
     public class CbType
     {
+        public CbType()
+        {
+            Coins = new List<CbCoin>();
+        }
+
         public int Id { get; set; }
         public string Title { get; set; }
         public short BeginDate { get; set; }

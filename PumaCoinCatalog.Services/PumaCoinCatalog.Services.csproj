@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CbCoinDataService.cs" />
     <Compile Include="ChecklistService.cs" />
     <Compile Include="CoinDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

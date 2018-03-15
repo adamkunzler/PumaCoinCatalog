@@ -1,0 +1,32 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCoinData.CbCountryViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@section pageHeader {
+<div class="coin-breadcrumb">
+    @Model.Title    
+</div>
+}
+
+<div class="cb-coin-country">
+    <ul class="cb-denomination-list">
+        @foreach (var denomination in Model.Denominations)
+        {
+            <li>
+                <a href="@Url.Action("Denomination", new { denominationId = denomination.Id})">@denomination.Title</a>
+            </li>
+        }
+    </ul>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/CbCoinData');
+        });
+    </script>
+}

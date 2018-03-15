@@ -1,0 +1,168 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCoinData.CbTypeViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })">@Model.CountryTitle</a>
+        <span>&#x25BA;</span>
+        <a href="@Url.Action("Denomination", new { denominationId = @Model.DenominationId })">@Model.DenominationTitle</a>
+        <span>&#x25BA;</span>
+        <a href="@Url.Action("Variety", new { varietyId = @Model.VarietyId })">@Model.VarietyTitle</a>
+        <span>&#x25BA;</span>
+        @Model.Title
+    </div>
+}
+
+<style type="text/css">
+    .cb-coin-type .type-details .info {
+        font-size: 18px;
+    }
+
+        .cb-coin-type .type-details .info .label-header {
+            font-weight: bold;
+        }
+</style>
+
+<div class="cb-coin-type">
+    @Html.HiddenFor(x => x.Id, new { id = "hidTypeId" })
+    <div class="row">
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="updateObverseImage()">Update Obverse Image</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="updateReverseImage()">Update Reverse Image</button>
+        </div>
+    </div>
+    <div class="row type-details">
+        @if (!string.IsNullOrEmpty(Model.ObverseImageUri) || !string.IsNullOrEmpty(Model.ReverseImageUri))
+        {
+            if (!string.IsNullOrEmpty(Model.ObverseImageUri))
+            {
+                <div class="col-md-3">
+                    <img src="@Model.ObverseImageUri" alt="@Model.Title-obverse" title="@Model.Title-obverse" class="image-coin-type img-responsive" />
+                </div>
+            }
+
+            if (!string.IsNullOrEmpty(Model.ReverseImageUri))
+            {
+                <div class="col-md-3">
+                    <img src="@Model.ReverseImageUri" alt="@Model.Title-reverse" title="@Model.Title-reverse" class="image-coin-type img-responsive" />
+                </div>
+
+            }
+        }
+
+        <div class="col-md-6">
+            <div class="row info">
+                <div class="col-xs-3 label-header">
+                    Dates Minted:
+                </div>
+                <div class="col-xs-9">
+                    <span>@Model.BeginDate</span>&nbsp;&ndash;&nbsp;<span>@Model.EndDate</span>
+                </div>
+            </div>
+            <div class="row info">
+                <div class="col-xs-3 label-header">
+                    Number of Coins:
+                </div>
+                <div class="col-xs-9">
+                    @Model.Coins.Count()
+                </div>
+            </div>
+            <div class="row info">
+                <div class="col-xs-3 label-header">
+                    Metal Compostion:
+                </div>
+                <div class="col-xs-9">
+                    @Model.MetalComposition
+                </div>
+            </div>
+            <div class="row info">
+                <div class="col-xs-3 label-header">
+                    Diameter / Mass:
+                </div>
+                <div class="col-xs-9">
+                    <span>@Model.Diameter &nbsp;mm</span>
+                    &frasl;
+                    <span>@Model.Mass &nbsp;grams</span>
+                </div>
+            </div>
+
+            <div class="row info">
+                <div class="col-xs-3 label-header">
+                    Melt Value:
+                </div>
+                <div class="col-xs-9">
+                    @string.Format("{0:c}", Model.MeltValue)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="cb-coin-list table table-striped">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Details</th>
+                    <th>Mintage</th>
+                </tr>
+            </thead>
+            @foreach (var coin in Model.Coins)
+            {
+                <tr>
+                    <td><span>@coin.Year</span><span>@coin.MintMark</span></td>
+                    <td><span>@coin.Details</span></td>
+                    <td><span>@string.Format("{0:0,0}", coin.Mintage)</span></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/CbCoinData');
+        });
+
+        //
+        // update type obverse image
+        //
+        function updateObverseImage() {            
+            var typeId = $("#hidTypeId").val();
+            var imgUri = prompt("Enter the Obverse Image Uri:", "");
+            if (imgUri == '' || imgUri == ' ') return;
+
+            $.ajax({
+                type: 'POST',
+                url: '/CbCoinData/ChangeTypeObverseImage?typeId=' + typeId + "&uri=" + imgUri,
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        };
+
+        //
+        // update type reverse image
+        //
+        function updateReverseImage() {
+            var typeId = $("#hidTypeId").val();
+            var imgUri = prompt("Enter the Reverse Image Uri:", "");
+            if (imgUri == '' || imgUri == ' ') return;
+
+            $.ajax({
+                type: 'POST',
+                url: '/CbCoinData/ChangeTypeReverseImage?typeId=' + typeId + "&uri=" + imgUri,
+                success: function (result) {
+                    location.reload();
+                }
+            });
+        }
+    </script>
+}
