@@ -12,6 +12,8 @@ namespace PumaCoinCatalog.Models.UsaCoinBook
         public float Diameter { get; set; }
         public float Mass { get; set; }
         public decimal MeltValue { get; set; }
+        public string ObverseImageUri { get; set; }
+        public string ReverseImageUri { get; set; }
 
         public virtual CbVariety Variety { get; set; }
         public virtual IList<CbCoin> Coins { get; set; }

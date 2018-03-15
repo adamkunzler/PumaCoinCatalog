@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\CbCoinConfig.cs" />
+    <Compile Include="Configuration\CbCountryConfig.cs" />
+    <Compile Include="Configuration\CbDenominationConfig.cs" />
+    <Compile Include="Configuration\CbTypeConfig.cs" />
+    <Compile Include="Configuration\CbVarietyConfig.cs" />
     <Compile Include="Configuration\ChecklistCoinConfig.cs" />
     <Compile Include="Configuration\ChecklistConfig.cs" />
     <Compile Include="Configuration\ScrapeCoinCategoryConfig.cs" />
@@ -91,6 +96,18 @@
     <Compile Include="Migrations\201803050305433_addExcludeAttributeToChecklistCoin.Designer.cs">
       <DependentUpon>201803050305433_addExcludeAttributeToChecklistCoin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803150055582_newModelsForDifferentCoinDataSource.cs" />
+    <Compile Include="Migrations\201803150055582_newModelsForDifferentCoinDataSource.Designer.cs">
+      <DependentUpon>201803150055582_newModelsForDifferentCoinDataSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803150101159_lengthenCbCoinDetail.cs" />
+    <Compile Include="Migrations\201803150101159_lengthenCbCoinDetail.Designer.cs">
+      <DependentUpon>201803150101159_lengthenCbCoinDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803150125140_updateImageProperties.cs" />
+    <Compile Include="Migrations\201803150125140_updateImageProperties.Designer.cs">
+      <DependentUpon>201803150125140_updateImageProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +144,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803050305433_addExcludeAttributeToChecklistCoin.resx">
       <DependentUpon>201803050305433_addExcludeAttributeToChecklistCoin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803150055582_newModelsForDifferentCoinDataSource.resx">
+      <DependentUpon>201803150055582_newModelsForDifferentCoinDataSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803150101159_lengthenCbCoinDetail.resx">
+      <DependentUpon>201803150101159_lengthenCbCoinDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803150125140_updateImageProperties.resx">
+      <DependentUpon>201803150125140_updateImageProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

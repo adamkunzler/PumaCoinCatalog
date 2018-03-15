@@ -153,19 +153,19 @@ namespace PumaCoinCatalog.Console
                     Year = int.Parse(year),
                     MintMark = mintMark,
                     Details = details,
-                    Mintage = GetMintage(mintage),
-                    GradeValues = new List<CbGradeValue>
-                    {
-                        GetGradeValue(CbGrade.Good, gradeG4),
-                        GetGradeValue(CbGrade.VeryGood, gradeVG8),
-                        GetGradeValue(CbGrade.Fine, gradeF12),
-                        GetGradeValue(CbGrade.VeryFine, gradeVF20),
-                        GetGradeValue(CbGrade.ExtraFine, gradeEF40),
-                        GetGradeValue(CbGrade.AU, gradeAU50),
-                        GetGradeValue(CbGrade.MS60, gradeMS60),
-                        GetGradeValue(CbGrade.MS63, gradeMS63),
-                        GetGradeValue(CbGrade.Proof, gradePr65),
-                    }
+                    Mintage = GetMintage(mintage)//,
+                    //GradeValues = new List<CbGradeValue>
+                    //{
+                    //    GetGradeValue(CbGrade.Good, gradeG4),
+                    //    GetGradeValue(CbGrade.VeryGood, gradeVG8),
+                    //    GetGradeValue(CbGrade.Fine, gradeF12),
+                    //    GetGradeValue(CbGrade.VeryFine, gradeVF20),
+                    //    GetGradeValue(CbGrade.ExtraFine, gradeEF40),
+                    //    GetGradeValue(CbGrade.AU, gradeAU50),
+                    //    GetGradeValue(CbGrade.MS60, gradeMS60),
+                    //    GetGradeValue(CbGrade.MS63, gradeMS63),
+                    //    GetGradeValue(CbGrade.Proof, gradePr65),
+                    //}
                 };
                 coins.Add(coin);
             }
@@ -250,18 +250,18 @@ namespace PumaCoinCatalog.Console
             return mintage;
         }
 
-        private CbGradeValue GetGradeValue(CbGrade grade, string value)
-        {
-            var str = value.Replace(",", "").Trim();
-            var gradeValue = 0m;
-            if (!decimal.TryParse(str, out gradeValue)) gradeValue = _currentFaceValue;
+        //private CbGradeValue GetGradeValue(CbGrade grade, string value)
+        //{
+        //    var str = value.Replace(",", "").Trim();
+        //    var gradeValue = 0m;
+        //    if (!decimal.TryParse(str, out gradeValue)) gradeValue = _currentFaceValue;
 
-            return new CbGradeValue
-            {
-                Grade = grade,
-                Value = gradeValue
-            };
-        }
+        //    return new CbGradeValue
+        //    {
+        //        Grade = grade,
+        //        Value = gradeValue
+        //    };
+        //}
 
         private float GetCleanMeasurement(string raw)
         {

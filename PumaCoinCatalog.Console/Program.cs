@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PumaCoinCatalog.Data;
 using PumaCoinCatalog.Models;
+using PumaCoinCatalog.Models.UsaCoinBook;
 using System.Collections.Generic;
 using System.IO;
 
@@ -14,7 +15,7 @@ namespace PumaCoinCatalog.Console
             //var coinData = scraper.ScrapeData();
 
             //LoadCoinData();
-            LoadCoinDataUsaCoinBook();
+            //LoadCoinDataUsaCoinBook();
             
             PressKeyToContinue();
         }               
@@ -23,15 +24,23 @@ namespace PumaCoinCatalog.Console
         {
             var scraper = new CoinBookDataScraper();
 
-            var fromFile = true;
-            var jsonMenuData = fromFile ? GetData("usaCoinBookData_denomsAndTypes_20180312.json") : scraper.ScrapeMenu();
+            //var fromFile = true;
+            //var jsonMenuData = fromFile ? GetData("usaCoinBookData_denomsAndTypes_20180312.json") : scraper.ScrapeMenu();
 
-            var denomsAndTypes = JsonConvert.DeserializeObject<List<CbScrapeMenuItem>>(jsonMenuData);
-            var jsonCoinData = scraper.ScrapeData(denomsAndTypes);
+            //var denomsAndTypes = JsonConvert.DeserializeObject<List<CbScrapeMenuItem>>(jsonMenuData);
+            //var jsonCoinData = scraper.ScrapeData(denomsAndTypes);
+
+            var json = GetData("usaCoinBookData_coins_20180312.json");
+            var coinDataCountry = JsonConvert.DeserializeObject<CbCountry>(json);
+
+            var context = new DataContext();
+            context.CbCountries.Add(coinDataCountry);
+            context.SaveChanges();
 
             //System.Console.Write(scraper.OUTPUT);
             //System.Console.WriteLine("\n\n-------------------------------------------------------\n\n");
             //System.Console.Write(json);
+
         }
 
         private static void LoadCoinData()

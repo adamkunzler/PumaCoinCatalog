@@ -1,5 +1,6 @@
 ﻿using PumaCoinCatalog.Data.Configuration;
 using PumaCoinCatalog.Models;
+using PumaCoinCatalog.Models.UsaCoinBook;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -34,6 +35,13 @@ namespace PumaCoinCatalog.Data
         public DbSet<ScrapeCoinCategory> ScrapeCoinCategories { get; set; }
         public DbSet<ScrapeCoinType> ScrapeCoinTypes { get; set; }
         public DbSet<ScrapeCoin> ScrapeCoins { get; set; }
+
+        public DbSet<CbCountry> CbCountries { get; set; }
+        public DbSet<CbDenomination> CbDenominations { get; set; }
+        public DbSet<CbVariety> CbVarieties { get; set; }
+        public DbSet<CbType> CbTypes { get; set; }
+        public DbSet<CbCoin> CbCoins { get; set; }
+
         public DbSet<Checklist> Checklists { get; set; }
         public DbSet<ChecklistCoin> ChecklistCoins { get; set; }
 
@@ -49,6 +57,13 @@ namespace PumaCoinCatalog.Data
             modelBuilder.Configurations.Add(new ScrapeCoinCategoryConfig());
             modelBuilder.Configurations.Add(new ScrapeCoinTypeConfig());
             modelBuilder.Configurations.Add(new ScrapeCoinConfig());
+
+            modelBuilder.Configurations.Add(new CbCountryConfig());
+            modelBuilder.Configurations.Add(new CbDenominationConfig());
+            modelBuilder.Configurations.Add(new CbVarietyConfig());
+            modelBuilder.Configurations.Add(new CbTypeConfig());
+            modelBuilder.Configurations.Add(new CbCoinConfig());
+            
             modelBuilder.Configurations.Add(new ChecklistConfig());
             modelBuilder.Configurations.Add(new ChecklistCoinConfig());
         }
