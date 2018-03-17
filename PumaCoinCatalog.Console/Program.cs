@@ -4,6 +4,7 @@ using PumaCoinCatalog.Models;
 using PumaCoinCatalog.Models.UsaCoinBook;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PumaCoinCatalog.Console
 {
@@ -16,10 +17,28 @@ namespace PumaCoinCatalog.Console
 
             //LoadCoinData();
             //LoadCoinDataUsaCoinBook();
-            
+
+            //LoadSpecificTypes();
+
             PressKeyToContinue();
         }               
         
+        private static void LoadSpecificTypes()
+        {            
+            var scraper = new CoinBookDataScraper();
+            var context = new DataContext();
+
+            var varieties = context.CbVarieties.Where(x => x.Title == "Two Cents" || x.Title == "Twenty Cents").ToList();
+
+            foreach (var variety in varieties)
+            {
+                var types = scraper.ScrapeTypes(variety.SourceUri);
+                variety.Types = types;
+            }
+
+            context.SaveChanges();
+        }
+
         private static void LoadCoinDataUsaCoinBook()
         {
             var scraper = new CoinBookDataScraper();
