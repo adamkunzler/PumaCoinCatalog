@@ -5,20 +5,61 @@
 }
 
 @section pageHeader {
-<div class="coin-breadcrumb">
-    @Model.Title    
-</div>
+    <div class="coin-breadcrumb">
+        @Model.Title
+    </div>
 }
 
+<style type="text/css">
+    
+    .cb-denomination-list .image-coin-type {
+        max-height: 100px;
+        display: inline-block;
+    }
+
+    .cb-denomination-list .denomination-title {
+        text-align: center;
+        padding: 10px 0;
+        font-size: 22px;
+        background-color: #C3DEA8;
+    }
+
+    .variety-summary {
+        max-width: 300px;
+        min-height: 122px;
+        text-align: center;            
+        margin-top: 10px;
+    }
+
+        .variety-summary a {
+            font-size: 18px;
+            text-decoration: none;
+            display: block;
+        }
+</style>
+
 <div class="cb-coin-country">
-    <ul class="cb-denomination-list">
+    <div class="row cb-denomination-list">
         @foreach (var denomination in Model.Denominations)
         {
-            <li>
-                <a href="@Url.Action("Denomination", new { denominationId = denomination.Id})">@denomination.Title</a>
-            </li>
+            <div class="col-md-12">
+                <div id="@denomination.Title" class="denomination-title">@denomination.Title</div>
+                <div class="cb-coin-denomination">
+                    <div class="row cb-variety-list">
+                        @foreach (var variety in denomination.Varieties)
+                        {
+                        <div class="col-md-3 variety-summary">
+                            @Html.Partial("_coinImage", variety.ImageViewModel)
+
+                            <a href="@Url.Action("Variety", new { varietyId = variety.Id})">@variety.Title</a>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <br />
+            </div>
         }
-    </ul>
+    </div>
 </div>
 
 @section scripts {

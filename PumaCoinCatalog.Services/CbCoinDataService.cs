@@ -35,7 +35,8 @@ namespace PumaCoinCatalog.Services
         public CbCountry GetCountry(string title = "United States of America")
         {
             var data = _context.CbCountries
-                               .Include("Denominations")                               
+                               .Include("Denominations")  
+                               .Include("Denominations.Varieties")
                                .FirstOrDefault(x => x.Title == title);
 
             if (data == null) throw new Exception($"Country not found: {title}");

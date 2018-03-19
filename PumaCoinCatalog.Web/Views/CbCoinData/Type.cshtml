@@ -5,15 +5,15 @@
 }
 
 @section pageHeader {
-    <div class="coin-breadcrumb">
-        <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })">@Model.CountryTitle</a>
-        <span>&#x25BA;</span>
-        <a href="@Url.Action("Denomination", new { denominationId = @Model.DenominationId })">@Model.DenominationTitle</a>
-        <span>&#x25BA;</span>
-        <a href="@Url.Action("Variety", new { varietyId = @Model.VarietyId })">@Model.VarietyTitle</a>
-        <span>&#x25BA;</span>
-        @Model.Title
-    </div>
+<div class="coin-breadcrumb">
+    <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })">@Model.CountryTitle</a>
+    <span>&#x25BA;</span>    
+    <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })#@Model.DenominationTitle">@Model.DenominationTitle</a>
+    <span>&#x25BA;</span>
+    <a href="@Url.Action("Variety", new { varietyId = @Model.VarietyId })">@Model.VarietyTitle</a>
+    <span>&#x25BA;</span>
+    @Model.Title
+</div>
 }
 
 <style type="text/css">

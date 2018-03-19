@@ -1,0 +1,21 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCoinData.CbCoinImageViewModel
+
+@if (Model.HasAnyImage)
+{
+
+    if (Model.HasObverseImage)
+    {
+    
+        <img src="@Model.ObverseImageUri" alt="@Model.Title-obverse" title="@Model.Title-obverse" class="image-coin-type img-responsive" />
+    
+    }
+
+    if (Model.HasReverseImage)
+    {
+    
+        <img src="@Model.ReverseImageUri" alt="@Model.Title-reverse" title="@Model.Title-reverse" class="image-coin-type img-responsive" />
+    
+
+    }
+
+}

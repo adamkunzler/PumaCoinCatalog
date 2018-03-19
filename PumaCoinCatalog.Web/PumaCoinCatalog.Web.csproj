@@ -173,6 +173,7 @@
     <Compile Include="Infrastructure\Mappers\CbCoinDataMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
+    <Compile Include="Models\CbCoinData\CbCoinImageViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbCoinViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbCountryViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbDenominationViewModel.cs" />
@@ -280,9 +281,9 @@
     <Content Include="Views\Checklist\ChecklistTotals.cshtml" />
     <Content Include="Views\CbCoinData\Index.cshtml" />
     <Content Include="Views\CbCoinData\_denominations.cshtml" />
-    <Content Include="Views\CbCoinData\Denomination.cshtml" />
     <Content Include="Views\CbCoinData\Variety.cshtml" />
     <Content Include="Views\CbCoinData\Type.cshtml" />
+    <Content Include="Views\CbCoinData\_coinImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,8 @@ namespace PumaCoinCatalog.Web.Models.CbCoinData
 
         public IList<CbTypeViewModel> Types { get; set; }
 
+        public CbCoinImageViewModel ImageViewModel { get; set; }
+
         // for breadcrumb
         public string CountryTitle { get; set; }
         public int DenominationId { get; set; }

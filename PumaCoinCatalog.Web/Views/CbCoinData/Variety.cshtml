@@ -5,26 +5,47 @@
 }
 
 @section pageHeader {
-<div class="coin-breadcrumb">
-    <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })">@Model.CountryTitle</a>
-    <span>&#x25BA;</span>
-    <a href="@Url.Action("Denomination", new { denominationId = @Model.DenominationId })">@Model.DenominationTitle</a>
-    <span>&#x25BA;</span>
-    @Model.Title
-</div>
+    <div class="coin-breadcrumb">
+        <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })">@Model.CountryTitle</a>
+        <span>&#x25BA;</span>
+        <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })#@Model.DenominationTitle">@Model.DenominationTitle</a>
+        <span>&#x25BA;</span>
+        @Model.Title
+    </div>
 }
 
-<div class="cb-coin-variety">
-    <ul class="cb-type-list">
+    <style type="text/css">
+
+        .cb-type-list .image-coin-type {
+            max-height: 100px;
+            display: inline-block;
+        }
+
+        .type-summary {
+            max-width: 300px;
+            min-height: 122px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+            .type-summary a {
+                font-size: 18px;
+                text-decoration: none;
+                display: block;
+            }
+    </style>
+
+<div class="cb-coin-variety">    
+    <div class="row cb-type-list">
         @foreach (var type in Model.Types)
         {
-            <li>
+            <div class="col-md-3 type-summary">
+                @Html.Partial("_coinImage", type.ImageViewModel)
                 <a href="@Url.Action("Type", new { typeId = type.Id})">@type.Title</a>
-            </li>
+            </div>                
         }
-    </ul>
+    </div>    
 </div>
-
 
 @section scripts {
 

@@ -24,14 +24,7 @@ namespace PumaCoinCatalog.Web.Controllers
             var model = data.Map();
             return View(model);
         }        
-
-        public ActionResult Denomination(int denominationId)
-        {
-            var data = _cbCoinDataService.GetDenomination(denominationId);
-            var model = data.Map();
-            return View(model);
-        }
-
+        
         public ActionResult Variety(int varietyId)
         {
             var data = _cbCoinDataService.GetVariety(varietyId);

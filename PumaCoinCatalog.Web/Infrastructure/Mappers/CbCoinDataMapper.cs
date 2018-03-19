@@ -62,6 +62,12 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
             model.DenominationId = data.Denomination.Id;
             model.DenominationTitle = data.Denomination.Title;
 
+            model.ImageViewModel = new CbCoinImageViewModel
+            {
+                Title = data.Title,
+                ObverseImageUri = data.ObverseImageUri,
+                ReverseImageUri = data.ReverseImageUri
+            };
 
             return model;
         }
@@ -93,6 +99,13 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
             model.DenominationTitle = data.Variety.Denomination.Title;
             model.VarietyId = data.Variety.Id;
             model.VarietyTitle = data.Variety.Title;
+
+            model.ImageViewModel = new CbCoinImageViewModel
+            {
+                Title = data.Title,
+                ObverseImageUri = data.ObverseImageUri,
+                ReverseImageUri = data.ReverseImageUri
+            };
 
             return model;
         }

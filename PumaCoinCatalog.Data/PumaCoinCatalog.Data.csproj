@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\ListAllCoinsDetailed.sql" />
+    <Content Include="Scripts\UpdateVarietyImages.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802211945234_initMigration.resx">
