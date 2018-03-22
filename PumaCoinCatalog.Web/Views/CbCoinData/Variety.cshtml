@@ -42,6 +42,7 @@
             <div class="col-md-3 type-summary">
                 @Html.Partial("_coinImage", type.ImageViewModel)
                 <a href="@Url.Action("Type", new { typeId = type.Id})">@type.Title</a>
+                <span class="coin-date-range">(@type.BeginDate - @type.EndDate)</span>
             </div>                
         }
     </div>    

@@ -9,6 +9,9 @@ namespace PumaCoinCatalog.Web.Models.CbCoinData
         public string ObverseImageUri { get; set; }
         public string ReverseImageUri { get; set; }
 
+        public short BeginDate { get; set; }
+        public short EndDate { get; set; }
+
         public IList<CbTypeViewModel> Types { get; set; }
 
         public CbCoinImageViewModel ImageViewModel { get; set; }

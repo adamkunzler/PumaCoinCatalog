@@ -52,6 +52,7 @@
                             @Html.Partial("_coinImage", variety.ImageViewModel)
 
                             <a href="@Url.Action("Variety", new { varietyId = variety.Id})">@variety.Title</a>
+                            <span class="coin-date-range">(@variety.BeginDate - @variety.EndDate)</span>
                         </div>
                         }
                     </div>

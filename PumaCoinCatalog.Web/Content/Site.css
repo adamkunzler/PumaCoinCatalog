@@ -147,3 +147,28 @@ select.form-control {
     .checklist-totals .checklist-info button {
         margin-top: 15px;
     }
+
+.coin-date-range {
+    color: #969696;
+    font-size: 15px;
+}
+
+.cb-coin-type .type-details .info {
+    font-size: 18px;
+}
+
+    .cb-coin-type .type-details .info .label-header {
+        font-weight: bold;
+    }
+
+.cb-coin-type .cb-coin-list {
+    width: 50%;
+}
+
+.cb-coin-type .type-actions {
+    margin-bottom: 20px;
+}
+
+.cb-coin-type .type-details .image-coin-type {
+    max-width: 300px;
+}

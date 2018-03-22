@@ -62,6 +62,9 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
             model.DenominationId = data.Denomination.Id;
             model.DenominationTitle = data.Denomination.Title;
 
+            model.BeginDate = GetVarietyBeginDate(data.Types);
+            model.EndDate = GetVarietyEndDate(data.Types);
+
             model.ImageViewModel = new CbCoinImageViewModel
             {
                 Title = data.Title,
@@ -128,5 +131,33 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
 
             return model;
         }
+
+        #region Helpers
+
+        private static short GetVarietyBeginDate(IList<CbType> types)
+        {
+            var min = short.MaxValue;
+
+            foreach(var type in types)
+            {
+                if (type.BeginDate < min) min = type.BeginDate;
+            }
+
+            return min;
+        }
+
+        private static short GetVarietyEndDate(IList<CbType> types)
+        {
+            var max = short.MinValue;
+
+            foreach (var type in types)
+            {
+                if (type.EndDate > max) max = type.EndDate;
+            }
+
+            return max;
+        }
+
+        #endregion Helpers
     }
 }
