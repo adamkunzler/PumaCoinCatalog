@@ -145,6 +145,16 @@ namespace PumaCoinCatalog.Services
             return data;
         }
 
+        public void AddNewCoin(int typeId, CbCoin newCoin)
+        {
+            var data = _context.CbTypes.FirstOrDefault(x => x.Id == typeId);
+            if (data == null) throw new Exception($"Type not found: {typeId}");
+
+            data.Coins.Add(newCoin);
+
+            _context.SaveChanges();
+        }
+
         #endregion CbCoin
     }
 }

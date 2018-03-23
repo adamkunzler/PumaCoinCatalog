@@ -1,4 +1,5 @@
-﻿using PumaCoinCatalog.Services;
+﻿using PumaCoinCatalog.Models.UsaCoinBook;
+using PumaCoinCatalog.Services;
 using PumaCoinCatalog.Web.Infrastructure.Mappers;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,22 @@ namespace PumaCoinCatalog.Web.Controllers
             _cbCoinDataService.UpdateTypeMeltValue(typeId, meltValue);
 
             return Json(new { msg = "success", meltValue }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AddNewCoin(int typeId, int year, string mint, string details, long mintage)
+        {
+            var newCoin = new CbCoin
+            {
+                Year = year,
+                Mintage = mintage,
+                MintMark = mint,
+                Details = details
+            };
+
+            _cbCoinDataService.AddNewCoin(typeId, newCoin);
+
+            return Json("success", JsonRequestBehavior.AllowGet);
         }
 
         #endregion

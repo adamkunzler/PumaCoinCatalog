@@ -20,28 +20,35 @@
 </style>
 
 <div class="cb-coin-type">
-    @Html.HiddenFor(x => x.Id, new { id = "hidTypeId" })
-    <div class="row type-actions">
-        <div class="col-md-2">
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="updateObverseImage()">Update Obverse Image</button>
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="updateReverseImage()">Update Reverse Image</button>
-        </div>
-    </div>
+    @Html.HiddenFor(x => x.Id, new { id = "hidTypeId" })    
     <div class="type-details">
         <div class="row">
             <div class="col-md-6">
                 @Html.Partial("_coinImage", Model.ImageViewModel)
                 <hr />
             </div>
-        </div>        
+        </div>
         <div class="row">
             <div class="col-md-6">
                 @Html.Partial("_typeDetails", @Model)
                 <hr />
             </div>
-        </div>        
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" onclick="updateObverseImage()">Update Obverse Image</button>
+                <button type="button" class="btn btn-primary" onclick="updateReverseImage()">Update Reverse Image</button>
+                <button type="button" class="btn btn-primary" onclick="addNewCoin(@Model.Id)">Add Coin</button>
+                <hr />
+            </div>
+        </div>
+        <!-- New Coin Input Fields -->
+        <div id="newCoinField" class="row">
+            <div class="col-md-6">
+                @Html.Partial("_newCoinModal")
+                <hr />
+            </div>
+        </div>
     </div>
 
     <div class="table-responsive">
@@ -51,13 +58,13 @@
                     <th>Year</th>
                     <th>Details</th>
                     <th>Mintage</th>
+                    <th></th>
                 </tr>
             </thead>
             @foreach (var coin in Model.Coins)
             {
                 <tr>
-                    <td>
-                        <span class="coin-id" style="visibility: hidden;">@coin.Id</span>
+                    <td>                        
                         <span>@coin.Year</span><span>@coin.MintMark</span>
                     </td>
                     <td><span>@coin.Details</span></td>
@@ -71,6 +78,9 @@
                             <span>@string.Format("{0:n0}", coin.Mintage)</span>
                         }
                     </td>
+                    <td>
+
+                    </td>
                 </tr>
             }
         </table>
@@ -83,7 +93,9 @@
         $(document).ready(function () {
             resetMenu();
             setActiveMenu('/CbCoinData');
-        });
+
+            $("#newCoinField").toggle();
+        });        
 
         //
         // update type obverse image
@@ -117,6 +129,13 @@
                     location.reload();
                 }
             });
+        }
+
+        //
+        // add a new coin
+        //
+        function addNewCoin(typeId) {
+            $("#newCoinField").toggle();
         }
     </script>
 }

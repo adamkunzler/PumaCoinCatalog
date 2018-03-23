@@ -1,0 +1,76 @@
+﻿<div class="row">
+    <div class="col-xs-2">Year</div>
+    <div class="col-xs-2">Mint</div>
+    <div class="col-xs-2">Details</div>
+    <div class="col-xs-2">Mintage</div>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-xs-2">
+        <input id="newCoinYear" type="text" class="form-control" />
+    </div>
+    <div class="col-xs-2">
+        <input id="newCoinMint" type="text" class="form-control" />
+    </div>
+    <div class="col-xs-2">
+        <input id="newCoinDetails" type="text" class="form-control" />
+    </div>
+    <div class="col-xs-2">
+        <input id="newCoinMintage" type="text" class="form-control" />
+    </div>
+    <div class="col-xs-2">
+        <button type="button" class="btn btn-primary btn-block" onclick="saveNewCoin(@Model.Id);">Save</button>
+    </div>
+    <div class="col-xs-2">
+        <button type="button" class="btn btn-danger btn-block" onclick="cancelNewCoin();">Cancel</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //
+    //
+    //
+    function saveNewCoin(typeId) {
+        var year = $("#newCoinYear").val();
+        var mint = $("#newCoinMint").val();
+        var details = $("#newCoinDetails").val();
+        var mintage = $("#newCoinMintage").val();
+
+        if (year == '' || year == ' ') { alert('year is required'); return; }
+        if (mint == undefined) mint = '';
+        if (details == undefined) details = '';
+        if (mintage == '' || mintage == ' ') mintage = 0;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddNewCoin", "CbCoinData")?typeId=' + typeId
+                        + "&year=" + year
+                        + "&mint=" + mint
+                        + "&details=" + details
+                        + "&mintage=" + mintage,
+            success: function (result) {
+                location.reload();
+            }
+        });
+    }
+
+    //
+    //
+    //
+    function cancelNewCoin() {
+        clearNewCoinInputs();
+        $("#newCoinField").toggle();
+    }
+
+    //
+    // clear out inputs
+    //
+    function clearNewCoinInputs() {
+        $("#newCoinYear").val("");
+        $("#newCoinMint").val("");
+        $("#newCoinDetails").val("");
+        $("#newCoinMintage").val("");
+    }
+</script>
