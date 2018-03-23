@@ -95,6 +95,7 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
             model.MeltValue = data.MeltValue;
             model.ObverseImageUri = data.ObverseImageUri;
             model.ReverseImageUri = data.ReverseImageUri;
+            model.SourceUri = data.Variety.SourceUri;
             model.Coins = Map(data.Coins);
 
             model.CountryTitle = data.Variety.Denomination.Country.Title;

@@ -5,16 +5,19 @@
 }
 
 @section pageHeader {
-<div class="coin-breadcrumb">
-    <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })">@Model.CountryTitle</a>
-    <span>&#x25BA;</span>    
-    <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })#@Model.DenominationTitle">@Model.DenominationTitle</a>
-    <span>&#x25BA;</span>
-    <a href="@Url.Action("Variety", new { varietyId = @Model.VarietyId })">@Model.VarietyTitle</a>
-    <span>&#x25BA;</span>
-    @Model.Title
-</div>
+    <div class="coin-breadcrumb">
+        <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })">@Model.CountryTitle</a>
+        <span>&#x25BA;</span>
+        <a href="@Url.Action("Index", new { countryTitle = @Model.CountryTitle })#@Model.DenominationTitle">@Model.DenominationTitle</a>
+        <span>&#x25BA;</span>
+        <a href="@Url.Action("Variety", new { varietyId = @Model.VarietyId })">@Model.VarietyTitle</a>
+        <span>&#x25BA;</span>
+        @Model.Title
+    </div>
 }
+
+<style type="text/css">
+</style>
 
 <div class="cb-coin-type">
     @Html.HiddenFor(x => x.Id, new { id = "hidTypeId" })
@@ -26,70 +29,19 @@
             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="updateReverseImage()">Update Reverse Image</button>
         </div>
     </div>
-    <div class="row type-details">
-        @if (!string.IsNullOrEmpty(Model.ObverseImageUri) || !string.IsNullOrEmpty(Model.ReverseImageUri))
-        {
-            if (!string.IsNullOrEmpty(Model.ObverseImageUri))
-            {
-                <div class="col-md-3">
-                    <img src="@Model.ObverseImageUri" alt="@Model.Title-obverse" title="@Model.Title-obverse" class="image-coin-type img-responsive" />
-                </div>
-            }
-
-            if (!string.IsNullOrEmpty(Model.ReverseImageUri))
-            {
-                <div class="col-md-3">
-                    <img src="@Model.ReverseImageUri" alt="@Model.Title-reverse" title="@Model.Title-reverse" class="image-coin-type img-responsive" />
-                </div>
-
-            }
-        }
-
-        <div class="col-md-6">
-            <div class="row info">
-                <div class="col-xs-3 label-header">
-                    Dates Minted:
-                </div>
-                <div class="col-xs-9">
-                    <span>@Model.BeginDate</span>&nbsp;&ndash;&nbsp;<span>@Model.EndDate</span>
-                </div>
+    <div class="type-details">
+        <div class="row">
+            <div class="col-md-6">
+                @Html.Partial("_coinImage", Model.ImageViewModel)
+                <hr />
             </div>
-            <div class="row info">
-                <div class="col-xs-3 label-header">
-                    Number of Coins:
-                </div>
-                <div class="col-xs-9">
-                    @Model.Coins.Count()
-                </div>
+        </div>        
+        <div class="row">
+            <div class="col-md-6">
+                @Html.Partial("_typeDetails", @Model)
+                <hr />
             </div>
-            <div class="row info">
-                <div class="col-xs-3 label-header">
-                    Metal Compostion:
-                </div>
-                <div class="col-xs-9">
-                    @Model.MetalComposition
-                </div>
-            </div>
-            <div class="row info">
-                <div class="col-xs-3 label-header">
-                    Diameter / Mass:
-                </div>
-                <div class="col-xs-9">
-                    <span>@Model.Diameter &nbsp;mm</span>
-                    &frasl;
-                    <span>@Model.Mass &nbsp;grams</span>
-                </div>
-            </div>
-
-            <div class="row info">
-                <div class="col-xs-3 label-header">
-                    Melt Value:
-                </div>
-                <div class="col-xs-9">
-                    @string.Format("{0:c}", Model.MeltValue)
-                </div>
-            </div>
-        </div>
+        </div>        
     </div>
 
     <div class="table-responsive">
@@ -104,9 +56,21 @@
             @foreach (var coin in Model.Coins)
             {
                 <tr>
-                    <td><span>@coin.Year</span><span>@coin.MintMark</span></td>
+                    <td>
+                        <span class="coin-id" style="visibility: hidden;">@coin.Id</span>
+                        <span>@coin.Year</span><span>@coin.MintMark</span>
+                    </td>
                     <td><span>@coin.Details</span></td>
-                    <td><span>@string.Format("{0:0,0}", coin.Mintage)</span></td>
+                    <td>
+                        @if (coin.Mintage == 0)
+                        {
+                            <span>-</span>
+                        }
+                        else
+                        {
+                            <span>@string.Format("{0:n0}", coin.Mintage)</span>
+                        }
+                    </td>
                 </tr>
             }
         </table>
@@ -124,7 +88,7 @@
         //
         // update type obverse image
         //
-        function updateObverseImage() {            
+        function updateObverseImage() {
             var typeId = $("#hidTypeId").val();
             var imgUri = prompt("Enter the Obverse Image Uri:", "");
             if (imgUri == '' || imgUri == ' ') return;

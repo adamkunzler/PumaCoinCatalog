@@ -284,6 +284,7 @@
     <Content Include="Views\CbCoinData\Variety.cshtml" />
     <Content Include="Views\CbCoinData\Type.cshtml" />
     <Content Include="Views\CbCoinData\_coinImage.cshtml" />
+    <Content Include="Views\CbCoinData\_typeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

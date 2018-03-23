@@ -54,5 +54,17 @@ namespace PumaCoinCatalog.Web.Controllers
         }
 
         #endregion Type
+
+        #region Ajax Helpers
+
+        [HttpPost]
+        public ActionResult UpdateTypeMeltValue(int typeId, decimal meltValue)
+        {
+            _cbCoinDataService.UpdateTypeMeltValue(typeId, meltValue);
+
+            return Json(new { msg = "success", meltValue }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

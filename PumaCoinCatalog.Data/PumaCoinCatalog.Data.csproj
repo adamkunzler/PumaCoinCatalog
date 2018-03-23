@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201803150125140_updateImageProperties.Designer.cs">
       <DependentUpon>201803150125140_updateImageProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803231821069_updateMeltValuePrecision.cs" />
+    <Compile Include="Migrations\201803231821069_updateMeltValuePrecision.Designer.cs">
+      <DependentUpon>201803231821069_updateMeltValuePrecision.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803150125140_updateImageProperties.resx">
       <DependentUpon>201803150125140_updateImageProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803231821069_updateMeltValuePrecision.resx">
+      <DependentUpon>201803231821069_updateMeltValuePrecision.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

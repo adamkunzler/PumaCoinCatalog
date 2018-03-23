@@ -1,0 +1,77 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCoinData.CbTypeViewModel
+
+<div class="row info">
+    <div class="col-xs-3 label-header">
+        Dates Minted:
+    </div>
+    <div class="col-xs-9">
+        <span>@Model.BeginDate</span>&nbsp;&ndash;&nbsp;<span>@Model.EndDate</span>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-3 label-header">
+        Number of Coins:
+    </div>
+    <div class="col-xs-9">
+        @Model.Coins.Count()
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-3 label-header">
+        Metal Compostion:
+    </div>
+    <div class="col-xs-9">
+        @Model.MetalComposition
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-3 label-header">
+        Diameter / Mass:
+    </div>
+    <div class="col-xs-9">
+        <span>@Model.Diameter &nbsp;mm</span>
+        &frasl;
+        <span>@Model.Mass &nbsp;grams</span>
+    </div>
+</div>
+
+<div class="row info">
+    <div class="col-xs-3 label-header">
+        Melt Value:
+    </div>
+    <div class="col-xs-9">
+        <span class="coin-melt-value">@string.Format("${0:N4}", Model.MeltValue)</span>
+        &nbsp;&nbsp;&nbsp;
+        <a href="#" class="melt-value-update" onclick="updateMeltValue(this, @Model.Id);">update</a>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-3 label-header">
+        UsCoinBook:
+    </div>
+    <div class="col-xs-9">
+        <a href="@Model.SourceUri" target="_blank">details</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function updateMeltValue(elem, typeId) {
+        var value = prompt("Enter the Bullion Value:", "0");
+        if (value == '' || value == ' ') value = 0;
+        if (!isNumeric(value)) {
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateTypeMeltValue", "CbCoinData")?typeId=' + typeId + '&meltValue=' + value,
+            //url: '/CbCoinDataController/UpdateTypeMeltValue?typeId=' + typeId + '&meltValue=' + value,
+            success: function (result) {
+                var temp = $(elem).siblings().first();
+                temp.text("$" + result.meltValue.toFixed(4));
+            }
+        });
+
+        //return false;
+    }
+</script>

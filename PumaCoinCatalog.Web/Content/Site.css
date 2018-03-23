@@ -170,5 +170,30 @@ select.form-control {
 }
 
 .cb-coin-type .type-details .image-coin-type {
-    max-width: 300px;
+    max-width: 50%;
+    display: inline;
 }
+.cb-denomination-list .image-coin-type {
+    max-height: 100px;
+    display: inline-block;
+}
+
+.cb-denomination-list .denomination-title {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 22px;
+    background-color: #C3DEA8;
+}
+
+.variety-summary {
+    max-width: 300px;
+    min-height: 122px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .variety-summary a {
+        font-size: 18px;
+        text-decoration: none;
+        display: block;
+    }

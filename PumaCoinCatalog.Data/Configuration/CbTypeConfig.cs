@@ -17,7 +17,7 @@ namespace PumaCoinCatalog.Data.Configuration
             Property(x => x.MetalComposition).IsRequired().HasMaxLength(128);
             Property(x => x.Diameter).IsRequired();
             Property(x => x.Mass).IsRequired();
-            Property(x => x.MeltValue).IsRequired();
+            Property(x => x.MeltValue).IsRequired().HasPrecision(18,4);
             Property(x => x.ObverseImageUri).IsOptional();
             Property(x => x.ReverseImageUri).IsOptional();
 

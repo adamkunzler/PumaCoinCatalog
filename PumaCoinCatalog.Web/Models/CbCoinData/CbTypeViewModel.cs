@@ -15,6 +15,7 @@ namespace PumaCoinCatalog.Web.Models.CbCoinData
         public decimal MeltValue { get; set; }
         public string ObverseImageUri { get; set; }
         public string ReverseImageUri { get; set; }
+        public string SourceUri { get; set; }
 
         public IList<CbCoinViewModel> Coins { get; set; }
 

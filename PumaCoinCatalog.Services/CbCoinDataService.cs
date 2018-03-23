@@ -121,6 +121,16 @@ namespace PumaCoinCatalog.Services
             _context.SaveChanges();
         }
 
+        public void UpdateTypeMeltValue(int typeId, decimal meltValue)
+        {
+            var data = _context.CbTypes.FirstOrDefault(x => x.Id == typeId);
+            if (data == null) throw new Exception($"Type not found: {typeId}");
+
+            data.MeltValue = meltValue;
+
+            _context.SaveChanges();
+        }
+
         #endregion CbType
 
         #region CbCoin
