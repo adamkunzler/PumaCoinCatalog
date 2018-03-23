@@ -2,6 +2,16 @@
 
 <div class="row info">
     <div class="col-xs-3 label-header">
+        Title:
+    </div>
+    <div class="col-xs-9">
+        <span>@Model.Title</span>
+        &nbsp;
+        <a href="#" class="edit-label" onclick="updateTypeTitleValue(this, @Model.Id);">edit</a>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-3 label-header">
         Dates Minted:
     </div>
     <div class="col-xs-9">
@@ -41,8 +51,8 @@
     </div>
     <div class="col-xs-9">
         <span class="coin-melt-value">@string.Format("${0:N4}", Model.MeltValue)</span>
-        &nbsp;&nbsp;&nbsp;
-        <a href="#" class="melt-value-update" onclick="updateMeltValue(this, @Model.Id);">update</a>
+        &nbsp;
+        <a href="#" class="melt-value-update edit-label" onclick="updateMeltValue(this, @Model.Id);">edit</a>
     </div>
 </div>
 <div class="row info">
@@ -55,6 +65,9 @@
 </div>
 
 <script type="text/javascript">
+    //
+    // update type melt value
+    //
     function updateMeltValue(elem, typeId) {
         var value = prompt("Enter the Bullion Value:", "0");
         if (value == '' || value == ' ') value = 0;
@@ -64,14 +77,27 @@
 
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("UpdateTypeMeltValue", "CbCoinData")?typeId=' + typeId + '&meltValue=' + value,
-            //url: '/CbCoinDataController/UpdateTypeMeltValue?typeId=' + typeId + '&meltValue=' + value,
+            url: '@Url.Action("UpdateTypeMeltValue", "CbCoinData")?typeId=' + typeId + '&meltValue=' + value,            
             success: function (result) {
                 var temp = $(elem).siblings().first();
                 temp.text("$" + result.meltValue.toFixed(4));
             }
         });
+    }
 
-        //return false;
+    //
+    // update type title
+    //
+    function updateTypeTitleValue(elem, typeId) {
+        var value = prompt("Enter the Title:", "@Model.Title");
+        if (value == undefined) value = "";
+        
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateTypeTitle", "CbCoinData")?typeId=' + typeId + '&title=' + value,            
+            success: function (result) {
+                location.reload();
+            }
+        });        
     }
 </script>

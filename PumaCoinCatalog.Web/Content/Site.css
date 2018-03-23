@@ -197,3 +197,25 @@ select.form-control {
         text-decoration: none;
         display: block;
     }
+
+.cb-type-list .image-coin-type {
+    max-height: 100px;
+    display: inline-block;
+}
+
+.type-summary {
+    max-width: 300px;
+    min-height: 122px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .type-summary a {
+        font-size: 18px;
+        text-decoration: none;
+        display: block;
+    }
+
+.edit-label {
+    font-size: 12px;
+}

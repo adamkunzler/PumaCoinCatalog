@@ -80,6 +80,16 @@ namespace PumaCoinCatalog.Services
             return data;
         }
         
+        public void UpdateVarietyTitle(int varietyId, string title)
+        {
+            var data = _context.CbVarieties.FirstOrDefault(x => x.Id == varietyId);
+            if (data == null) throw new Exception($"Variety not found: {varietyId}");
+
+            data.Title = title;
+
+            _context.SaveChanges();
+        }
+
         #endregion CbVariety
 
         #region CbType
@@ -127,6 +137,16 @@ namespace PumaCoinCatalog.Services
             if (data == null) throw new Exception($"Type not found: {typeId}");
 
             data.MeltValue = meltValue;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateTypeTitle(int typeId, string title)
+        {
+            var data = _context.CbTypes.FirstOrDefault(x => x.Id == typeId);
+            if (data == null) throw new Exception($"Type not found: {typeId}");
+
+            data.Title = title;
 
             _context.SaveChanges();
         }

@@ -81,7 +81,22 @@ namespace PumaCoinCatalog.Web.Controllers
 
             return Json("success", JsonRequestBehavior.AllowGet);
         }
+        
+        [HttpPost]
+        public ActionResult UpdateTypeTitle(int typeId, string title)
+        {
+            _cbCoinDataService.UpdateTypeTitle(typeId, title);
 
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateVarietyTitle(int varietyId, string title)
+        {
+            _cbCoinDataService.UpdateVarietyTitle(varietyId, title);
+
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }
