@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CbCoinDataController.cs" />
+    <Compile Include="Controllers\CbCollectionController.cs" />
     <Compile Include="Controllers\ChecklistController.cs" />
     <Compile Include="Controllers\CoinGradeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +180,10 @@
     <Compile Include="Models\CbCoinData\CbDenominationViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbTypeViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbVarietyViewModel.cs" />
+    <Compile Include="Models\CbCollection\CbChecklistCoinViewModel.cs" />
+    <Compile Include="Models\CbCollection\CbChecklistViewModel.cs" />
+    <Compile Include="Models\CbCollection\CbCollectionIndexViewModel.cs" />
+    <Compile Include="Models\CbCollection\CbCollectionViewModel.cs" />
     <Compile Include="Models\Checklist\AllChecklistsModel.cs" />
     <Compile Include="Models\Checklist\ChecklistExportModel.cs" />
     <Compile Include="Models\Checklist\ChecklistModel.cs" />
@@ -290,6 +295,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
+    <Folder Include="Views\CbCollection\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -330,7 +336,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50089</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

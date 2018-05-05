@@ -3,10 +3,8 @@ using PumaCoinCatalog.Models.UsaCoinBook;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PumaCoinCatalog.Services
+namespace PumaCoinCatalog.UsCoinBook.Services
 {
     public class CbCoinDataService
     {

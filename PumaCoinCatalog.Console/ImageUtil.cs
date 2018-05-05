@@ -41,7 +41,7 @@ namespace PumaCoinCatalog.Console
                 stream.Close();
                 response.Close();
             }
-            catch (Exception exp)
+            catch
             {
                 buf = null;
             }

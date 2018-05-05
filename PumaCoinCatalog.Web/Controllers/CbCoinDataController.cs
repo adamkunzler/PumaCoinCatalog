@@ -1,5 +1,6 @@
 ﻿using PumaCoinCatalog.Models.UsaCoinBook;
 using PumaCoinCatalog.Services;
+using PumaCoinCatalog.UsCoinBook.Services;
 using PumaCoinCatalog.Web.Infrastructure.Mappers;
 using System;
 using System.Collections.Generic;
