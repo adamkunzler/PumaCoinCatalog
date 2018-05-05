@@ -54,6 +54,9 @@
     <Compile Include="UsaCoinBook\CbCountry.cs" />
     <Compile Include="UsaCoinBook\CbDenomination.cs" />
     <Compile Include="UsaCoinBook\CbVariety.cs" />
+    <Compile Include="UsaCoinBook\Checklists\CbChecklist.cs" />
+    <Compile Include="UsaCoinBook\Checklists\CbChecklistCoin.cs" />
+    <Compile Include="UsaCoinBook\Checklists\CbCollection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

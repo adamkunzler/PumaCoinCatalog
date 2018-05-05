@@ -1,6 +1,7 @@
 ﻿using PumaCoinCatalog.Data.Configuration;
 using PumaCoinCatalog.Models;
 using PumaCoinCatalog.Models.UsaCoinBook;
+using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -42,6 +43,10 @@ namespace PumaCoinCatalog.Data
         public DbSet<CbType> CbTypes { get; set; }
         public DbSet<CbCoin> CbCoins { get; set; }
 
+        public DbSet<CbCollection> CbCollections { get; set; }
+        public DbSet<CbChecklist> CbChecklists { get; set; }
+        public DbSet<CbChecklistCoin> CbChecklistCoins { get; set; }
+
         public DbSet<Checklist> Checklists { get; set; }
         public DbSet<ChecklistCoin> ChecklistCoins { get; set; }
 
@@ -63,7 +68,11 @@ namespace PumaCoinCatalog.Data
             modelBuilder.Configurations.Add(new CbVarietyConfig());
             modelBuilder.Configurations.Add(new CbTypeConfig());
             modelBuilder.Configurations.Add(new CbCoinConfig());
-            
+
+            modelBuilder.Configurations.Add(new CbCollectionConfig());
+            modelBuilder.Configurations.Add(new CbChecklistConfig());
+            modelBuilder.Configurations.Add(new CbChecklistCoinConfig());
+
             modelBuilder.Configurations.Add(new ChecklistConfig());
             modelBuilder.Configurations.Add(new ChecklistCoinConfig());
         }

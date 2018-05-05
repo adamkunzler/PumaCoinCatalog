@@ -47,7 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\CbChecklistCoinConfig.cs" />
+    <Compile Include="Configuration\CbChecklistConfig.cs" />
     <Compile Include="Configuration\CbCoinConfig.cs" />
+    <Compile Include="Configuration\CbCollectionConfig.cs" />
     <Compile Include="Configuration\CbCountryConfig.cs" />
     <Compile Include="Configuration\CbDenominationConfig.cs" />
     <Compile Include="Configuration\CbTypeConfig.cs" />
@@ -112,6 +115,10 @@
     <Compile Include="Migrations\201803231821069_updateMeltValuePrecision.Designer.cs">
       <DependentUpon>201803231821069_updateMeltValuePrecision.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805052023405_addCbChecklistModelsAndConfigs.cs" />
+    <Compile Include="Migrations\201805052023405_addCbChecklistModelsAndConfigs.Designer.cs">
+      <DependentUpon>201805052023405_addCbChecklistModelsAndConfigs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803231821069_updateMeltValuePrecision.resx">
       <DependentUpon>201803231821069_updateMeltValuePrecision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805052023405_addCbChecklistModelsAndConfigs.resx">
+      <DependentUpon>201805052023405_addCbChecklistModelsAndConfigs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
