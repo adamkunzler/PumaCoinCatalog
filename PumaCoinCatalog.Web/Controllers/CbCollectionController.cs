@@ -1,4 +1,6 @@
 ﻿using PumaCoinCatalog.Services.UsCoinBook;
+using PumaCoinCatalog.Web.Infrastructure.Mappers;
+using PumaCoinCatalog.Web.Models.CbCollection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +21,30 @@ namespace PumaCoinCatalog.Web.Controllers
         // GET: CbCollection
         public ActionResult Index()
         {
+            var model = new CbCollectionIndexViewModel();
 
-            return View();
+            var collections = _collectionService.GetAllCollections();
+            model.Collections = collections.Map();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateCollection(string title)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(title)) return new HttpStatusCodeResult(500, "Must specify a title.");
+
+                var collection = _collectionService.CreateCollection(title);
+                if (collection == null) return new HttpStatusCodeResult(500);
+
+                return Json(new { newCollectionId = collection.Id }, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                return new HttpStatusCodeResult(500, ex.Message);
+            }
         }
     }
 }

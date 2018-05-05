@@ -1,0 +1,78 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbCollectionIndexViewModel
+
+@{
+    ViewBag.Title = "Collections";
+}
+
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        Collections
+    </div>
+}
+
+
+<style type="text/css">
+    #divCollections ul {
+        padding-left: 0;
+    }
+
+    #divCollections ul li {
+        text-decoration: none;        
+        list-style: none;
+    }
+        #divCollections ul li a {
+            text-decoration: none; 
+            font-size: 18px;
+        }
+
+</style>
+
+<div id="divCollectionsContainer">
+    
+    <div id="divActions" class="row">
+        <button class="btn btn-primary" onclick="createCollection();">Create a Collection</button>
+    </div>
+    <br/>
+    <div id="divCollections" class="row">
+        @if(Model.Collections.Any())
+        {            
+            <ul>
+                @foreach(var collection in Model.Collections)
+                {
+                    <li><a href="@Url.Action("Details", new { collectionId = collection.Id })">@collection.Title</a></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <h3>No collections have been created.</h3>
+        }
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/CbCollection');
+        });
+
+        function createCollection() {
+            var title = prompt("Collection Title:");
+
+            $.ajax({
+                type: 'POST',
+                url: '/CbCollection/CreateCollection?title=' + title,
+                success: function (result) {
+                    alert('new collection id: ' + result.newCollectionId);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+    </script>
+}
