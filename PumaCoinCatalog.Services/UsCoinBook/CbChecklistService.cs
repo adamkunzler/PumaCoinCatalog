@@ -1,4 +1,5 @@
 ﻿using PumaCoinCatalog.Data;
+using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,12 @@ namespace PumaCoinCatalog.Services.UsCoinBook
         public CbChecklistService(DataContext context)
         {
             _context = context;
+        }
+
+        public IList<CbChecklist> GetChecklistByCollection(int collectionId)
+        {
+            var data = _context.CbChecklists.Where(x => x.Collection.Id == collectionId).ToList();
+            return data;
         }
     }
 }

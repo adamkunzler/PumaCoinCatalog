@@ -1,0 +1,27 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbCollectionDetailsViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@section pageHeader {
+    <div class="coin-breadcrumb">
+        <a href="@Url.Action("Index", "CbCollection")">Collections</a>
+        <span>&#x25BA;</span>
+        @Model.Title
+    </div>
+}
+
+<div id="divCollectionDetailsContainer">
+    @Html.HiddenFor(x => x.Id, new { id = "hidCollectionId" })
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/CbCollection');
+        });
+    </script>
+}

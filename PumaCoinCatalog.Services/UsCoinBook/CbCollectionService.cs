@@ -28,6 +28,13 @@ namespace PumaCoinCatalog.Services.UsCoinBook
             return data;
         }
 
+        public CbCollection GetCollection(int id)
+        {
+            var data = _context.CbCollections.SingleOrDefault(x => x.Id == id);
+            if (data == null) throw new Exception("Collection not found.");
+            return data;
+        }
+
         public CbCollection CreateCollection(string title)
         {
             title = title.Trim();

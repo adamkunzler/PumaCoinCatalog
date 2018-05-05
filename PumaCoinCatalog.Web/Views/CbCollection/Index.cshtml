@@ -68,6 +68,7 @@
                 url: '/CbCollection/CreateCollection?title=' + title,
                 success: function (result) {
                     alert('new collection id: ' + result.newCollectionId);
+                    location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert(errorThrown);
