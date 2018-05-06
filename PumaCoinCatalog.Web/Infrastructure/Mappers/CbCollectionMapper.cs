@@ -24,7 +24,7 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
             {
                 Id = collection.Id,
                 Title = collection.Title,
-                Checklists = collection.Checklists == null ? new List<CbChecklistViewModel>() : collection.Checklists.Map()                
+                Checklists = collection.Checklists == null ? new List<CbChecklistViewModel>() : collection.Checklists.Map()
             };
             
             return model;
@@ -50,7 +50,12 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                 Title = checklist.Title,
                 LastModified = checklist.LastModified,
                 Type = checklist.Type.Map(),
-                Coins = checklist.Coins.Map()        
+                Coins = checklist.Coins.Map(),
+                Collection = new CbCollectionViewModel
+                {
+                    Id = checklist.Collection.Id,
+                    Title = checklist.Collection.Title
+                }
             };
             
             return model;
@@ -77,7 +82,17 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                 ShouldExclude = checklistCoin.ShouldExclude,
                 ValueEstimate = checklistCoin.ValueEstimate,
                 Grade = checklistCoin.Grade,
-                Coin = checklistCoin.Coin.Map()
+                Coin = checklistCoin.Coin.Map(),
+                Checklist = new CbChecklistViewModel
+                {
+                    Id = checklistCoin.Checklist.Id,
+                    Title = checklistCoin.Checklist.Title,
+                    Collection = new CbCollectionViewModel
+                    {
+                        Id = checklistCoin.Checklist.Collection.Id,
+                        Title = checklistCoin.Checklist.Collection.Title
+                    }
+                }
             };
 
             return model;

@@ -2,6 +2,7 @@
 {
     public enum CbGrade : short
     {
+        NotGraded = 0,
         Good = 4,
         VeryGood = 8,
         Fine = 12,

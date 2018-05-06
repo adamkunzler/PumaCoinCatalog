@@ -79,6 +79,15 @@ namespace PumaCoinCatalog.Web.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult CreateChecklist(int collectionId, string title, int typeId)
+        {
+            var result = _checklistService.CreateChecklist(title, collectionId, typeId);
+            var newChecklist = result.Map();
+
+            return RedirectToAction("Index", "CbChecklist", new { id = result.Id });
+        }
+
         #region NewChecklist
 
         private NewChecklistViewModel GetNewChecklistViewModel(int collectionId)

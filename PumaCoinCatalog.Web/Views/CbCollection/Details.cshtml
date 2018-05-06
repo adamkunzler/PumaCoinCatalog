@@ -60,8 +60,19 @@
 
         function createChecklist() {
             var collectionId = $("#hidCollectionId").val();
+            var typeId = $("#ddlTypes").val();
+            var title = $("#checklistTitle").val();
 
-            // todo
+            $.ajax({
+                type: 'POST',
+                url: '/CbCollection/CreateChecklist?collectionId=' + collectionId + '&title=' + title + '&typeId=' + typeId,
+                success: function (result) {
+                    
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
         }
 
         //
