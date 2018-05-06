@@ -67,8 +67,8 @@
                 type: 'POST',
                 url: '/CbCollection/CreateCollection?title=' + title,
                 success: function (result) {
-                    alert('new collection id: ' + result.newCollectionId);
-                    location.reload();
+                    //alert('new collection id: ' + result.newCollectionId);                    
+                    location.href = "@Url.Action("Details", "CbCollection")" + "?collectionId=" + result.newCollectionId;
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert(errorThrown);

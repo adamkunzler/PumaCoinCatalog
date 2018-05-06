@@ -158,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CbCoinDataController.cs" />
     <Compile Include="Controllers\CbCollectionController.cs" />
     <Compile Include="Controllers\ChecklistController.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Infrastructure\Mappers\CbCollectionMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
     <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
+    <Compile Include="Infrastructure\MvcExtensions.cs" />
     <Compile Include="Models\CbCoinData\CbCoinImageViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbCoinViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbCountryViewModel.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Models\CbCollection\CbCollectionDetailsViewModel.cs" />
     <Compile Include="Models\CbCollection\CbCollectionIndexViewModel.cs" />
     <Compile Include="Models\CbCollection\CbCollectionViewModel.cs" />
+    <Compile Include="Models\CbCollection\NewChecklistViewModel.cs" />
     <Compile Include="Models\Checklist\AllChecklistsModel.cs" />
     <Compile Include="Models\Checklist\ChecklistExportModel.cs" />
     <Compile Include="Models\Checklist\ChecklistModel.cs" />
@@ -295,6 +298,11 @@
     <Content Include="Views\CbCoinData\_newCoinModal.cshtml" />
     <Content Include="Views\CbCollection\Index.cshtml" />
     <Content Include="Views\CbCollection\Details.cshtml" />
+    <Content Include="Views\CbCollection\_ddlCbChecklistCountries.cshtml" />
+    <Content Include="Views\CbCollection\_ddlCbChecklistDenominations.cshtml" />
+    <Content Include="Views\CbCollection\_ddlCbChecklistVarieties.cshtml" />
+    <Content Include="Views\CbCollection\_ddlCbChecklistTypes.cshtml" />
+    <Content Include="Views\CbCollection\_newChecklist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

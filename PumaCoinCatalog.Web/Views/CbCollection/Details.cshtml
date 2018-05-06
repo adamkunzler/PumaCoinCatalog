@@ -14,6 +14,32 @@
 
 <div id="divCollectionDetailsContainer">
     @Html.HiddenFor(x => x.Id, new { id = "hidCollectionId" })
+
+    <div id="divActions" class="row">
+        <button class="btn btn-primary" onclick="showCreateChecklist();">Create a Checklist</button>
+    </div>
+
+    <br />
+
+    @Html.Partial("_newChecklist", Model.NewChecklistViewModel)    
+
+    <br />
+
+    <div id="divChecklists" class="row">
+        @if (Model.Checklists.Any())
+        {
+            <ul>
+                @foreach (var checklist in Model.Checklists)
+                {
+                    <li><a href="@Url.Action("Details", "CbChecklist", new { checklistId = checklist.Id })">@checklist.Title</a></li>
+                }
+            </ul>
+        }
+        else
+        {
+            <h3>No checklists have been created.</h3>
+        }
+    </div>
 </div>
 
 @section scripts {
@@ -23,5 +49,67 @@
             resetMenu();
             setActiveMenu('/CbCollection');
         });
+
+        function showCreateChecklist() {
+            $("#divNewChecklist").toggle();
+        }
+
+        function cancelCreateChecklist() {
+            $("#divNewChecklist").toggle();
+        }
+
+        function createChecklist() {
+            var collectionId = $("#hidCollectionId").val();
+
+            // todo
+        }
+
+        //
+        // when a country is changed, update the denominations drop down
+        //        
+        function ddlCountriesChange() {
+            var countryId = $("#ddlCountries").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/CbCollection/GetCbDenominationsDropDown?countryId=' + countryId,
+                success: function (result) {
+                    $("#divDenominations").html(result.denominationsDropDownHtml);
+                    $("#divVarieties").html(result.varietiesDropDownHtml);
+                    $("#divTypes").html(result.typesDropDownHtml);
+                }
+            });
+        }
+        
+        //
+        // when a denomination is changed, update the varieties drop down
+        //
+        function ddlDenominationsChange() {
+            var denominationId = $("#ddlDenominations").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/CbCollection/GetCbVarietiesDropDown?denominationId=' + denominationId,
+                success: function (result) {
+                    $("#divVarieties").html(result.varietiesDropDownHtml);
+                    $("#divTypes").html(result.typesDropDownHtml);
+                }
+            });
+        }
+        
+        //
+        // when a variety is changed, update the types drop down
+        //        
+        function ddlVarietiesChange() {
+            var varietyId = $("#ddlVarieties").val();
+            
+            $.ajax({
+                type: 'POST',
+                url: '/CbCollection/GetCbTypesDropDown?varietyId=' + varietyId,
+                success: function (result) {
+                    $("#divTypes").html(result);
+                }
+            });
+        }        
     </script>
 }

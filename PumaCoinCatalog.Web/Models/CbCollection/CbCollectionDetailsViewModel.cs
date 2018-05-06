@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace PumaCoinCatalog.Web.Models.CbCollection
 {
@@ -10,5 +7,6 @@ namespace PumaCoinCatalog.Web.Models.CbCollection
         public int Id { get; set; }
         public string Title { get; set; }
         public IList<CbChecklistViewModel> Checklists { get; set; }
-    }
+        public NewChecklistViewModel NewChecklistViewModel { get; set; }
+    }    
 }
