@@ -75,5 +75,12 @@ namespace PumaCoinCatalog.Services.UsCoinBook
 
             return checklistCoins;
         }
+
+        public CbChecklist GetChecklist(int checklistId)
+        {
+            var data = _context.CbChecklists.SingleOrDefault(x => x.Id == checklistId);
+            if (data == null) throw new Exception($"Checklist not found: id = {checklistId}");
+            return data;
+        }
     }
 }

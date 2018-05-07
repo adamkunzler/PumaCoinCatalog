@@ -30,7 +30,7 @@ namespace PumaCoinCatalog.UsCoinBook.Services
             return data;
         }
 
-        public CbCountry GetCountry(string title = "United States of America")
+        public CbCountry GetCountry(string title = "USA")
         {
             var data = _context.CbCountries
                                .Include("Denominations")  

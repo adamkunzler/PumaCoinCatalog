@@ -1,0 +1,82 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbChecklistIndexViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@section pageHeader {
+<div class="coin-breadcrumb">
+    <a href="@Url.Action("Details", "CbCollection", new { collectionId = Model.Collection.Id })">@Model.Collection.Title</a>
+    <span>&#x25BA;</span>
+    <a href="@Url.Action("Index", "CbCoinData", new { countryTitle = @Model.Type.CountryTitle })">@Model.Type.CountryTitle</a>
+    <span>&#x25BA;</span>
+    <a href="@Url.Action("Index", "CbCoinData", new { countryTitle = @Model.Type.CountryTitle })#@Model.Type.DenominationTitle">@Model.Type.DenominationTitle</a>
+    <span>&#x25BA;</span>
+    <a href="@Url.Action("Variety", "CbCoinData", new { varietyId = @Model.Type.VarietyId })">@Model.Type.VarietyTitle</a>
+    <span>&#x25BA;</span>
+    @Model.Title
+</div>
+}
+
+<style type="text/css">
+</style>
+
+<div id="divChecklistDetailsContainer">
+    <!--
+
+        Type Details
+
+    -->
+    <div class="cb-coin-type">
+        @Html.HiddenFor(x => x.Id, new { id = "hidChecklistId" })
+        <div class="type-details">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Partial("../CbCoinData/_coinImage", Model.Type.ImageViewModel)
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Partial("../CbCoinData/_typeDetails", @Model.Type)
+                    <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @*<button type="button" class="btn btn-primary" onclick="updateObverseImage()">Update Obverse Image</button>
+                        <button type="button" class="btn btn-primary" onclick="updateReverseImage()">Update Reverse Image</button>*@
+                    @*<button type="button" class="btn btn-primary" onclick="addNewCoin(@Model.Id)">Add Coin</button>*@
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <!--
+
+        COINS
+
+    -->
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    @*@Html.Partial("_checklistCoinTable", Model.ChecklistCoins)*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            resetMenu();
+            setActiveMenu('/CbCollection');
+        });
+    </script>
+}
