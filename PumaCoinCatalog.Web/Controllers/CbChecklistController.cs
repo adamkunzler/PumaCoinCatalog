@@ -44,7 +44,16 @@ namespace PumaCoinCatalog.Web.Controllers
             };
 
             return View(model);
-        }        
+        }
+
+        #region Ajax
+
+        [HttpPost]
+        public ActionResult DeleteChecklist(int checklistId)
+        {
+            _checklistService.DeleteChecklist(checklistId);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult AddCoinToChecklist(int checklistCoinId)
@@ -87,5 +96,7 @@ namespace PumaCoinCatalog.Web.Controllers
             _checklistService.SetChecklistCoinExlude(checklistCoinId, false);
             return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
         }
+
+        #endregion Ajax
     }
 }

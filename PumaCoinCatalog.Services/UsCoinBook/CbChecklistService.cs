@@ -133,5 +133,18 @@ namespace PumaCoinCatalog.Services.UsCoinBook
             if (data == null) throw new Exception($"Checklist not found: id = {checklistId}");
             return data;
         }
+
+        public void DeleteChecklist(int checklistId)
+        {
+            var checklist = _context.CbChecklists.SingleOrDefault(x => x.Id == checklistId);
+            if (checklist == null) throw new Exception("checklist not found: " + checklistId);
+
+            var checklistCoins = _context.CbChecklistCoins.Where(x => x.Checklist.Id == checklistId);
+
+            _context.CbChecklistCoins.RemoveRange(checklistCoins);
+            _context.CbChecklists.Remove(checklist);
+
+            _context.SaveChanges();
+        }
     }
 }
