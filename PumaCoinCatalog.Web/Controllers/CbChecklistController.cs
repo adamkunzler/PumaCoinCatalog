@@ -1,4 +1,5 @@
-﻿using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
+﻿using PumaCoinCatalog.Models.UsaCoinBook;
+using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
 using PumaCoinCatalog.Services.UsCoinBook;
 using PumaCoinCatalog.UsCoinBook.Services;
 using PumaCoinCatalog.Web.Infrastructure.Mappers;
@@ -28,7 +29,7 @@ namespace PumaCoinCatalog.Web.Controllers
         {
             var checklist = _checklistService.GetChecklist(checklistId);
             var type = _cbCoinDataService.GetType(checklist.Type.Id);
-            
+
             var model = new CbChecklistIndexViewModel
             {
                 Id = checklist.Id,
@@ -39,15 +40,52 @@ namespace PumaCoinCatalog.Web.Controllers
                     Title = checklist.Collection.Title
                 },
                 Type = type.Map(),
-                Coins = PrepareCoinsModel(checklist.Coins)
+                Coins = checklist.Coins.Map()
             };
 
             return View(model);
+        }        
+
+        [HttpPost]
+        public ActionResult AddCoinToChecklist(int checklistCoinId)
+        {
+            _checklistService.AddCoinToChecklist(checklistCoinId);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
         }
 
-        private IList<CbChecklistCoinViewModel> PrepareCoinsModel(IList<CbChecklistCoin> coins)
+        [HttpPost]
+        public ActionResult RemoveCoinFromChecklist(int checklistCoinId)
         {
-            return new List<CbChecklistCoinViewModel>();
+            _checklistService.RemoveCoinFromChecklist(checklistCoinId);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateChecklistCoinEstimatedValue(int checklistCoinId, decimal value)
+        {
+            _checklistService.UpdateChecklistCoinEstimatedValue(checklistCoinId, value);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateChecklistCoinGrade(int checklistCoinId, CbGrade grade)
+        {
+            _checklistService.UpdateChecklistCoinGrade(checklistCoinId, grade);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateChecklistCoinAddExclude(int checklistCoinId)
+        {
+            _checklistService.SetChecklistCoinExlude(checklistCoinId, true);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateChecklistCoinRemoveExclude(int checklistCoinId)
+        {
+            _checklistService.SetChecklistCoinExlude(checklistCoinId, false);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

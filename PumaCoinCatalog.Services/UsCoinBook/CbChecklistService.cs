@@ -1,4 +1,5 @@
 ﻿using PumaCoinCatalog.Data;
+using PumaCoinCatalog.Models.UsaCoinBook;
 using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
 using PumaCoinCatalog.UsCoinBook.Services;
 using System;
@@ -54,6 +55,26 @@ namespace PumaCoinCatalog.Services.UsCoinBook
             return checklist;
         }
 
+        public void AddCoinToChecklist(int checklistCoinId)
+        {
+            var checklistCoin = _context.CbChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("CbChecklistCoin not found: " + checklistCoinId);
+
+            checklistCoin.InCollection = true;
+
+            _context.SaveChanges();
+        }
+
+        public void RemoveCoinFromChecklist(int checklistCoinId)
+        {
+            var checklistCoin = _context.CbChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("CbChecklistCoin not found: " + checklistCoinId);
+
+            checklistCoin.InCollection = false;
+
+            _context.SaveChanges();
+        }
+
         private IList<CbChecklistCoin> CreateChecklistCoinsForNewChecklist(CbChecklist checklist)
         {
             var checklistCoins = new List<CbChecklistCoin>();
@@ -74,6 +95,36 @@ namespace PumaCoinCatalog.Services.UsCoinBook
             }
 
             return checklistCoins;
+        }
+
+        public void SetChecklistCoinExlude(int checklistCoinId, bool v)
+        {
+            var checklistCoin = _context.CbChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("CbChecklistCoin not found: " + checklistCoinId);
+
+            checklistCoin.ShouldExclude = v;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateChecklistCoinGrade(int checklistCoinId, CbGrade grade)
+        {
+            var checklistCoin = _context.CbChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("CbChecklistCoin not found: " + checklistCoinId);
+
+            checklistCoin.Grade = grade;
+
+            _context.SaveChanges();
+        }
+
+        public void UpdateChecklistCoinEstimatedValue(int checklistCoinId, decimal value)
+        {
+            var checklistCoin = _context.CbChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("CbChecklistCoin not found: " + checklistCoinId);
+
+            checklistCoin.ValueEstimate = value;
+
+            _context.SaveChanges();
         }
 
         public CbChecklist GetChecklist(int checklistId)

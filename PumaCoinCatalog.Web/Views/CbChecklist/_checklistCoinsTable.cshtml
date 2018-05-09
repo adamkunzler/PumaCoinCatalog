@@ -1,0 +1,82 @@
+﻿@model System.Collections.Generic.List<PumaCoinCatalog.Web.Models.CbCollection.CbChecklistCoinViewModel>
+
+@using PumaCoinCatalog.Web.Infrastructure
+
+<div class="coin-table-actions">
+    <div class="row">
+        <div class="col-md-12">
+            <button id="btnShowAll" type="button" class="btn btn-primary btn-lg">Show All</button>
+            <button id="btnShowCollected" type="button" class="btn btn-primary btn-lg">Show Collected</button>
+            <button id="btnShowMissing" type="button" class="btn btn-primary btn-lg">Show Missing</button>
+            <button id="btnToggleExcluded" type="button" class="btn btn-primary btn-lg">Toggle Excluded</button>
+        </div>
+    </div>
+</div>
+<hr />
+<table class="coin-list table table-striped">
+    <thead>
+        <tr>
+            <th style="display:none;">Id</th>
+            <th style="display:none;">CoinId</th>
+            <th>Year</th>
+            <th></th>
+            <th>Details</th>
+            <th style="text-align: center;">Collected</th>
+            <th style="text-align: center;">Grade</th>
+            <th style="text-align: center;">Est. Value</th>
+            <th style="text-align: center;">Mintage</th>
+            <th></th>
+            <th style="text-align: center;">Exclude?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var coin in Model)
+        {
+            <tr class="checklist-coin-row">
+                <td class="checklist-coin-id" style="display:none;">@coin.Id</td>
+                <td style="display:none;">@coin.Coin.Id</td>
+                <td style="text-align: center; width: 50px;">
+                    @coin.Coin.Year
+                </td>
+                <td style="text-align: left; width: 50px;">
+                    @coin.Coin.MintMark
+                </td>
+                <td>@coin.Coin.Details</td>
+                <td style="text-align: center;">
+                    <label>
+                        <input class="checkbox in-collection-checkbox" type="checkbox" @(Convert.ToBoolean(coin.InCollection) == true ? "checked='checked'" : string.Empty) />
+                        <span></span>
+                    </label>
+                </td>
+                <td style="text-align: center; width: 150px;">
+                    @Html.EnumDropDownListFor(x => coin.Grade, new { @class = "form-control ddl-grade" })
+                </td>
+                <td style="text-align: right; width: 100px;">
+                    <input type="text" class="form-control estimated-value-textbox" value="@coin.ValueEstimate" style="text-align: right;" />
+                </td>
+                <td style="text-align: center;">
+                    @if (coin.Coin.Mintage == 0)
+                    {<span>-</span> }
+                    else
+                    { <span>@string.Format("{0:0,0}", coin.Coin.Mintage)</span>}
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+                <td style="text-align: center;">
+                    <label>
+                        <input class="checkbox should-exclude-checkbox" type="checkbox" @(Convert.ToBoolean(coin.ShouldExclude) == true ? "checked='checked'" : string.Empty) />
+                        <span></span>
+                    </label>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

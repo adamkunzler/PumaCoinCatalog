@@ -306,6 +306,7 @@
     <Content Include="Views\CbCollection\_ddlCbChecklistTypes.cshtml" />
     <Content Include="Views\CbCollection\_newChecklist.cshtml" />
     <Content Include="Views\CbChecklist\Index.cshtml" />
+    <Content Include="Views\CbChecklist\_checklistCoinsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

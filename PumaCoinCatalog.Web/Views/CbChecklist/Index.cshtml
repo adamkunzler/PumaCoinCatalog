@@ -41,17 +41,8 @@
                     @Html.Partial("../CbCoinData/_typeDetails", @Model.Type)
                     <hr />
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    @*<button type="button" class="btn btn-primary" onclick="updateObverseImage()">Update Obverse Image</button>
-                        <button type="button" class="btn btn-primary" onclick="updateReverseImage()">Update Reverse Image</button>*@
-                    @*<button type="button" class="btn btn-primary" onclick="addNewCoin(@Model.Id)">Add Coin</button>*@
-                    <hr />
-                </div>
-            </div>
-        </div>
-        <hr />
+            </div>            
+        </div>        
     </div>
     <!--
 
@@ -62,7 +53,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    @*@Html.Partial("_checklistCoinTable", Model.ChecklistCoins)*@
+                    @Html.Partial("_checklistCoinsTable", Model.Coins)
                 </div>
             </div>
         </div>
@@ -77,6 +68,227 @@
         $(document).ready(function () {
             resetMenu();
             setActiveMenu('/CbCollection');
+
+            hideExcludedCoins();
+
+            //
+            // get the checklist coin id for a cell in a row
+            //
+            function getChecklistCoinId(elem) {
+                var row = $(elem).closest(".checklist-coin-row");
+                var trCoinId = $(row).children(".checklist-coin-id");
+                var checklistCoinId = $(trCoinId).text();
+                return checklistCoinId;
+            }
+
+            //
+            // programatically set collected flag
+            //
+            function addCoinToChecklist(elem) {
+                var row = $(elem).closest(".checklist-coin-row");
+                var checkbox = $(row).find(".in-collection-checkbox");
+                $(checkbox).prop("checked", true);
+
+                $(checkbox).change();
+            }
+
+            //
+            // add or remove coin from checklist
+            //
+            $(".in-collection-checkbox").change(function () {
+                var thisthis = this;
+                var checklistCoinId = getChecklistCoinId(this);
+
+                if (this.checked) {
+                    // set flag to true
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("AddCoinToChecklist", "CbChecklist")?checklistCoinId=' + checklistCoinId,
+                        success: function (result) {
+                            //console.log('coin add successfully');
+                        }
+                    });
+                } else {
+                    var result = confirm("You sure you want to remove it from your collection?");
+                    if (result == true) {
+                        // set flag to false
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("RemoveCoinFromChecklist", "CbChecklist")?checklistCoinId=' + checklistCoinId,
+                            success: function (result) {
+                                //console.log('coin removed successfully');
+
+                                // reset grade and est.value
+                                var elemGrade = $(thisthis).parent().parent().next().children().first();
+                                $(elemGrade)[0].selectedIndex = 0;
+
+                                var elemEstValue = $(thisthis).parent().parent().next().next().children().first();
+                                $(elemEstValue).val(0);
+                            }
+                        });
+                    }
+                    else {
+                        $(this).prop("checked", true);
+                    }
+                }
+            });
+
+            //
+            // toggle exclude of coin in checklist
+            //
+            $(".should-exclude-checkbox").change(function () {
+                var thisthis = this;
+                var checklistCoinId = getChecklistCoinId(this);
+
+                if (this.checked) {
+                    // set flag to true
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("UpdateChecklistCoinAddExclude", "CbChecklist")?checklistCoinId=' + checklistCoinId,
+                        success: function (result) {
+                            // coin excluded
+                        }
+                    });
+                } else {
+                    // set flag to false
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("UpdateChecklistCoinRemoveExclude", "CbChecklist")?checklistCoinId=' + checklistCoinId,
+                        success: function (result) {
+                            // coin included
+                        }
+                    });
+                }
+            });
+
+            //
+            // updated grade
+            //
+            $(".ddl-grade").change(function () {
+                var thisthis = this;
+                var value = $(this).val();
+                var checklistCoinId = getChecklistCoinId(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UpdateChecklistCoinGrade", "CbChecklist")?checklistCoinId=' + checklistCoinId + '&grade=' + value,
+                    success: function (result) {
+                        //console.log('grade updated successfully');
+                        addCoinToChecklist(thisthis);
+                    }
+                });
+            });
+
+            $("input[type='text']").on("click", function () {
+                $(this).select();
+            });
+
+            //
+            // update estimated value
+            //
+            $(".estimated-value-textbox").blur(function () {
+                var thisthis = this;
+                var value = $(this).val();
+
+                if (value == '' || value == ' ') {
+                    value = 0;
+                }
+
+                if (!isNumeric(value)) {
+                    console.log('bad number');
+                    $(this).val('');
+                    return;
+                }
+
+                var checklistCoinId = getChecklistCoinId(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UpdateChecklistCoinEstimatedValue", "CbChecklist")?checklistCoinId=' + checklistCoinId + '&value=' + value,
+                    success: function (result) {
+                        //console.log('estimated value updated successfully');
+                        addCoinToChecklist(thisthis);
+                    }
+                });
+            });
+
+            //
+            // filter table - show all
+            //
+            $("#btnShowAll").on("click", function () {
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    var shouldExclude = $(this).find("input.should-exclude-checkbox").prop("checked");
+                    if (!shouldExclude) $(this).show();
+                });
+            });
+
+            //
+            // filter table - show collected coins
+            //
+            $("#btnShowCollected").on("click", function () {
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    var checkbox = $(this).find("input.in-collection-checkbox");
+                    var isInCollection = $(checkbox).prop("checked");
+                    if (isInCollection) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            //
+            // filter table - show missing coins
+            //
+            $("#btnShowMissing").on("click", function () {
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    var checkbox = $(this).find("input.in-collection-checkbox");
+                    var isInCollection = $(checkbox).prop("checked");
+                    if (isInCollection) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+
+                    var shouldExclude = $(this).find("input.should-exclude-checkbox").prop("checked");
+                    if (shouldExclude) $(this).hide();
+                });
+            });
+
+            //
+            // filter table - toggle excluded coins
+            //
+            $("#btnToggleExcluded").on("click", function () {
+                if (_excludedShowing)
+                    hideExcludedCoins();
+                else
+                    showExcludedCoins();
+            });
+
+            var _excludedShowing = false;
+
+            function showExcludedCoins() {
+                _excludedShowing = true;
+
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    $(this).show();
+                });
+            }
+
+            function hideExcludedCoins() {
+                _excludedShowing = false;
+
+                var rows = $("tr.checklist-coin-row");
+                rows.each(function (index) {
+                    var checkbox = $(this).find("input.should-exclude-checkbox");
+                    var shouldExclude = $(checkbox).prop("checked");
+                    if (shouldExclude) $(this).hide();
+                });
+            }
         });
     </script>
 }
