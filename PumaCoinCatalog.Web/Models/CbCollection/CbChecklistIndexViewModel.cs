@@ -1,5 +1,4 @@
-﻿using PumaCoinCatalog.Web.Models.CbCoinData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace PumaCoinCatalog.Web.Models.CbCollection
@@ -13,5 +12,7 @@ namespace PumaCoinCatalog.Web.Models.CbCollection
         public CbCollectionViewModel Collection { get; set; }        
         public CbChecklistTypeDetailsViewModel TypeDetails { get; set; }
         public IList<CbChecklistCoinViewModel> Coins { get; set; }
+
+        public CbChecklistValueSummaryViewModel ValueSummary { get; set; }
     }
 }

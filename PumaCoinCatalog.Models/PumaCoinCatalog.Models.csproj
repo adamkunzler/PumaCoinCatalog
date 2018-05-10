@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="CbChecklistValueSummary.cs" />
     <Compile Include="Checklist.cs" />
     <Compile Include="ChecklistCoin.cs" />
     <Compile Include="ScrapeCoin.cs" />

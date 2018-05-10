@@ -30,7 +30,7 @@
                     @Html.Partial("_checklistTypeDetails", @Model.TypeDetails)                    
                 </div>
                 <div class="col-md-3">
-                    
+                    @Html.Partial("_valueSummary", Model.ValueSummary)
                 </div>
                 <div class="col-md-4">
                     @Html.Partial("../CbCoinData/_coinImageSmall", Model.TypeDetails.ImageViewModel)                    

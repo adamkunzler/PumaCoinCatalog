@@ -29,6 +29,7 @@ namespace PumaCoinCatalog.Web.Controllers
         {
             var checklist = _checklistService.GetChecklist(checklistId);
             var type = _cbCoinDataService.GetType(checklist.Type.Id);
+            var valueSummary = _checklistService.GetChecklistValueSummary(checklist.Id);
 
             var model = new CbChecklistIndexViewModel
             {
@@ -62,6 +63,18 @@ namespace PumaCoinCatalog.Web.Controllers
                         ReverseImageUri = type.ReverseImageUri,
                         Title = type.Title
                     }
+                },
+                ValueSummary = new CbChecklistValueSummaryViewModel
+                {
+                   CoinBullionValue = valueSummary.CoinBullionValue,
+                   CoinFaceValue = valueSummary.CoinFaceValue,
+                   FaceValueTotal = valueSummary.FaceValueTotal,
+                   BullionValueTotal = valueSummary.BullionValueTotal,
+                   EstimatedValueTotal = valueSummary.EstimatedValueTotal,
+                   CollectionValueTotal = valueSummary.CollectionValueTotal,
+                   TotalCoinsInChecklist = valueSummary.TotalCoinsInChecklist,
+                   TotalCoinsCollected = valueSummary.TotalCoinsCollected,
+                   TotalCoinsPercentage = valueSummary.TotalCoinsPercentage
                 },
                 Coins = checklist.Coins.Map()
             };

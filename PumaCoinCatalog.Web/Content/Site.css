@@ -119,8 +119,8 @@ select.form-control {
 }
 
 .value-totals {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: bold;
     margin-top: 10px;
 }
 
@@ -129,8 +129,12 @@ select.form-control {
     }
 
     .value-totals span {
-        font-size: 20px;
-        font-weight: 700;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+    .value-totals hr {
+        margin: 3px;
     }
 
 .checklist-totals .checklist-info {
