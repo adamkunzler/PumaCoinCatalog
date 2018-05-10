@@ -39,7 +39,30 @@ namespace PumaCoinCatalog.Web.Controllers
                     Id = checklist.Collection.Id,
                     Title = checklist.Collection.Title
                 },
-                Type = type.Map(),
+                TypeDetails = new CbChecklistTypeDetailsViewModel
+                {
+                    DenominationId = type.Variety.Denomination.Id,
+                    DenominationTitle = type.Variety.Denomination.Title,
+                    VarietyId = type.Variety.Id,
+                    VarietyTitle = type.Variety.Title,
+                    TypeId = type.Id,                    
+                    TypeTitle = type.Title,
+                    ChecklistId = checklist.Id,
+                    ChecklistTitle = checklist.Title,
+                    BeginDate = type.BeginDate,
+                    EndDate = type.EndDate,
+                    MetalComposition = type.MetalComposition,
+                    Diameter = type.Diameter,
+                    Mass = type.Mass,
+                    MeltValue = type.MeltValue,
+                    SourceUri = type.Variety.SourceUri,
+                    ImageViewModel = new CbCoinImageViewModel
+                    {
+                        ObverseImageUri = type.ObverseImageUri,
+                        ReverseImageUri = type.ReverseImageUri,
+                        Title = type.Title
+                    }
+                },
                 Coins = checklist.Coins.Map()
             };
 
@@ -94,6 +117,13 @@ namespace PumaCoinCatalog.Web.Controllers
         public ActionResult UpdateChecklistCoinRemoveExclude(int checklistCoinId)
         {
             _checklistService.SetChecklistCoinExlude(checklistCoinId, false);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateChecklistTitle(int checklistId, string title)
+        {
+            _checklistService.UpdateChecklistTitle(checklistId, title);
             return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
         }
 

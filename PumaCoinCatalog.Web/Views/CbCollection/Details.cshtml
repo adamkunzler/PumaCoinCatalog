@@ -67,7 +67,9 @@
                 type: 'POST',
                 url: '/CbCollection/CreateChecklist?collectionId=' + collectionId + '&title=' + title + '&typeId=' + typeId,
                 success: function (result) {
-                    
+                    if (result.result == "success") {
+                        window.location = '@Url.Action("Index", "CbChecklist")?checklistId=' + result.checklistId;
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert(errorThrown);

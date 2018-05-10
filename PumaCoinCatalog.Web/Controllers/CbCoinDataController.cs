@@ -98,6 +98,14 @@ namespace PumaCoinCatalog.Web.Controllers
 
             return Json("success", JsonRequestBehavior.AllowGet);
         }
+        
+        [HttpPost]
+        public ActionResult UpdateDenominationTitle(int denominationId, string title)
+        {
+            _cbCoinDataService.UpdateDenominationTitle(denominationId, title);
+
+            return Json("success", JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

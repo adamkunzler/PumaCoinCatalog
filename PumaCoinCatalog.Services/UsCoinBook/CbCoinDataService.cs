@@ -108,7 +108,7 @@ namespace PumaCoinCatalog.UsCoinBook.Services
 
             return data;                              
         }
-
+        
         public void ChangeTypeObverseImageUri(int typeId, string uri)
         {
             var data = _context.CbTypes.FirstOrDefault(x => x.Id == typeId);
@@ -149,6 +149,15 @@ namespace PumaCoinCatalog.UsCoinBook.Services
             _context.SaveChanges();
         }
 
+        public void UpdateDenominationTitle(int denominationId, string title)
+        {
+            var data = _context.CbDenominations.FirstOrDefault(x => x.Id == denominationId);
+            if (data == null) throw new Exception($"Denomination not found: {denominationId}");
+
+            data.Title = title;
+
+            _context.SaveChanges();
+        }
         #endregion CbType
 
         #region CbCoin

@@ -7,13 +7,7 @@
 @section pageHeader {
 <div class="coin-breadcrumb">
     <a href="@Url.Action("Details", "CbCollection", new { collectionId = Model.Collection.Id })">@Model.Collection.Title</a>
-    <span>&#x25BA;</span>
-    <a href="@Url.Action("Index", "CbCoinData", new { countryTitle = @Model.Type.CountryTitle })">@Model.Type.CountryTitle</a>
-    <span>&#x25BA;</span>
-    <a href="@Url.Action("Index", "CbCoinData", new { countryTitle = @Model.Type.CountryTitle })#@Model.Type.DenominationTitle">@Model.Type.DenominationTitle</a>
-    <span>&#x25BA;</span>
-    <a href="@Url.Action("Variety", "CbCoinData", new { varietyId = @Model.Type.VarietyId })">@Model.Type.VarietyTitle</a>
-    <span>&#x25BA;</span>
+    <span>&#x25BA;</span>    
     @Model.Title
 </div>
 }
@@ -29,25 +23,21 @@
     -->
     <div class="cb-coin-type">
         @Html.HiddenFor(x => x.Id, new { id = "hidChecklistId" })
+        @Html.HiddenFor(x => x.Collection.Id, new { id = "hidCollectionId" })
         <div class="type-details">
             <div class="row">
-                <div class="col-md-6">
-                    @Html.Partial("../CbCoinData/_coinImage", Model.Type.ImageViewModel)
+                <div class="col-md-5">
+                    @Html.Partial("_checklistTypeDetails", @Model.TypeDetails)
                     <hr />
                 </div>
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <button id="btnDeleteChecklist" type="button" class="btn btn-danger btn-lg">Delete Checklist</button>
-                    </div>
+                <div class="col-md-3">
+                    
+                </div>
+                <div class="col-md-4">
+                    @Html.Partial("../CbCoinData/_coinImageSmall", Model.TypeDetails.ImageViewModel)                    
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    @Html.Partial("../CbCoinData/_typeDetails", @Model.Type)
-                    <hr />
-                </div>
-            </div>            
-        </div>        
+        </div>
     </div>
     <!--
 
@@ -293,28 +283,7 @@
                     var shouldExclude = $(checkbox).prop("checked");
                     if (shouldExclude) $(this).hide();
                 });
-            }
-
-            //
-            // delete a checklist
-            //
-            $("#btnDeleteChecklist").on("click", function () {
-                var checklistId = $("#hidChecklistId").val();
-
-                var result = confirm("Are you sure you want to delete this checklist?");
-                if (!result) return;
-
-                var okResult = confirm("Press 'Ok' to delete the checklist permanently.");
-                if (!okResult) return;
-
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("DeleteChecklist", "CbChecklist")?checklistId=' + checklistId,
-                    success: function (result) {
-                        window.location = "@Url.Action("Index", "CbCollection")";
-                    }
-                });
-            });
+            }            
         });
     </script>
 }

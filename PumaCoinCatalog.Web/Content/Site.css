@@ -154,7 +154,7 @@ select.form-control {
 }
 
 .cb-coin-type .type-details .info {
-    font-size: 18px;
+    font-size: 16px;
 }
 
     .cb-coin-type .type-details .info .label-header {
@@ -175,6 +175,16 @@ select.form-control {
 }
 .cb-denomination-list .image-coin-type {
     max-height: 100px;
+    display: inline-block;
+}
+
+.cb-coin-type .type-details .image-coin-type-small {
+    max-width: 45%;
+    display: inline;
+}
+
+.cb-denomination-list .image-coin-type-small {
+    max-height: 50px;
     display: inline-block;
 }
 
@@ -200,6 +210,11 @@ select.form-control {
 
 .cb-type-list .image-coin-type {
     max-height: 100px;
+    display: inline-block;
+}
+
+.cb-type-list .image-coin-type-small {
+    max-height: 50px;
     display: inline-block;
 }
 

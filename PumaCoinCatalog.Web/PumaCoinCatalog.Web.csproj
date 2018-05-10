@@ -186,6 +186,7 @@
     <Compile Include="Models\CbCoinData\CbVarietyViewModel.cs" />
     <Compile Include="Models\CbCollection\CbChecklistCoinViewModel.cs" />
     <Compile Include="Models\CbCollection\CbChecklistIndexViewModel.cs" />
+    <Compile Include="Models\CbCollection\CbChecklistTypeDetailsViewModel.cs" />
     <Compile Include="Models\CbCollection\CbChecklistViewModel.cs" />
     <Compile Include="Models\CbCollection\CbCollectionDetailsViewModel.cs" />
     <Compile Include="Models\CbCollection\CbCollectionIndexViewModel.cs" />
@@ -307,6 +308,8 @@
     <Content Include="Views\CbCollection\_newChecklist.cshtml" />
     <Content Include="Views\CbChecklist\Index.cshtml" />
     <Content Include="Views\CbChecklist\_checklistCoinsTable.cshtml" />
+    <Content Include="Views\CbChecklist\_checklistTypeDetails.cshtml" />
+    <Content Include="Views\CbCoinData\_coinImageSmall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

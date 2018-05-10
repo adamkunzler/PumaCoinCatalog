@@ -1,0 +1,197 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbChecklistTypeDetailsViewModel
+
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Checklist:
+    </div>
+    <div class="col-xs-8">
+        <span>@Model.ChecklistTitle</span>
+        &nbsp;
+        <a href="#" class="edit-label" onclick="updateChecklistTitleValue(this, @Model.ChecklistId);">edit</a>
+        &nbsp;
+        <a href="#" class="edit-label" onclick="deleteChecklist();">delete</a>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Denomination:
+    </div>
+    <div class="col-xs-8">
+        <span>@Model.DenominationTitle</span>
+        &nbsp;
+        <a href="#" class="edit-label" onclick="updateDenominationTitleValue(this, @Model.DenominationId);">edit</a>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Variety:
+    </div>
+    <div class="col-xs-8">
+        <span>@Model.VarietyTitle</span>
+        &nbsp;
+        <a href="#" class="edit-label" onclick="updateVarietyTitleValue(this, @Model.VarietyId);">edit</a>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Type:
+    </div>
+    <div class="col-xs-8">
+        <span>@Model.TypeTitle</span>
+        &nbsp;
+        <a href="#" class="edit-label" onclick="updateTypeTitleValue(this, @Model.TypeId);">edit</a>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Dates Minted:
+    </div>
+    <div class="col-xs-8">
+        <span>@Model.BeginDate</span>&nbsp;&ndash;&nbsp;<span>@Model.EndDate</span>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Metal Compostion:
+    </div>
+    <div class="col-xs-8">
+        @Model.MetalComposition
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Diameter / Mass:
+    </div>
+    <div class="col-xs-8">
+        <span>@Model.Diameter &nbsp;mm</span>
+        &frasl;
+        <span>@Model.Mass &nbsp;grams</span>
+    </div>
+</div>
+
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        Melt Value:
+    </div>
+    <div class="col-xs-8">
+        <span class="coin-melt-value">@string.Format("${0:N4}", Model.MeltValue)</span>
+        &nbsp;
+        <a href="#" class="melt-value-update edit-label" onclick="updateMeltValue(this, @Model.TypeId);">edit</a>
+    </div>
+</div>
+<div class="row info">
+    <div class="col-xs-4 label-header">
+        UsCoinBook:
+    </div>
+    <div class="col-xs-8">
+        <a href="@Model.SourceUri" target="_blank">details</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //
+    // update type melt value
+    //
+    function updateMeltValue(elem, typeId) {
+        var value = prompt("Enter the Bullion Value:", "0");
+        if (value == '' || value == ' ') value = 0;
+        if (!isNumeric(value)) {
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateTypeMeltValue", "CbCoinData")?typeId=' + typeId + '&meltValue=' + value,
+            success: function (result) {
+                var temp = $(elem).siblings().first();
+                temp.text("$" + result.meltValue.toFixed(4));
+            }
+        });
+    }
+
+    //
+    // update denomination title
+    //
+    function updateDenominationTitleValue(elem, denominationId) {
+        var value = prompt("Enter the Title:", "@Model.DenominationTitle");
+        if (value == undefined) value = "";
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateDenominationTitle", "CbCoinData")?denominationId=' + denominationId + '&title=' + value,
+            success: function (result) {
+                location.reload();
+            }
+        });
+    }
+
+    //
+    // update variety title
+    //
+    function updateVarietyTitleValue(elem, varietyId) {
+        var value = prompt("Enter the Title:", "@Model.VarietyTitle");
+        if (value == undefined) value = "";
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateVarietyTitle", "CbCoinData")?varietyId=' + varietyId + '&title=' + value,
+            success: function (result) {
+                location.reload();
+            }
+        });
+    }
+
+    //
+    // update type title
+    //
+    function updateTypeTitleValue(elem, typeId) {
+        var value = prompt("Enter the Title:", "@Model.TypeTitle");
+        if (value == undefined) value = "";
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateTypeTitle", "CbCoinData")?typeId=' + typeId + '&title=' + value,
+            success: function (result) {
+                location.reload();
+            }
+        });
+    }
+
+    //
+    // update checklist title
+    //
+    function updateChecklistTitleValue(elem, checklistId) {
+        var value = prompt("Enter the Title:", "@Model.ChecklistTitle");
+        if (value == undefined) value = "";
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("UpdateChecklistTitle", "CbChecklist")?checklistId=' + checklistId + '&title=' + value,
+            success: function (result) {
+                location.reload();
+            }
+        });
+    }
+
+    //
+    // delete a checklist
+    //
+    function deleteChecklist() {
+        var checklistId = $("#hidChecklistId").val();
+        var collectionId = $("#hidCollectionId").val();
+
+        var result = confirm("Are you sure you want to delete this checklist?");
+        if (!result) return;
+
+        var okResult = confirm("Press 'Ok' to delete the checklist permanently.");
+        if (!okResult) return;
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DeleteChecklist", "CbChecklist")?checklistId=' + checklistId,
+            success: function (result) {
+                window.location = "@Url.Action("Details", "CbCollection")?collectionId=" + collectionId;
+            }
+        });
+    }
+</script>
