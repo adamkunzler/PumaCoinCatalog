@@ -1,43 +1,58 @@
 ﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbChecklistValueSummaryViewModel
 
-<div class="coins-in-collection">
-    <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar"
-             aria-valuenow="@Model.TotalCoinsCollected" aria-valuemin="0" aria-valuemax="@Model.TotalCoinsInChecklist"
-             style="width: @Model.TotalCoinsPercentage%;"></div>
-    </div>
-    <span class="progress-label">Total Coins in Collection: @Model.TotalCoinsCollected / @Model.TotalCoinsInChecklist </span>
-</div>
-<div class="row value-totals">
-    <div class="col-md-12">
-        <div class="row face-value-coin">
-            <div class="col-md-6">Coin Face Value:</div>
-            <div class="col-md-6"><span>@string.Format("{0:c}", Model.CoinFaceValue)</span></div>
-        </div>
-        <div class="row face-value-total">
-            <div class="col-md-6">Face Value Total:</div>
-            <div class="col-md-6"><span>@string.Format("{0:c}", Model.FaceValueTotal)</span></div>
-        </div>
-        <hr />
-        <div class="row bullion-value-coin">
-            <div class="col-md-6">Coin Bullion Value:</div>
-            <div class="col-md-6"><span>@string.Format("{0:c}", Model.CoinBullionValue)</span></div>
-        </div>
-        <div class="row bullion-value-total">
-            <div class="col-md-6">Bullion Value Total:</div>
-            <div class="col-md-6"><span>@string.Format("{0:c}", Model.BullionValueTotal)</span></div>
-        </div>
-        <hr />
-        <div class="row estimated-value-total">
-            <div class="col-md-6">Estimated Value Total:</div>
-            <div class="col-md-6"><span>@string.Format("{0:c}", Model.EstimatedValueTotal)</span></div>
-        </div>
-        <hr />
-        <div class="row collection-value-total">
-            <div class="col-md-6">Collection Value Total:</div>
-            <div class="col-md-6"><span>@string.Format("{0:c}", Model.CollectionValueTotal)</span></div>
+
+    @Html.Partial("_coinCountBar", Model.CoinCountBar)
+    <div class="row">
+        <div class="col-md-12">
+            <a href="#" class="edit-label" onclick="refreshValueSummary(event);">refresh</a>
         </div>
     </div>
-</div>
+    <div class="row value-totals">
+        <div class="col-md-12">
+            <div class="row face-value-coin">
+                <div class="col-md-6">Face Value:</div>
+                <div class="col-md-6"><span>@string.Format("{0:c}", Model.CoinFaceValue)</span></div>
+            </div>
+            <div class="row face-value-total">
+                <div class="col-md-6">Face Value Total:</div>
+                <div class="col-md-6"><span>@string.Format("{0:c}", Model.FaceValueTotal)</span></div>
+            </div>
+            <hr />
+            <div class="row bullion-value-coin">
+                <div class="col-md-6">Bullion Value:</div>
+                <div class="col-md-6"><span>@string.Format("{0:c}", Model.CoinBullionValue)</span></div>
+            </div>
+            <div class="row bullion-value-total">
+                <div class="col-md-6">Bullion Value Total:</div>
+                <div class="col-md-6"><span>@string.Format("{0:c}", Model.BullionValueTotal)</span></div>
+            </div>
+            <hr />
+            <div class="row estimated-value-total">
+                <div class="col-md-6">Est. Value Total:</div>
+                <div class="col-md-6"><span>@string.Format("{0:c}", Model.EstimatedValueTotal)</span></div>
+            </div>
+            <hr />
+            <div class="row collection-value-total">
+                <div class="col-md-6">Collection Total:</div>
+                <div class="col-md-6"><span>@string.Format("{0:c}", Model.CollectionValueTotal)</span></div>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+
+    function refreshValueSummary(e) {
+        var checklistId = $('#hidChecklistId').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("RefreshChecklistValueSummary", "CbChecklist")?checklistId=' + checklistId,
+            success: function (result) {
+                $('#checklistValueSummary').html(result);
+            }
+        });
+    }
+</script>
 
 

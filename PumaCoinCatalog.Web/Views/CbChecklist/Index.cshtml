@@ -5,11 +5,11 @@
 }
 
 @section pageHeader {
-<div class="coin-breadcrumb">
-    <a href="@Url.Action("Details", "CbCollection", new { collectionId = Model.Collection.Id })">@Model.Collection.Title</a>
-    <span>&#x25BA;</span>    
-    @Model.Title
-</div>
+    <div class="coin-breadcrumb">
+        <a href="@Url.Action("Details", "CbCollection", new { collectionId = Model.Collection.Id })">@Model.Collection.Title</a>
+        <span>&#x25BA;</span>
+        @Model.Title
+    </div>
 }
 
 <style type="text/css">
@@ -27,13 +27,15 @@
         <div class="type-details">
             <div class="row">
                 <div class="col-md-5">
-                    @Html.Partial("_checklistTypeDetails", @Model.TypeDetails)                    
+                    @Html.Partial("_checklistTypeDetails", @Model.TypeDetails)
                 </div>
                 <div class="col-md-3">
-                    @Html.Partial("_valueSummary", Model.ValueSummary)
+                    <div id="checklistValueSummary">
+                        @Html.Partial("_valueSummary", Model.ValueSummary)
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    @Html.Partial("../CbCoinData/_coinImageSmall", Model.TypeDetails.ImageViewModel)                    
+                    @Html.Partial("../CbCoinData/_coinImageSmall", Model.TypeDetails.ImageViewModel)
                 </div>
             </div>
         </div>
@@ -282,7 +284,7 @@
                     var shouldExclude = $(checkbox).prop("checked");
                     if (shouldExclude) $(this).hide();
                 });
-            }            
+            }
         });
     </script>
 }

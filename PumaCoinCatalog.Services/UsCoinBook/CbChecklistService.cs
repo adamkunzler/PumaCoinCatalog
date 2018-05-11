@@ -197,7 +197,7 @@ namespace PumaCoinCatalog.Services.UsCoinBook
                 {
                     total += coin.ValueEstimate;
                 }
-                else if (meltValue > 0)
+                else if (meltValue > 0 && meltValue > faceValue)
                 {
                     total += meltValue;
                 }

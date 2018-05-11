@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace PumaCoinCatalog.Web.Models.CbCollection
+﻿namespace PumaCoinCatalog.Web.Models.CbCollection
 {
     public class CbChecklistValueSummaryViewModel
     {
@@ -15,8 +10,6 @@ namespace PumaCoinCatalog.Web.Models.CbCollection
         public decimal EstimatedValueTotal { get; set; }
         public decimal CollectionValueTotal { get; set; }
 
-        public int TotalCoinsInChecklist { get; set; }
-        public int TotalCoinsCollected { get; set; }
-        public int TotalCoinsPercentage { get; set; }
+        public CoinCountBarViewModel CoinCountBar { get; set; }
     }
 }

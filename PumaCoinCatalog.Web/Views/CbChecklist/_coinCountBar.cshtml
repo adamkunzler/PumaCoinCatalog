@@ -1,0 +1,10 @@
+﻿@model PumaCoinCatalog.Web.Models.CbCollection.CoinCountBarViewModel
+
+<div class="coins-in-collection">
+    <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar"
+             aria-valuenow="@Model.TotalCoinsCollected" aria-valuemin="0" aria-valuemax="@Model.TotalCoinsInChecklist"
+             style="width: @Model.TotalCoinsPercentage%;"></div>
+    </div>
+    <span class="progress-label">Total Coins in Collection: @Model.TotalCoinsCollected / @Model.TotalCoinsInChecklist </span>
+</div>

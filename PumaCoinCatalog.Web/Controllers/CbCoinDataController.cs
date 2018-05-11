@@ -20,7 +20,7 @@ namespace PumaCoinCatalog.Web.Controllers
         }
 
         // GET: CbCoinData
-        public ActionResult Index(string countryTitle = "United States of America")
+        public ActionResult Index(string countryTitle = "USA")
         {
             var data = _cbCoinDataService.GetCountry(countryTitle);
             var model = data.Map();

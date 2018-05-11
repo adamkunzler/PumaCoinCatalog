@@ -1,4 +1,5 @@
-﻿using PumaCoinCatalog.Models.UsaCoinBook;
+﻿using PumaCoinCatalog.Models;
+using PumaCoinCatalog.Models.UsaCoinBook;
 using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
 using PumaCoinCatalog.Services.UsCoinBook;
 using PumaCoinCatalog.UsCoinBook.Services;
@@ -64,23 +65,36 @@ namespace PumaCoinCatalog.Web.Controllers
                         Title = type.Title
                     }
                 },
-                ValueSummary = new CbChecklistValueSummaryViewModel
-                {
-                   CoinBullionValue = valueSummary.CoinBullionValue,
-                   CoinFaceValue = valueSummary.CoinFaceValue,
-                   FaceValueTotal = valueSummary.FaceValueTotal,
-                   BullionValueTotal = valueSummary.BullionValueTotal,
-                   EstimatedValueTotal = valueSummary.EstimatedValueTotal,
-                   CollectionValueTotal = valueSummary.CollectionValueTotal,
-                   TotalCoinsInChecklist = valueSummary.TotalCoinsInChecklist,
-                   TotalCoinsCollected = valueSummary.TotalCoinsCollected,
-                   TotalCoinsPercentage = valueSummary.TotalCoinsPercentage
-                },
+                ValueSummary = GetValueSummaryViewModel(valueSummary),
                 Coins = checklist.Coins.Map()
             };
 
             return View(model);
         }
+
+        #region Private Methods
+
+        private CbChecklistValueSummaryViewModel GetValueSummaryViewModel(CbChecklistValueSummary valueSummary)
+        {
+            var model = new CbChecklistValueSummaryViewModel
+            {
+                CoinBullionValue = valueSummary.CoinBullionValue,
+                CoinFaceValue = valueSummary.CoinFaceValue,
+                FaceValueTotal = valueSummary.FaceValueTotal,
+                BullionValueTotal = valueSummary.BullionValueTotal,
+                EstimatedValueTotal = valueSummary.EstimatedValueTotal,
+                CollectionValueTotal = valueSummary.CollectionValueTotal,
+                CoinCountBar = new CoinCountBarViewModel
+                {
+                    TotalCoinsInChecklist = valueSummary.TotalCoinsInChecklist,
+                    TotalCoinsCollected = valueSummary.TotalCoinsCollected,
+                    TotalCoinsPercentage = valueSummary.TotalCoinsPercentage
+                }
+            };
+            return model;
+        }
+
+        #endregion Private Methods
 
         #region Ajax
 
@@ -138,6 +152,14 @@ namespace PumaCoinCatalog.Web.Controllers
         {
             _checklistService.UpdateChecklistTitle(checklistId, title);
             return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult RefreshChecklistValueSummary(int checklistId)
+        {
+            var valueSummary = _checklistService.GetChecklistValueSummary(checklistId);
+            var model = GetValueSummaryViewModel(valueSummary);
+            return PartialView("_valueSummary", model);
         }
 
         #endregion Ajax
