@@ -7,13 +7,6 @@
                 <form role="form" id="formNewChecklist" method="post">
                     <div class="row form-group">
                         <div class="col-md-3">
-                            <label for="checklistTitle">Checklist Title</label>
-                            <input type="text" id="checklistTitle" name="title" class="form-control" />
-                            <span id="errTitle" class="has-error" style="display: none;">Give your checklist a title por favor</span>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-3">
                             <div id="divCountries">
                                 @Html.Partial("_ddlCbChecklistCountries", Model.CountryDropDownViewModel)
                             </div>
@@ -34,13 +27,19 @@
                             </div>
                         </div>
                     </div>
-                    <br />
-                    <br />
-                    <br />
                     <div class="row form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <label for="checklistTitle">Checklist Title</label>
+                            <input type="text" id="checklistTitle" name="title" class="form-control" style="width: 100%;" />
+                            <span id="errTitle" class="has-error" style="display: none;">Give your checklist a title por favor</span>
+                        </div>                        
+                    </div>                    
+                    <div class="row form-group">
+                        <div class="col-md-3">
                             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="createChecklist();">Create the Checklist</button>
-                            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="cancelCreateChecklist();">Cancel</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="cancelCreateChecklist();">Cancel</button>
                         </div>
                     </div>
                 </form>

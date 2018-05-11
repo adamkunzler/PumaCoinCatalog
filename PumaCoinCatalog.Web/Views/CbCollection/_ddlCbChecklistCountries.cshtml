@@ -1,6 +1,6 @@
 ﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbChecklistCountryDropDownModel
 
-<label for="ddlCountries">Choose a country:</label>
+<label for="ddlCountries">Country:</label>
 @Html.DropDownListFor(
     x => x.SelectedCountryId,
     new SelectList(Model.Countries, "Value", "Text"),

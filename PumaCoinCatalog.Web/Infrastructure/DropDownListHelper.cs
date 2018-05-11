@@ -48,7 +48,7 @@ namespace PumaCoinCatalog.Web.Infrastructure
 
         public static IEnumerable<SelectListItem> ToSelectListItems(IList<CbType> items)
         {
-            var selectList = items.Select(x => new SelectListItem { Text = x.Title, Value = x.Id.ToString() });
+            var selectList = items.Select(x => new SelectListItem { Text = $"{x.Title} ({x.BeginDate} - {x.EndDate})", Value = x.Id.ToString() });
             return selectList;
         }
     }

@@ -13,7 +13,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 /* CoinData */
@@ -237,4 +237,19 @@ select.form-control {
 
 .edit-label {
     font-size: 12px;
+}
+
+@media (max-width: 991px) {
+    .header {
+        height: 40px !important;        
+    }
+
+    article.content {
+        margin-top: 40px;
+    }
+
+    .header-block .coin-breadcrumb {
+        font-size: 18px;
+        margin-left: 10px;
+    }
 }

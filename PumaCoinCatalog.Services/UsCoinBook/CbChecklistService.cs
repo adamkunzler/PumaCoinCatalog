@@ -30,7 +30,11 @@ namespace PumaCoinCatalog.Services.UsCoinBook
 
         public IList<CbChecklist> GetChecklistByCollection(int collectionId)
         {
-            var data = _context.CbChecklists.Where(x => x.Collection.Id == collectionId).ToList();
+            var data = _context.CbChecklists
+                                .Where(x => x.Collection.Id == collectionId)
+                                .OrderBy(x => x.Type.Variety.Denomination.FaceValue)
+                                .ThenBy(x => x.Type.BeginDate)
+                                .ToList();
             return data;
         }
 

@@ -1,6 +1,6 @@
 ﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbChecklistDenominationDropDownModel
 
-<label for="ddlDenominations">Choose a denomination:</label>
+<label for="ddlDenominations">Denomination:</label>
 @Html.DropDownListFor(
     x => x.SelectedDenominationId,
     new SelectList(Model.Denominations, "Value", "Text"),

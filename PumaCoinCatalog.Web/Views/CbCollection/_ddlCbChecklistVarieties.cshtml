@@ -1,6 +1,6 @@
 ﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbChecklistVarietyDropDownModel
 
-<label for="ddlVarieties">Choose a variety:</label>
+<label for="ddlVarieties">Variety:</label>
 @Html.DropDownListFor(
     x => x.SelectedVarietyId,
     new SelectList(Model.Varieties, "Value", "Text"),

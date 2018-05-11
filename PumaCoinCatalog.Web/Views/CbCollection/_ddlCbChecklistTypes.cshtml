@@ -1,6 +1,6 @@
 ﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbChecklistTypeDropDownModel
 
-<label for="ddlTypes">Choose a type:</label>
+<label for="ddlTypes">Type:</label>
 @Html.DropDownListFor(
     x => x.SelectedTypeId,
     new SelectList(Model.Types, "Value", "Text"),

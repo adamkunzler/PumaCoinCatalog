@@ -21,7 +21,8 @@
 
     <br />
 
-    @Html.Partial("_newChecklist", Model.NewChecklistViewModel)    
+
+    @Html.Partial("_newChecklist", Model.NewChecklistViewModel)
 
     <br />
 
@@ -52,10 +53,12 @@
 
         function showCreateChecklist() {
             $("#divNewChecklist").toggle();
+            $("#divActions").toggle();
         }
 
         function cancelCreateChecklist() {
             $("#divNewChecklist").toggle();
+            $("#divActions").toggle();
         }
 
         function createChecklist() {
@@ -79,7 +82,7 @@
 
         //
         // when a country is changed, update the denominations drop down
-        //        
+        //
         function ddlCountriesChange() {
             var countryId = $("#ddlCountries").val();
 
@@ -93,7 +96,7 @@
                 }
             });
         }
-        
+
         //
         // when a denomination is changed, update the varieties drop down
         //
@@ -109,13 +112,13 @@
                 }
             });
         }
-        
+
         //
         // when a variety is changed, update the types drop down
-        //        
+        //
         function ddlVarietiesChange() {
             var varietyId = $("#ddlVarieties").val();
-            
+
             $.ajax({
                 type: 'POST',
                 url: '/CbCollection/GetCbTypesDropDown?varietyId=' + varietyId,
@@ -123,6 +126,6 @@
                     $("#divTypes").html(result);
                 }
             });
-        }        
+        }
     </script>
 }
