@@ -32,7 +32,7 @@
             <ul>
                 @foreach (var checklist in Model.Checklists)
                 {
-                    <li><a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Id })">@checklist.Title</a></li>
+                    <li><a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a></li>
                 }
             </ul>
         }

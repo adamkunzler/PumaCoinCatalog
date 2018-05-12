@@ -103,6 +103,7 @@ namespace PumaCoinCatalog.UsCoinBook.Services
             // sort everything
             data.Coins = data.Coins
                              .OrderBy(x => x.Year)
+                             .ThenBy(x => x.Details)
                              .ThenBy(x => x.MintMark)
                              .ToList();
 

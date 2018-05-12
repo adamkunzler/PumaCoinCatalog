@@ -74,7 +74,7 @@ namespace PumaCoinCatalog.Web.Controllers
 
         #region Private Methods
 
-        private CbChecklistValueSummaryViewModel GetValueSummaryViewModel(CbChecklistValueSummary valueSummary)
+        public static CbChecklistValueSummaryViewModel GetValueSummaryViewModel(CbChecklistValueSummary valueSummary)
         {
             var model = new CbChecklistValueSummaryViewModel
             {

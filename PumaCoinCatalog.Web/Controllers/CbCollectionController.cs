@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using PumaCoinCatalog.Web.Infrastructure;
 using System.IO;
+using PumaCoinCatalog.UsCoinBook.Services;
+using PumaCoinCatalog.Web.Models.CbCoinData;
 
 namespace PumaCoinCatalog.Web.Controllers
 {
@@ -16,12 +18,14 @@ namespace PumaCoinCatalog.Web.Controllers
         private readonly CbCollectionService _collectionService;
         private readonly CbChecklistService _checklistService;
         private readonly CbGeneralService _generalService;
+        private readonly CbCoinDataService _cbCoinDataService;
 
         public CbCollectionController()
         {
             _collectionService = new CbCollectionService();
-            _checklistService = new CbChecklistService();
+            _checklistService = new CbChecklistService();            
             _generalService = new CbGeneralService();
+            _cbCoinDataService = new CbCoinDataService();
         }
 
         // GET: CbCollection
@@ -63,11 +67,48 @@ namespace PumaCoinCatalog.Web.Controllers
                 var model = new CbCollectionDetailsViewModel
                 {
                     Id = collection.Id,
-                    Title = collection.Title
+                    Title = collection.Title,
+                    Checklists = new List<CbCollectionChecklistViewModel>()
                 };
 
                 var checklists = _checklistService.GetChecklistByCollection(collectionId);
-                model.Checklists = checklists.Map();
+                foreach(var cbChecklist in checklists)
+                {
+                    var checklist = _checklistService.GetChecklist(cbChecklist.Id);
+                    var type = _cbCoinDataService.GetType(checklist.Type.Id);
+                    var valueSummary = _checklistService.GetChecklistValueSummary(checklist.Id);
+
+                    var chkModel = new CbCollectionChecklistViewModel
+                    {
+                        Checklist = cbChecklist.Map(),
+                        TypeDetails = new CbChecklistTypeDetailsViewModel
+                        {
+                            DenominationId = type.Variety.Denomination.Id,
+                            DenominationTitle = type.Variety.Denomination.Title,
+                            VarietyId = type.Variety.Id,
+                            VarietyTitle = type.Variety.Title,
+                            TypeId = type.Id,
+                            TypeTitle = type.Title,
+                            ChecklistId = checklist.Id,
+                            ChecklistTitle = checklist.Title,
+                            BeginDate = type.BeginDate,
+                            EndDate = type.EndDate,
+                            MetalComposition = type.MetalComposition,
+                            Diameter = type.Diameter,
+                            Mass = type.Mass,
+                            MeltValue = type.MeltValue,
+                            SourceUri = type.Variety.SourceUri,
+                            ImageViewModel = new CbCoinImageViewModel
+                            {
+                                ObverseImageUri = type.ObverseImageUri,
+                                ReverseImageUri = type.ReverseImageUri,
+                                Title = type.Title
+                            }
+                        },
+                        ValueSummary = CbChecklistController.GetValueSummaryViewModel(valueSummary)
+                    };
+                    model.Checklists.Add(chkModel);
+                }
 
                 model.NewChecklistViewModel = GetNewChecklistViewModel(collection.Id);
 
