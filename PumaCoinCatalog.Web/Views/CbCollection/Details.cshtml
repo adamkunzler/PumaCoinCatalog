@@ -12,6 +12,31 @@
     </div>
 }
 
+<style type="text/css">
+    .cbchecklist-row {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .cbchecklist-row .progress {
+        height: 25px;
+    }
+
+        .cbchecklist-row .progress-label {
+            margin-top: -25px;
+        }
+
+        .cbchecklist-row .image-coin-type-small {
+            max-width: 45%;
+            display: inline;
+        }
+
+        .middle {
+            position: relative;            
+            transform: translateY(25%);
+        }    
+</style>
+
 <div id="divCollectionDetailsContainer">
     @Html.HiddenFor(x => x.Id, new { id = "hidCollectionId" })
 
@@ -26,20 +51,37 @@
 
     <br />
 
-    <div id="divChecklists" class="row">
+    <div id="divChecklists">
         @if (Model.Checklists.Any())
+    {
+        @*<ul>
+            @foreach (var checklist in Model.Checklists)
+            {
+                <li><a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a></li>
+            }
+        </ul>*@
+        foreach (var checklist in Model.Checklists)
         {
-            <ul>
-                @foreach (var checklist in Model.Checklists)
-                {
-                    <li><a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a></li>
-                }
-            </ul>
+            <div class="row cbchecklist-row">
+                <div class="col-md-1">
+                    @Html.Partial("../CbCoinData/_coinImageSmall", checklist.TypeDetails.ImageViewModel)
+                </div>
+                <div class="col-md-3 middle">
+                    <a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a>
+                </div>
+                <div class="col-md-3 middle">
+                    @Html.Partial("../CbChecklist/_coinCountBar", checklist.ValueSummary.CoinCountBar)
+                </div>
+                <div class="col-md-3 middle">
+                    <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal</span>
+                </div>
+            </div>
         }
-        else
-        {
-            <h3>No checklists have been created.</h3>
-        }
+}
+else
+{
+    <h3>No checklists have been created.</h3>
+}
     </div>
 </div>
 
