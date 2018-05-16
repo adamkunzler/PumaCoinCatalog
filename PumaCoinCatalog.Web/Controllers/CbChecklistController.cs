@@ -127,6 +127,13 @@ namespace PumaCoinCatalog.Web.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateChecklistCoinQuanity(int checklistCoinId, int quantity)
+        {
+            _checklistService.UpdateChecklistCoinQuantity(checklistCoinId, quantity);
+            return Json(new { result = "success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult UpdateChecklistCoinGrade(int checklistCoinId, CbGrade grade)
         {
             _checklistService.UpdateChecklistCoinGrade(checklistCoinId, grade);

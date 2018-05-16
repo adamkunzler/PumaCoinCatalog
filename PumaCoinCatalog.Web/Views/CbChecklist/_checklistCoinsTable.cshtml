@@ -26,6 +26,7 @@
             <th style="text-align: center;">Grade</th>
             <th style="text-align: center;">Est. Value</th>
             <th style="text-align: center;">Mintage</th>
+            <th style="text-align: center;">Quantity</th>
             <th></th>
             <th style="text-align: center;">Exclude?</th>
         </tr>
@@ -61,9 +62,10 @@
                     else
                     { <span>@string.Format("{0:0,0}", coin.Coin.Mintage)</span>}
                 </td>
-                <td>
-                    
+                <td style="text-align: right; width: 100px;">
+                    <input type="text" class="form-control quantity-value-textbox" value="@coin.Quantity" style="text-align: right;" />
                 </td>
+                <td></td>
                 <td style="text-align: center;">
                     <label>
                         <input class="checkbox should-exclude-checkbox" type="checkbox" @(Convert.ToBoolean(coin.ShouldExclude) == true ? "checked='checked'" : string.Empty) />

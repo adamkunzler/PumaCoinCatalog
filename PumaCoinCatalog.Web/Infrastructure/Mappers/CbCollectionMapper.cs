@@ -81,6 +81,7 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                 InCollection = checklistCoin.InCollection,
                 ShouldExclude = checklistCoin.ShouldExclude,
                 ValueEstimate = checklistCoin.ValueEstimate,
+                Quantity = checklistCoin.Quantity,
                 Grade = checklistCoin.Grade,
                 Coin = checklistCoin.Coin.Map(),
                 Checklist = new CbChecklistViewModel

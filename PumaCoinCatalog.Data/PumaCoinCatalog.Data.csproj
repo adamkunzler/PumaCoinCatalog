@@ -119,6 +119,14 @@
     <Compile Include="Migrations\201805052023405_addCbChecklistModelsAndConfigs.Designer.cs">
       <DependentUpon>201805052023405_addCbChecklistModelsAndConfigs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805161550175_addQuantityToChecklistCoin.cs" />
+    <Compile Include="Migrations\201805161550175_addQuantityToChecklistCoin.Designer.cs">
+      <DependentUpon>201805161550175_addQuantityToChecklistCoin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805161601121_queWhat.cs" />
+    <Compile Include="Migrations\201805161601121_queWhat.Designer.cs">
+      <DependentUpon>201805161601121_queWhat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +179,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805052023405_addCbChecklistModelsAndConfigs.resx">
       <DependentUpon>201805052023405_addCbChecklistModelsAndConfigs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805161550175_addQuantityToChecklistCoin.resx">
+      <DependentUpon>201805161550175_addQuantityToChecklistCoin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805161601121_queWhat.resx">
+      <DependentUpon>201805161601121_queWhat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

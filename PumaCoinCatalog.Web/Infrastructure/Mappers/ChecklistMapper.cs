@@ -54,6 +54,7 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
                     AdamGrade = coin.AdamGrade,
                     InCollection = coin.InCollection,
                     ValueEstimate = coin.ValueEstimate,
+                    Quantity = coin.Quantity,
                     ShouldExclude = coin.ShouldExclude,
                     CoinModel = coin.Coin.Map()
                 };

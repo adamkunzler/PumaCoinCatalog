@@ -132,6 +132,16 @@ namespace PumaCoinCatalog.Services.UsCoinBook
             _context.SaveChanges();
         }
 
+        public void UpdateChecklistCoinQuantity(int checklistCoinId, int quantity)
+        {
+            var checklistCoin = _context.CbChecklistCoins.SingleOrDefault(x => x.Id == checklistCoinId);
+            if (checklistCoin == null) throw new Exception("CbChecklistCoin not found: " + checklistCoinId);
+
+            checklistCoin.Quantity = quantity;
+
+            _context.SaveChanges();
+        }
+
         public void UpdateChecklistTitle(int checklistId, string title)
         {
             var data = _context.CbChecklists.SingleOrDefault(x => x.Id == checklistId);

@@ -7,6 +7,7 @@
         public CbGrade Grade { get; set; }
         public decimal ValueEstimate { get; set; }
         public bool ShouldExclude { get; set; }
+        public int Quantity { get; set; }
 
         public virtual CbChecklist Checklist { get; set; }
         public virtual CbCoin Coin { get; set; }

@@ -1,4 +1,6 @@
 ﻿@model PumaCoinCatalog.Web.Models.CbCollection.CbCollectionDetailsViewModel
+@using System.Collections.Generic
+
 
 @{
     ViewBag.Title = Model.Title;
@@ -18,9 +20,9 @@
         margin-bottom: 10px;
     }
 
-    .cbchecklist-row .progress {
-        height: 25px;
-    }
+        .cbchecklist-row .progress {
+            height: 25px;
+        }
 
         .cbchecklist-row .progress-label {
             margin-top: -25px;
@@ -31,11 +33,16 @@
             display: inline;
         }
 
-        .middle {
-            position: relative;            
-            transform: translateY(25%);
-        }    
+    .middle {
+        position: relative;
+        transform: translateY(25%);
+    }
 </style>
+
+@{
+    var totalValueOfCollection = Model.Checklists.ToList().Sum(x => x.ValueSummary.CollectionValueTotal);
+    var totalCoinsInCollection = Model.Checklists.ToList().Sum(x => x.ValueSummary.CoinCountBar.TotalCoinsCollected);
+}
 
 <div id="divCollectionDetailsContainer">
     @Html.HiddenFor(x => x.Id, new { id = "hidCollectionId" })
@@ -53,35 +60,39 @@
 
     <div id="divChecklists">
         @if (Model.Checklists.Any())
-    {
-        @*<ul>
-            @foreach (var checklist in Model.Checklists)
-            {
-                <li><a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a></li>
-            }
-        </ul>*@
-        foreach (var checklist in Model.Checklists)
         {
-            <div class="row cbchecklist-row">
-                <div class="col-md-1">
-                    @Html.Partial("../CbCoinData/_coinImageSmall", checklist.TypeDetails.ImageViewModel)
+            <div>Collection Value: <span>@totalValueOfCollection</span></div>
+            <div># of Coins Collection: <span>@totalCoinsInCollection</span></div>
+            <hr />
+            foreach (var checklist in Model.Checklists)
+            {
+                <div class="row cbchecklist-row">
+                    <div class="col-md-1 middle">
+                        <span>@checklist.TypeDetails.DenominationTitle</span>
+                    </div>
+                    <div class="col-md-1">
+                        @Html.Partial("../CbCoinData/_coinImageSmall", checklist.TypeDetails.ImageViewModel)
+                    </div>
+                    <div class="col-md-3 middle">
+                        <a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a>
+                    </div>
+                    <div class="col-md-2 middle">
+                        <span>(@checklist.TypeDetails.BeginDate - @checklist.TypeDetails.EndDate)</span>
+                    </div>
+                    <div class="col-md-2 middle">
+                        @Html.Partial("../CbChecklist/_coinCountBar", checklist.ValueSummary.CoinCountBar)
+                    </div>
+                    <div class="col-md-3 middle">
+                        <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal</span>
+                    </div>
                 </div>
-                <div class="col-md-3 middle">
-                    <a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a>
-                </div>
-                <div class="col-md-3 middle">
-                    @Html.Partial("../CbChecklist/_coinCountBar", checklist.ValueSummary.CoinCountBar)
-                </div>
-                <div class="col-md-3 middle">
-                    <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal</span>
-                </div>
-            </div>
+                <hr />
+            }
         }
-}
-else
-{
-    <h3>No checklists have been created.</h3>
-}
+        else
+        {
+            <h3>No checklists have been created.</h3>
+        }
     </div>
 </div>
 

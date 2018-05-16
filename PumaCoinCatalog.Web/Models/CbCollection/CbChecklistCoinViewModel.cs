@@ -9,6 +9,7 @@ namespace PumaCoinCatalog.Web.Models.CbCollection
         public bool InCollection { get; set; }
         public CbGrade Grade { get; set; }
         public decimal ValueEstimate { get; set; }
+        public int Quantity { get; set; }
         public bool ShouldExclude { get; set; }
 
         public CbChecklistViewModel Checklist { get; set; }

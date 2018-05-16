@@ -209,6 +209,35 @@
             });
 
             //
+            // update estimated value
+            //
+            $(".quantity-value-textbox").blur(function () {
+                var thisthis = this;
+                var quantity = $(this).val();
+
+                if (quantity == '' || quantity == ' ') {
+                    quantity = 0;
+                }
+
+                if (!isNumeric(quantity)) {
+                    console.log('bad number');
+                    $(this).val('');
+                    return;
+                }
+
+                var checklistCoinId = getChecklistCoinId(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("UpdateChecklistCoinQuantity", "CbChecklist")?checklistCoinId=' + checklistCoinId + '&quantity=' + quantity,
+                    success: function (result) {
+                        //console.log('quantity updated successfully');
+                        addCoinToChecklist(thisthis);
+                    }
+                });
+            });
+
+            //
             // filter table - show all
             //
             $("#btnShowAll").on("click", function () {

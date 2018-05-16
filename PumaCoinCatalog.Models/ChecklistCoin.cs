@@ -8,6 +8,7 @@ namespace PumaCoinCatalog.Models
         public bool InCollection { get; set; }
         public short? AdamGrade { get; set; }        
         public decimal? ValueEstimate { get; set; }
+        public int Quantity { get; set; }
         public bool ShouldExclude { get; set; }
 
         public virtual Checklist Checklist { get; set; }
