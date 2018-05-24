@@ -131,6 +131,10 @@
     <Compile Include="Migrations\201805240237168_storedProcGetCollectionDetails.Designer.cs">
       <DependentUpon>201805240237168_storedProcGetCollectionDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805240348359_storedProcGetChecklistValueSummary_funcCalculateCbChecklistValue.cs" />
+    <Compile Include="Migrations\201805240348359_storedProcGetChecklistValueSummary_funcCalculateCbChecklistValue.Designer.cs">
+      <DependentUpon>201805240348359_storedProcGetChecklistValueSummary_funcCalculateCbChecklistValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805240237168_storedProcGetCollectionDetails.resx">
       <DependentUpon>201805240237168_storedProcGetCollectionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805240348359_storedProcGetChecklistValueSummary_funcCalculateCbChecklistValue.resx">
+      <DependentUpon>201805240348359_storedProcGetChecklistValueSummary_funcCalculateCbChecklistValue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

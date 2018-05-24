@@ -68,22 +68,22 @@
             {
                 <div class="row cbchecklist-row">
                     <div class="col-md-1 middle">
-                        <span>@checklist.TypeDetails.DenominationTitle</span>
+                        <span>@checklist.DenominationTitle</span>
                     </div>
                     <div class="col-md-1">
-                        @Html.Partial("../CbCoinData/_coinImageSmall", checklist.TypeDetails.ImageViewModel)
+                        @Html.Partial("../CbCoinData/_coinImageSmall", checklist.ImageViewModel)
                     </div>
                     <div class="col-md-3 middle">
-                        <a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.Checklist.Id })">@checklist.Checklist.Title</a>
+                        <a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.ChecklistId })">@checklist.ChecklistTitle</a>
                     </div>
                     <div class="col-md-2 middle">
-                        <span>(@checklist.TypeDetails.BeginDate - @checklist.TypeDetails.EndDate)</span>
+                        <span>(@checklist.BeginDate - @checklist.EndDate)</span>
                     </div>
                     <div class="col-md-2 middle">
                         @Html.Partial("../CbChecklist/_coinCountBar", checklist.ValueSummary.CoinCountBar)
                     </div>
                     <div class="col-md-3 middle">
-                        <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal</span>
+                        <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal.ToString("0.00")</span>
                     </div>
                 </div>
                 <hr />

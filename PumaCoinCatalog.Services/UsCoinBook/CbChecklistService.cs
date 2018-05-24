@@ -5,6 +5,7 @@ using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
 using PumaCoinCatalog.UsCoinBook.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -174,26 +175,35 @@ namespace PumaCoinCatalog.Services.UsCoinBook
 
         public CbChecklistValueSummary GetChecklistValueSummary(int checklistId)
         {
-            var checklist = _context.CbChecklists.SingleOrDefault(x => x.Id == checklistId);
-            if (checklist == null) throw new Exception("checklist not found: " + checklistId);
+            //var checklist = _context.CbChecklists.SingleOrDefault(x => x.Id == checklistId);
+            //if (checklist == null) throw new Exception("checklist not found: " + checklistId);
 
-            var checklistCoins = _context.CbChecklistCoins
-                                        .Where(x => x.Checklist.Id == checklistId && !x.ShouldExclude)
-                                        .ToList();
+            //var checklistCoins = _context.CbChecklistCoins
+            //                            .Where(x => x.Checklist.Id == checklistId && !x.ShouldExclude)
+            //                            .ToList();
+            var idParam = new SqlParameter
+            {
+                ParameterName = "ChecklistId",
+                Value = checklistId
+            };
 
-            var summary = new CbChecklistValueSummary();
-            summary.CoinBullionValue = checklist.Type.MeltValue;
-            summary.CoinFaceValue = checklist.Type.Variety.Denomination.FaceValue;
+            var summary = _context.Database
+                                .SqlQuery<CbChecklistValueSummary>("exec GetChecklistValueSummary @ChecklistId", idParam)
+                                .FirstOrDefault();
 
-            summary.FaceValueTotal = checklistCoins.Count(x => x.InCollection) * summary.CoinFaceValue;
-            summary.BullionValueTotal = checklistCoins.Count(x => x.InCollection) * summary.CoinBullionValue;
-            summary.EstimatedValueTotal = checklistCoins.Where(x => x.InCollection).Sum(x => x.ValueEstimate);
+            //var summary = new CbChecklistValueSummary();
+            //summary.CoinBullionValue = checklist.Type.MeltValue;
+            //summary.CoinFaceValue = checklist.Type.Variety.Denomination.FaceValue;
 
-            summary.CollectionValueTotal = CalculateCollectionValueTotal(checklistCoins, summary.CoinFaceValue, summary.CoinBullionValue);
+            //summary.FaceValueTotal = checklistCoins.Count(x => x.InCollection) * summary.CoinFaceValue;
+            //summary.BullionValueTotal = checklistCoins.Count(x => x.InCollection) * summary.CoinBullionValue;
+            //summary.EstimatedValueTotal = checklistCoins.Where(x => x.InCollection).Sum(x => x.ValueEstimate);
 
-            summary.TotalCoinsInChecklist = checklistCoins.Count();
-            summary.TotalCoinsCollected = checklistCoins.Where(x => x.InCollection).Count();
-            summary.TotalCoinsPercentage = (int)((summary.TotalCoinsCollected / (decimal)summary.TotalCoinsInChecklist) * 100);
+            //summary.CollectionValueTotal = CalculateCollectionValueTotal(checklistCoins, summary.CoinFaceValue, summary.CoinBullionValue);
+
+            //summary.TotalCoinsInChecklist = checklistCoins.Count();
+            //summary.TotalCoinsCollected = checklistCoins.Where(x => x.InCollection).Count();
+            //summary.TotalCoinsPercentage = (int)((summary.TotalCoinsCollected / (decimal)summary.TotalCoinsInChecklist) * 100);
 
             return summary;
         }

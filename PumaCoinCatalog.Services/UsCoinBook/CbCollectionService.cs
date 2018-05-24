@@ -1,10 +1,10 @@
 ﻿using PumaCoinCatalog.Data;
 using PumaCoinCatalog.Models.UsaCoinBook.Checklists;
+using PumaCoinCatalog.Services.UsCoinBook.StoredProcModels;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PumaCoinCatalog.Services.UsCoinBook
 {
@@ -33,6 +33,20 @@ namespace PumaCoinCatalog.Services.UsCoinBook
             var data = _context.CbCollections.SingleOrDefault(x => x.Id == id);
             if (data == null) throw new Exception("Collection not found.");
             return data;
+        }
+
+        public IList<GetCollectionDetailsModel> GetCollectionDetails(int collectionId)
+        {
+            var idParam = new SqlParameter
+            {
+                ParameterName = "CollectionId",
+                Value = collectionId
+            };
+
+            var data = _context.Database
+                               .SqlQuery<GetCollectionDetailsModel>("exec GetCollectionDetails @CollectionId", idParam)
+                               .ToList();
+            return data;            
         }
 
         public CbCollection CreateCollection(string title)

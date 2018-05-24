@@ -59,57 +59,54 @@ namespace PumaCoinCatalog.Web.Controllers
 
         public ActionResult Details(int collectionId)
         {
+            var currentId = 0;
             try
             {
                 if (collectionId <= 0) return new HttpStatusCodeResult(500, "Invalid collection Id");
 
+                // get data from db
                 var collection = _collectionService.GetCollection(collectionId);
+                var collectionDetails = _collectionService.GetCollectionDetails(collectionId);
+
                 var model = new CbCollectionDetailsViewModel
                 {
                     Id = collection.Id,
                     Title = collection.Title,
                     Checklists = new List<CbCollectionChecklistViewModel>()
                 };
-
-                var checklists = _checklistService.GetChecklistByCollection(collectionId);
-                foreach(var cbChecklist in checklists)
+                
+                foreach (var d in collectionDetails)
                 {
-                    var checklist = _checklistService.GetChecklist(cbChecklist.Id);
-                    var type = _cbCoinDataService.GetType(checklist.Type.Id);
-                    var valueSummary = _checklistService.GetChecklistValueSummary(checklist.Id);
-
+                    currentId = d.ChecklistId;                    
                     var chkModel = new CbCollectionChecklistViewModel
                     {
-                        Checklist = cbChecklist.Map(),
-                        TypeDetails = new CbChecklistTypeDetailsViewModel
+                        ChecklistId = d.ChecklistId,
+                        ChecklistTitle = d.ChecklistTitle,
+                        TypeId = d.TypeId,
+                        BeginDate = d.BeginDate,
+                        EndDate = d.EndDate,
+                        ImageViewModel = new CbCoinImageViewModel
                         {
-                            DenominationId = type.Variety.Denomination.Id,
-                            DenominationTitle = type.Variety.Denomination.Title,
-                            VarietyId = type.Variety.Id,
-                            VarietyTitle = type.Variety.Title,
-                            TypeId = type.Id,
-                            TypeTitle = type.Title,
-                            ChecklistId = checklist.Id,
-                            ChecklistTitle = checklist.Title,
-                            BeginDate = type.BeginDate,
-                            EndDate = type.EndDate,
-                            MetalComposition = type.MetalComposition,
-                            Diameter = type.Diameter,
-                            Mass = type.Mass,
-                            MeltValue = type.MeltValue,
-                            SourceUri = type.Variety.SourceUri,
-                            ImageViewModel = new CbCoinImageViewModel
+                            ObverseImageUri = d.ObverseImageUri,
+                            ReverseImageUri = d.ReverseImageUri,
+                            Title = d.ChecklistTitle
+                        },                        
+                        DenominationId = d.DenominationId,
+                        DenominationTitle = d.DenominationTitle,
+                        ValueSummary = new CbChecklistValueSummaryViewModel {
+                            CollectionValueTotal = d.CollectionValueTotal,
+                            CoinCountBar = new CoinCountBarViewModel
                             {
-                                ObverseImageUri = type.ObverseImageUri,
-                                ReverseImageUri = type.ReverseImageUri,
-                                Title = type.Title
+                                TotalCoinsCollected = d.TotalCoinsCollected,
+                                TotalCoinsInChecklist = d.TotalCoinsInChecklist,
+                                TotalCoinsPercentage = d.TotalCoinsPercentage
                             }
-                        },
-                        ValueSummary = CbChecklistController.GetValueSummaryViewModel(valueSummary)
+                        }
                     };
+
                     model.Checklists.Add(chkModel);
                 }
-
+                
                 model.NewChecklistViewModel = GetNewChecklistViewModel(collection.Id);
 
                 return View(model);

@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsCoinBook\CbCollectionService.cs" />
     <Compile Include="UsCoinBook\CbGeneralService.cs" />
+    <Compile Include="UsCoinBook\StoredProcModels\GetCollectionDetailsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PumaCoinCatalog.Data\PumaCoinCatalog.Data.csproj">
