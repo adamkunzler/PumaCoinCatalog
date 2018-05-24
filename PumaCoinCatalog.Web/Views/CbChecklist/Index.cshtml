@@ -209,7 +209,7 @@
             });
 
             //
-            // update estimated value
+            // update quantity
             //
             $(".quantity-value-textbox").blur(function () {
                 var thisthis = this;
@@ -229,7 +229,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '@Url.Action("UpdateChecklistCoinQuantity", "CbChecklist")?checklistCoinId=' + checklistCoinId + '&quantity=' + quantity,
+                    url: '@Url.Action("UpdateChecklistCoinQuanity", "CbChecklist")?checklistCoinId=' + checklistCoinId + '&quantity=' + quantity,
                     success: function (result) {
                         //console.log('quantity updated successfully');
                         addCoinToChecklist(thisthis);

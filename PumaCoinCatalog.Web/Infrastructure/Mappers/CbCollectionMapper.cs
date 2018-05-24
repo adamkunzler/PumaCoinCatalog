@@ -61,6 +61,37 @@ namespace PumaCoinCatalog.Web.Infrastructure.Mappers
             return model;
         }
 
+        public static IList<CbChecklistViewModel> MapSimple(this IList<CbChecklist> checklists)
+        {
+            var models = new List<CbChecklistViewModel>();
+
+            foreach (var c in checklists)
+            {
+                models.Add(c.MapSimple());
+            }
+
+            return models;
+        }
+
+        public static CbChecklistViewModel MapSimple(this CbChecklist checklist)
+        {
+            var model = new CbChecklistViewModel
+            {
+                Id = checklist.Id,
+                Title = checklist.Title,
+                LastModified = checklist.LastModified,
+                //Type = checklist.Type.Map(),
+                //Coins = checklist.Coins.Map(),
+                Collection = new CbCollectionViewModel
+                {
+                    Id = checklist.Collection.Id,
+                    Title = checklist.Collection.Title
+                }
+            };
+
+            return model;
+        }
+
         public static IList<CbChecklistCoinViewModel> Map(this IList<CbChecklistCoin> checklistCoins)
         {
             var models = new List<CbChecklistCoinViewModel>();

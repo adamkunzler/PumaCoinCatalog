@@ -127,6 +127,10 @@
     <Compile Include="Migrations\201805161601121_queWhat.Designer.cs">
       <DependentUpon>201805161601121_queWhat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805240237168_storedProcGetCollectionDetails.cs" />
+    <Compile Include="Migrations\201805240237168_storedProcGetCollectionDetails.Designer.cs">
+      <DependentUpon>201805240237168_storedProcGetCollectionDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805161601121_queWhat.resx">
       <DependentUpon>201805161601121_queWhat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805240237168_storedProcGetCollectionDetails.resx">
+      <DependentUpon>201805240237168_storedProcGetCollectionDetails.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

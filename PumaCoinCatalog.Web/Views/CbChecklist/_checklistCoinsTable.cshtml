@@ -63,7 +63,7 @@
                     { <span>@string.Format("{0:0,0}", coin.Coin.Mintage)</span>}
                 </td>
                 <td style="text-align: right; width: 100px;">
-                    <input type="text" class="form-control quantity-value-textbox" value="@coin.Quantity" style="text-align: right;" />
+                    <input type="number" min="0" class="form-control quantity-value-textbox" value="@coin.Quantity" style="text-align: right;" />
                 </td>
                 <td></td>
                 <td style="text-align: center;">

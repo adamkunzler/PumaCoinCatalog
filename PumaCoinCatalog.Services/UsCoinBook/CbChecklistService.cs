@@ -41,8 +41,8 @@ namespace PumaCoinCatalog.Services.UsCoinBook
         public CbChecklist CreateChecklist(string title, int collectionId, int typeId)
         {
             // check if checklist already exists
-            var exists = _context.CbChecklists.FirstOrDefault(x => x.Title == title);
-            if (exists != null) throw new Exception($"Checklist with title '{title}' already exists.");
+            //var exists = _context.CbChecklists.FirstOrDefault(x => x.Title == title);
+            //if (exists != null) throw new Exception($"Checklist with title '{title}' already exists.");
 
             var checklist = new CbChecklist
             {
