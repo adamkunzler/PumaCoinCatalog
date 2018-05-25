@@ -11,10 +11,7 @@ namespace PumaCoinCatalog.Console
     class Program
     {
         static void Main(string[] args)
-        {
-            //var scraper = new CoinDataScraper();
-            //var coinData = scraper.ScrapeData();
-
+        {            
             //LoadCoinData();
             //LoadCoinDataUsaCoinBook();
 
@@ -74,17 +71,7 @@ namespace PumaCoinCatalog.Console
             //System.Console.Write(json);
 
         }
-
-        private static void LoadCoinData()
-        {
-            var json = GetData("coinData2018.json");
-            var collection = JsonConvert.DeserializeObject<ScrapeCoinCollection>(json);
-
-            var context = new DataContext();
-            context.ScrapeCoinCollections.Add(collection);
-            context.SaveChanges();
-        }
-
+        
         private static void Log(string msg)
         {
             System.Console.WriteLine(msg);

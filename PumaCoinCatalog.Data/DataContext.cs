@@ -31,12 +31,7 @@ namespace PumaCoinCatalog.Data
         #endregion Initialization
 
         #region Models and Configuration
-        
-        public DbSet<ScrapeCoinCollection> ScrapeCoinCollections { get; set; }
-        public DbSet<ScrapeCoinCategory> ScrapeCoinCategories { get; set; }
-        public DbSet<ScrapeCoinType> ScrapeCoinTypes { get; set; }
-        public DbSet<ScrapeCoin> ScrapeCoins { get; set; }
-
+                
         public DbSet<CbCountry> CbCountries { get; set; }
         public DbSet<CbDenomination> CbDenominations { get; set; }
         public DbSet<CbVariety> CbVarieties { get; set; }
@@ -46,10 +41,7 @@ namespace PumaCoinCatalog.Data
         public DbSet<CbCollection> CbCollections { get; set; }
         public DbSet<CbChecklist> CbChecklists { get; set; }
         public DbSet<CbChecklistCoin> CbChecklistCoins { get; set; }
-
-        public DbSet<Checklist> Checklists { get; set; }
-        public DbSet<ChecklistCoin> ChecklistCoins { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);            
@@ -57,12 +49,7 @@ namespace PumaCoinCatalog.Data
             // conventions
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            // configurations            
-            modelBuilder.Configurations.Add(new ScrapeCoinCollectionConfig());
-            modelBuilder.Configurations.Add(new ScrapeCoinCategoryConfig());
-            modelBuilder.Configurations.Add(new ScrapeCoinTypeConfig());
-            modelBuilder.Configurations.Add(new ScrapeCoinConfig());
-
+            // configurations                        
             modelBuilder.Configurations.Add(new CbCountryConfig());
             modelBuilder.Configurations.Add(new CbDenominationConfig());
             modelBuilder.Configurations.Add(new CbVarietyConfig());
@@ -71,10 +58,7 @@ namespace PumaCoinCatalog.Data
 
             modelBuilder.Configurations.Add(new CbCollectionConfig());
             modelBuilder.Configurations.Add(new CbChecklistConfig());
-            modelBuilder.Configurations.Add(new CbChecklistCoinConfig());
-
-            modelBuilder.Configurations.Add(new ChecklistConfig());
-            modelBuilder.Configurations.Add(new ChecklistCoinConfig());
+            modelBuilder.Configurations.Add(new CbChecklistCoinConfig());            
         }
 
         #endregion Models and Configuration

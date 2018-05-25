@@ -162,21 +162,16 @@
     <Compile Include="Controllers\CbChecklistController.cs" />
     <Compile Include="Controllers\CbCoinDataController.cs" />
     <Compile Include="Controllers\CbCollectionController.cs" />
-    <Compile Include="Controllers\ChecklistController.cs" />
     <Compile Include="Controllers\CoinGradeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\CoinDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\ChecklistCalculator.cs" />
     <Compile Include="Infrastructure\DropDownListHelper.cs" />
     <Compile Include="Infrastructure\GradeHelper.cs" />
     <Compile Include="Infrastructure\LinkHelper.cs" />
     <Compile Include="Infrastructure\Mappers\CbCoinDataMapper.cs" />
     <Compile Include="Infrastructure\Mappers\CbCollectionMapper.cs" />
-    <Compile Include="Infrastructure\Mappers\ChecklistMapper.cs" />
-    <Compile Include="Infrastructure\Mappers\ScrapeCoinMapper.cs" />
     <Compile Include="Infrastructure\MvcExtensions.cs" />
     <Compile Include="Models\CbCoinData\CbCoinImageViewModel.cs" />
     <Compile Include="Models\CbCoinData\CbCoinViewModel.cs" />
@@ -194,14 +189,6 @@
     <Compile Include="Models\CbCollection\CbCollectionViewModel.cs" />
     <Compile Include="Models\CbCollection\CoinCountBarViewModel.cs" />
     <Compile Include="Models\CbCollection\NewChecklistViewModel.cs" />
-    <Compile Include="Models\Checklist\AllChecklistsModel.cs" />
-    <Compile Include="Models\Checklist\ChecklistExportModel.cs" />
-    <Compile Include="Models\Checklist\ChecklistModel.cs" />
-    <Compile Include="Models\Checklist\NewChecklistModel.cs" />
-    <Compile Include="Models\CoinData\CoinCategoryModel.cs" />
-    <Compile Include="Models\CoinData\CoinCollectionModel.cs" />
-    <Compile Include="Models\CoinData\CoinModel.cs" />
-    <Compile Include="Models\CoinData\CoinTypeModel.cs" />
     <Compile Include="Models\CoinGrade\CoinGradeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -274,26 +261,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\CoinData\Index.cshtml" />
     <Content Include="Theme\fonts\fontawesome-webfont.eot" />
     <Content Include="Theme\fonts\fontawesome-webfont.ttf" />
     <Content Include="Theme\fonts\fontawesome-webfont.woff" />
     <Content Include="Theme\fonts\fontawesome-webfont.woff2" />
     <Content Include="Theme\fonts\FontAwesome.otf" />
-    <Content Include="Views\CoinData\CoinCategory.cshtml" />
-    <Content Include="Views\CoinData\CoinType.cshtml" />
-    <Content Include="Views\CoinData\_coinListing.cshtml" />
-    <Content Include="Views\Checklist\Index.cshtml" />
-    <Content Include="Views\Checklist\NewChecklist.cshtml" />
-    <Content Include="Views\Checklist\AllChecklists.cshtml" />
-    <Content Include="Views\Checklist\_ddlCoinTypes.cshtml" />
-    <Content Include="Views\Checklist\_ddlCoinCategories.cshtml" />
-    <Content Include="Views\Checklist\_ddlCoinCollections.cshtml" />
     <Content Include="Views\CoinGrade\Index.cshtml" />
-    <Content Include="Views\Checklist\_checklistInfo.cshtml" />
-    <Content Include="Views\Checklist\_gradeSelectList.cshtml" />
-    <Content Include="Views\Checklist\_checklistCoinTable.cshtml" />
-    <Content Include="Views\Checklist\ChecklistTotals.cshtml" />
     <Content Include="Views\CbCoinData\Index.cshtml" />
     <Content Include="Views\CbCoinData\_denominations.cshtml" />
     <Content Include="Views\CbCoinData\Variety.cshtml" />

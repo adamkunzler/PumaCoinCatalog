@@ -55,12 +55,6 @@
     <Compile Include="Configuration\CbDenominationConfig.cs" />
     <Compile Include="Configuration\CbTypeConfig.cs" />
     <Compile Include="Configuration\CbVarietyConfig.cs" />
-    <Compile Include="Configuration\ChecklistCoinConfig.cs" />
-    <Compile Include="Configuration\ChecklistConfig.cs" />
-    <Compile Include="Configuration\ScrapeCoinCategoryConfig.cs" />
-    <Compile Include="Configuration\ScrapeCoinCollectionConfig.cs" />
-    <Compile Include="Configuration\ScrapeCoinConfig.cs" />
-    <Compile Include="Configuration\ScrapeCoinTypeConfig.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="DbConfiguration.cs" />
     <Compile Include="Migrations\201802211945234_initMigration.cs" />
@@ -140,10 +134,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\ListAllCoinsDetailed.sql" />
-    <Content Include="Scripts\UpdateVarietyImages.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201802211945234_initMigration.resx">

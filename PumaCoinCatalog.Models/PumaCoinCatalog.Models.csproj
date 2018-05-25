@@ -42,12 +42,6 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="CbChecklistValueSummary.cs" />
-    <Compile Include="Checklist.cs" />
-    <Compile Include="ChecklistCoin.cs" />
-    <Compile Include="ScrapeCoin.cs" />
-    <Compile Include="ScrapeCoinCategory.cs" />
-    <Compile Include="ScrapeCoinCollection.cs" />
-    <Compile Include="ScrapeCoinType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsaCoinBook\CbCoin.cs" />
     <Compile Include="UsaCoinBook\CbGrade.cs" />

@@ -57,7 +57,6 @@
   <ItemGroup>
     <Compile Include="BaseDataScraper.cs" />
     <Compile Include="CoinBookDataScraper.cs" />
-    <Compile Include="CoinDataScraper.cs" />
     <Compile Include="ImageUtil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,9 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="coinData2018.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
     <None Include="usaCoinBookData_coins_20180312.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

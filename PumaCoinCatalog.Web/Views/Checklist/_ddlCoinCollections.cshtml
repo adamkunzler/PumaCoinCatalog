@@ -1,7 +1,0 @@
-﻿@model PumaCoinCatalog.Web.Models.Checklist.CoinCollectionDropDownModel
-
-<label for="ddlCollections">Choose a collection:</label>
-@Html.DropDownListFor(
-    x => x.SelectedCollectionId,
-    new SelectList(Model.Collections, "Value", "Text"),
-    new { @class = "form-control", @id = "ddlCollections" })
