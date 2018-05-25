@@ -20,9 +20,22 @@ namespace PumaCoinCatalog.Console
 
             //LoadSpecificTypes();
 
+            ScrapeCoinImages();
+
             PressKeyToContinue();
-        }               
+        }
+
         
+
+        private static void ScrapeCoinImages()
+        {
+            var scrapeImages = new ScrapeImages();
+            scrapeImages.ScrapeVarietyImages();
+            scrapeImages.ScrapeTypeImages();
+
+            return;
+        }
+
         private static void LoadSpecificTypes()
         {            
             var scraper = new CoinBookDataScraper();

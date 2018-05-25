@@ -58,8 +58,7 @@ namespace PumaCoinCatalog.Web.Controllers
         }
 
         public ActionResult Details(int collectionId)
-        {
-            var currentId = 0;
+        {            
             try
             {
                 if (collectionId <= 0) return new HttpStatusCodeResult(500, "Invalid collection Id");
@@ -76,8 +75,7 @@ namespace PumaCoinCatalog.Web.Controllers
                 };
                 
                 foreach (var d in collectionDetails)
-                {
-                    currentId = d.ChecklistId;                    
+                {                    
                     var chkModel = new CbCollectionChecklistViewModel
                     {
                         ChecklistId = d.ChecklistId,
