@@ -28,23 +28,9 @@ namespace PumaCoinCatalog.Services.UsCoinBook
             _context = context;
             _coinDataService = new CbCoinDataService(context);
         }
-
-        public IList<CbChecklist> GetChecklistByCollection(int collectionId)
-        {
-            var data = _context.CbChecklists
-                                .Where(x => x.Collection.Id == collectionId)
-                                .OrderBy(x => x.Type.Variety.Denomination.FaceValue)
-                                .ThenBy(x => x.Type.BeginDate)
-                                .ToList();
-            return data;
-        }
-
+        
         public CbChecklist CreateChecklist(string title, int collectionId, int typeId)
         {
-            // check if checklist already exists
-            //var exists = _context.CbChecklists.FirstOrDefault(x => x.Title == title);
-            //if (exists != null) throw new Exception($"Checklist with title '{title}' already exists.");
-
             var checklist = new CbChecklist
             {
                 Title = title,
@@ -91,7 +77,7 @@ namespace PumaCoinCatalog.Services.UsCoinBook
                 var coin = new CbChecklistCoin
                 {
                     Coin = cbCoin,
-                    Grade = Models.UsaCoinBook.CbGrade.NotGraded,
+                    Grade = CbGrade.NotGraded,
                     Checklist = checklist,
                     InCollection = false,
                     ShouldExclude = false,
@@ -155,7 +141,12 @@ namespace PumaCoinCatalog.Services.UsCoinBook
 
         public CbChecklist GetChecklist(int checklistId)
         {
-            var data = _context.CbChecklists.SingleOrDefault(x => x.Id == checklistId);
+            var data = _context.CbChecklists
+                               .Include("Collection")
+                               .Include("Type")
+                               .Include("Type.Variety")
+                               .Include("Type.Variety.Denomination")
+                               .SingleOrDefault(x => x.Id == checklistId);
             if (data == null) throw new Exception($"Checklist not found: id = {checklistId}");
             return data;
         }
@@ -174,13 +165,7 @@ namespace PumaCoinCatalog.Services.UsCoinBook
         }
 
         public CbChecklistValueSummary GetChecklistValueSummary(int checklistId)
-        {
-            //var checklist = _context.CbChecklists.SingleOrDefault(x => x.Id == checklistId);
-            //if (checklist == null) throw new Exception("checklist not found: " + checklistId);
-
-            //var checklistCoins = _context.CbChecklistCoins
-            //                            .Where(x => x.Checklist.Id == checklistId && !x.ShouldExclude)
-            //                            .ToList();
+        {            
             var idParam = new SqlParameter
             {
                 ParameterName = "ChecklistId",
@@ -189,49 +174,8 @@ namespace PumaCoinCatalog.Services.UsCoinBook
 
             var summary = _context.Database
                                 .SqlQuery<CbChecklistValueSummary>("exec GetChecklistValueSummary @ChecklistId", idParam)
-                                .FirstOrDefault();
-
-            //var summary = new CbChecklistValueSummary();
-            //summary.CoinBullionValue = checklist.Type.MeltValue;
-            //summary.CoinFaceValue = checklist.Type.Variety.Denomination.FaceValue;
-
-            //summary.FaceValueTotal = checklistCoins.Count(x => x.InCollection) * summary.CoinFaceValue;
-            //summary.BullionValueTotal = checklistCoins.Count(x => x.InCollection) * summary.CoinBullionValue;
-            //summary.EstimatedValueTotal = checklistCoins.Where(x => x.InCollection).Sum(x => x.ValueEstimate);
-
-            //summary.CollectionValueTotal = CalculateCollectionValueTotal(checklistCoins, summary.CoinFaceValue, summary.CoinBullionValue);
-
-            //summary.TotalCoinsInChecklist = checklistCoins.Count();
-            //summary.TotalCoinsCollected = checklistCoins.Where(x => x.InCollection).Count();
-            //summary.TotalCoinsPercentage = (int)((summary.TotalCoinsCollected / (decimal)summary.TotalCoinsInChecklist) * 100);
-
+                                .FirstOrDefault();            
             return summary;
-        }
-
-        private decimal CalculateCollectionValueTotal(IList<CbChecklistCoin> checklistCoins, decimal faceValue, decimal meltValue)
-        {
-            var total = 0m;
-
-            foreach (var coin in checklistCoins)
-            {
-                if (!coin.InCollection) continue;
-                if (coin.ShouldExclude) continue;
-
-                if (coin.ValueEstimate > 0)
-                {
-                    total += coin.ValueEstimate;
-                }
-                else if (meltValue > 0 && meltValue > faceValue)
-                {
-                    total += meltValue;
-                }
-                else
-                {
-                    total += faceValue;
-                }
-            }
-
-            return total;
-        }
+        }        
     }
 }

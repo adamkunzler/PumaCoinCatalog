@@ -37,9 +37,15 @@
         position: relative;
         transform: translateY(25%);
     }
+
+    .bold-title {
+        font-weight: 700;
+    }
 </style>
 
 @{
+    var totalFaceValueOfCollection = Model.Checklists.ToList().Sum(x => x.ValueSummary.FaceValueTotal);
+    var totalBullionValueOfCollection = Model.Checklists.ToList().Sum(x => x.ValueSummary.BullionValueTotal);
     var totalValueOfCollection = Model.Checklists.ToList().Sum(x => x.ValueSummary.CollectionValueTotal);
     var totalCoinsInCollection = Model.Checklists.ToList().Sum(x => x.ValueSummary.CoinCountBar.TotalCoinsCollected);
 }
@@ -60,39 +66,55 @@
 
     <div id="divChecklists">
         @if (Model.Checklists.Any())
-        {
-            <div>Collection Value: <span>@totalValueOfCollection</span></div>
-            <div># of Coins Collection: <span>@totalCoinsInCollection</span></div>
-            <hr />
-            foreach (var checklist in Model.Checklists)
-            {
-                <div class="row cbchecklist-row">
-                    <div class="col-md-1 middle">
-                        <span>@checklist.DenominationTitle</span>
-                    </div>
-                    <div class="col-md-1">
-                        @Html.Partial("../CbCoinData/_coinImageSmall", checklist.ImageViewModel)
-                    </div>
-                    <div class="col-md-3 middle">
-                        <a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.ChecklistId })">@checklist.ChecklistTitle</a>
-                    </div>
-                    <div class="col-md-2 middle">
-                        <span>(@checklist.BeginDate - @checklist.EndDate)</span>
-                    </div>
-                    <div class="col-md-2 middle">
-                        @Html.Partial("../CbChecklist/_coinCountBar", checklist.ValueSummary.CoinCountBar)
-                    </div>
-                    <div class="col-md-3 middle">
-                        <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal.ToString("0.00")</span>
-                    </div>
-                </div>
-                <hr />
-            }
-        }
-        else
-        {
-            <h3>No checklists have been created.</h3>
-        }
+    {
+        <div class="row">
+            <div class="col-md-3">
+                <div class="bold-title"># of Coins in Collection:</div>
+                <div>@totalCoinsInCollection</div>
+            </div>
+            <div class="col-md-3">
+                <div class="bold-title">Collection Value:</div>
+                <div>@totalValueOfCollection.ToString("c")</div>
+            </div>
+            <div class="col-md-3">
+                <div class="bold-title">Collection Face Value:</div>
+                <div>@totalFaceValueOfCollection.ToString("c")</div>
+            </div>
+            <div class="col-md-3">
+                <div class="bold-title">Collection Bullion Value:</div>
+                <div>@totalBullionValueOfCollection.ToString("c")</div>
+            </div>
+        </div>
+        <hr />
+    foreach (var checklist in Model.Checklists)
+    {
+        <div class="row cbchecklist-row">
+            <div class="col-md-1 middle">
+                <span>@checklist.DenominationTitle</span>
+            </div>
+            <div class="col-md-1">
+                @Html.Partial("../CbCoinData/_coinImageSmall", checklist.ImageViewModel)
+            </div>
+            <div class="col-md-3 middle">
+                <a href="@Url.Action("Index", "CbChecklist", new { checklistId = checklist.ChecklistId })">@checklist.ChecklistTitle</a>
+            </div>
+            <div class="col-md-2 middle">
+                <span>(@checklist.BeginDate - @checklist.EndDate)</span>
+            </div>
+            <div class="col-md-2 middle">
+                @Html.Partial("../CbChecklist/_coinCountBar", checklist.ValueSummary.CoinCountBar)
+            </div>
+            <div class="col-md-3 middle">
+                <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal.ToString("0.00")</span>
+            </div>
+        </div>
+        <hr />
+}
+}
+else
+{
+    <h3>No checklists have been created.</h3>
+}
     </div>
 </div>
 

@@ -18,11 +18,13 @@ namespace PumaCoinCatalog.Web.Controllers
     {
         public readonly CbChecklistService _checklistService;
         private readonly CbCoinDataService _cbCoinDataService;
+        private readonly CbChecklistCoinService _cbChecklistCoinService;
 
         public CbChecklistController()
         {
             _checklistService = new CbChecklistService();
             _cbCoinDataService = new CbCoinDataService();
+            _cbChecklistCoinService = new CbChecklistCoinService();
         }
 
         // GET: CbChecklist
@@ -31,13 +33,15 @@ namespace PumaCoinCatalog.Web.Controllers
             var checklist = _checklistService.GetChecklist(checklistId);
             var type = _cbCoinDataService.GetType(checklist.Type.Id);
             var valueSummary = _checklistService.GetChecklistValueSummary(checklist.Id);
+            var coins = _cbChecklistCoinService.GetCoinsByChecklistId(checklistId);
 
             var model = new CbChecklistIndexViewModel
             {
                 Id = checklist.Id,
                 Title = checklist.Title,
                 LastModified = checklist.LastModified,
-                Collection = new CbCollectionViewModel {
+                Collection = new CbCollectionViewModel
+                {
                     Id = checklist.Collection.Id,
                     Title = checklist.Collection.Title
                 },
@@ -47,7 +51,7 @@ namespace PumaCoinCatalog.Web.Controllers
                     DenominationTitle = type.Variety.Denomination.Title,
                     VarietyId = type.Variety.Id,
                     VarietyTitle = type.Variety.Title,
-                    TypeId = type.Id,                    
+                    TypeId = type.Id,
                     TypeTitle = type.Title,
                     ChecklistId = checklist.Id,
                     ChecklistTitle = checklist.Title,
@@ -66,7 +70,33 @@ namespace PumaCoinCatalog.Web.Controllers
                     }
                 },
                 ValueSummary = GetValueSummaryViewModel(valueSummary),
-                Coins = checklist.Coins.Map()
+                Coins = coins.Select(x => new CbChecklistCoinViewModel
+                {
+                    Id = x.Id,
+                    InCollection = x.InCollection,
+                    ShouldExclude = x.ShouldExclude,
+                    ValueEstimate = x.ValueEstimate,
+                    Quantity = x.Quantity,
+                    Grade = x.Grade,
+                    Coin = new CbCoinViewModel
+                    {
+                        Id = x.Coin.Id,
+                        Year = x.Coin.Year,
+                        MintMark = x.Coin.MintMark,
+                        Details = x.Coin.Details,
+                        Mintage = x.Coin.Mintage
+                    },
+                    Checklist = new CbChecklistViewModel
+                    {
+                        Id = checklist.Id,
+                        Title = checklist.Title,
+                        Collection = new CbCollectionViewModel
+                        {
+                            Id = checklist.Collection.Id,
+                            Title = checklist.Collection.Title
+                        }
+                    }
+                }).ToList()
             };
 
             return View(model);

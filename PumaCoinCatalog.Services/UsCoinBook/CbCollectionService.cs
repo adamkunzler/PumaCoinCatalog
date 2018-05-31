@@ -51,6 +51,8 @@ namespace PumaCoinCatalog.Services.UsCoinBook
 
         public CbCollection CreateCollection(string title)
         {
+            if (title == "null") throw new Exception("Specify a valid collection name");
+
             title = title.Trim();
 
             // check for duplicate

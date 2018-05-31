@@ -1,15 +1,12 @@
 ﻿using PumaCoinCatalog.Services.UsCoinBook;
-using PumaCoinCatalog.Web.Infrastructure.Mappers;
+using PumaCoinCatalog.UsCoinBook.Services;
+using PumaCoinCatalog.Web.Infrastructure;
+using PumaCoinCatalog.Web.Models.CbCoinData;
 using PumaCoinCatalog.Web.Models.CbCollection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PumaCoinCatalog.Web.Infrastructure;
-using System.IO;
-using PumaCoinCatalog.UsCoinBook.Services;
-using PumaCoinCatalog.Web.Models.CbCoinData;
 
 namespace PumaCoinCatalog.Web.Controllers
 {
@@ -21,7 +18,7 @@ namespace PumaCoinCatalog.Web.Controllers
         private readonly CbCoinDataService _cbCoinDataService;
 
         public CbCollectionController()
-        {
+        {            
             _collectionService = new CbCollectionService();
             _checklistService = new CbChecklistService();            
             _generalService = new CbGeneralService();
@@ -34,7 +31,11 @@ namespace PumaCoinCatalog.Web.Controllers
             var model = new CbCollectionIndexViewModel();
 
             var collections = _collectionService.GetAllCollections();
-            model.Collections = collections.Map();
+            model.Collections = collections.Select(x => new CbCollectionViewModel
+                                                        {
+                                                            Id = x.Id,
+                                                            Title = x.Title
+                                                        }).ToList();
 
             return View(model);
         }
@@ -93,6 +94,8 @@ namespace PumaCoinCatalog.Web.Controllers
                         DenominationTitle = d.DenominationTitle,
                         ValueSummary = new CbChecklistValueSummaryViewModel {
                             CollectionValueTotal = d.CollectionValueTotal,
+                            FaceValueTotal = d.DenominationFaceValue * d.TotalCoinsInChecklist,
+                            BullionValueTotal = d.TypeMeltValue * d.TotalCoinsInChecklist,
                             CoinCountBar = new CoinCountBarViewModel
                             {
                                 TotalCoinsCollected = d.TotalCoinsCollected,
@@ -247,8 +250,6 @@ namespace PumaCoinCatalog.Web.Controllers
             return PartialView("_ddlCbChecklistTypes", model);
         }
 
-        #endregion NewChecklist
-
-        
+        #endregion NewChecklist        
     }
 }
