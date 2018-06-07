@@ -105,7 +105,9 @@
                 @Html.Partial("../CbChecklist/_coinCountBar", checklist.ValueSummary.CoinCountBar)
             </div>
             <div class="col-md-3 middle">
-                <span class="info">Value: </span><span>$@checklist.ValueSummary.CollectionValueTotal.ToString("0.00")</span>
+                <div style="font-size: 12px;">Face Value: $@checklist.ValueSummary.FaceValueTotal.ToString("0.00")</div>
+                <div style="font-size: 12px;">Bullion Value: $@checklist.ValueSummary.BullionValueTotal.ToString("0.00")</div>
+                <div style="font-size: 12px;">Collection Value: $@checklist.ValueSummary.CollectionValueTotal.ToString("0.00")</div>                
             </div>
         </div>
         <hr />
